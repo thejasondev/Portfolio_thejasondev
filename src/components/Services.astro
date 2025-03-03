@@ -1,0 +1,86 @@
+---
+import { Icon } from "astro-icon/components";
+
+const services = [
+  {
+    title: "Plan Básico",
+    description: "Ideal para pequeños proyectos o negocios que necesitan presencia en línea. Incluye:",
+    features: [
+      "Landing page",
+      "Hasta 4 secciones",
+      "Despliegue en Vercel",
+      "Optimización básica",
+   ],
+    price: "$50 usd",
+    message: "Hola, me interesa el servicio de Plan Básico"
+  },
+  {
+    title: "Plan Intermedio",
+    description:
+      "Perfecto para negocios que buscan funcionalidades adicionales. Incluye:",
+    features: [
+      "Diseño de hasta 5 secciones (Inicio, Servicios, Contacto...)",
+      "Integración básica de Formulario de Contacto",
+      "Integración de redes sociales",
+      "Optimización SEO",
+      "Despliegue en Vercel",
+    ],
+    price: "$100 usd",
+    message: "Hola, me interesa el servicio de Plan Intermedio."
+  },
+  {
+    title: "Plan Personalizado",
+    description: "Diseñado para clientes con necesidades específicas. Incluye:",
+    features: [
+      "Diseño y funcionalidades a medida del cliente",
+      "Consultoría personalizada",
+      "Optimización SEO",
+      "Despliegue en Vercel",
+      "Soporte técnico extendido",
+    ],
+    price: "Precio a consultar",
+    message: "Hola, me interesa el Plan Personalizado."
+  },
+];
+
+const getWhatsappLink = (message: string) => 
+  `https://wa.me/+5353118193?text=${encodeURIComponent(message)}`;
+---
+
+<section id="services" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 font-playfair animate-fade-up">
+      Servicios
+    </h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 animate-fade-up" style={`animation-delay: ${index * 100}ms`}>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 font-playfair">
+            {service.title}
+          </h3>
+          <p class="text-gray-600 mb-2 font-inter">
+            {service.description}
+          </p>
+          <ul class="list-disc list-inside text-left mt-1 mb-4">
+              {service.features && service.features.map(feature => (
+                  <li>{feature}</li>
+              ))}
+              </ul>
+          <p class="text-gray-900 font-semibold mb-6 text-center text-2xl">
+            {service.price}
+          </p>
+          <a
+            href={getWhatsappLink(service.message)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium w-full justify-center"
+          >
+            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
+            Contratar
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

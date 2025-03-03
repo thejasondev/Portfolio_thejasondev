@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    icon: "mdi:facebook",
+    url: "https://facebook.com/jason.guerra.167"
+  },
+  {
+    name: "Instagram",
+    icon: "mdi:instagram",
+    url: "https://instagram.com/thejasondev?"
+  },
+  {
+    name: "LinkedIn",
+    icon: "mdi:linkedin",
+    url: "https://www.linkedin.com/in/thejasondev?"
+  },
+  {
+  name: "Gmail",
+  icon: "mdi:gmail",
+  url: "mailto:thejasondev13@gmail.com"
+  },
+  {
+    name: "GitHub",
+    icon: "mdi:github",
+    url: "https://github.com/thejasondev?"
+  },
+];
+
+const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola, estoy interesado en tus servicios.")}`;
+---
+
+<section id="contact" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-8 text-gray-900 font-playfair animate-fade-up">
+        ¿Listo para empezar?
+      </h2>
+      <p class="text-gray-600 mb-12 text-lg font-inter animate-fade-up animate-delay-100">
+        Estoy aquí para ayudarte a llevar tu proyecto al siguiente nivel. 
+        Contáctame y conversemos sobre cómo podemos trabajar juntos.
+      </p>
+
+      <div class="flex justify-center gap-8 mb-12 animate-fade-up animate-delay-200">
+        {socialLinks.map(social => (
+          <a
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <Icon name={social.icon} class="w-8 h-8" />
+            <span class="sr-only">{social.name}</span>
+          </a>
+        ))}
+      </div>
+
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center px-8 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors font-medium tracking-wide animate-fade-up animate-delay-300"
+      >
+        <Icon name="mdi:whatsapp" class="w-6 h-6 mr-2" />
+        Iniciar conversación
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="py-8 bg-gray-50 border-t border-gray-100">
+  <div class="container mx-auto px-4 text-center">
+    <p class="text-gray-600 font-inter">
+      © {new Date().getFullYear()} @thejasondev. Todos los derechos reservados.
+    </p>
+  </div>
+</footer>

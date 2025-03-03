@@ -1,0 +1,135 @@
+---
+import { Icon } from "astro-icon/components";
+
+const menuItems = [
+  { text: "Sobre mí", href: "#about" },
+  { text: "Proyectos", href: "#projects" },
+  { text: "Servicios", href: "#services" },
+  { text: "Contacto", href: "#contact" },
+];
+
+const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola, me interesa trabajar contigo.")}`;
+---
+
+<header class="fixed w-full bg-white/80 backdrop-blur-sm z-50 top-0 border-b border-gray-100">
+  <!-- Contenedor de navegación -->
+  <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="/" class="text-xl font-playfair font-bold text-gray-900">
+       {'{ thejasondev }'}
+    </a>
+
+    <!-- Botón hamburguesa -->
+    <button
+      id="menu-toggle"
+      class="md:hidden relative w-7 h-7 z-60"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Menú de escritorio -->
+    <ul class="hidden md:flex space-x-8">
+      {menuItems.map(item => (
+        <li>
+          <a
+            href={item.href}
+            class="text-gray-600 hover:text-gray-900 transition-colors font-inter"
+          >
+            {item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<!-- Menú móvil -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-white transform -translate-y-full transition-transform duration-300 md:hidden z-40"
+>
+  <div class="h-full flex items-center justify-center top-32">
+    <ul class="space-y-8 text-center mt-44">
+      {menuItems.map(item => (
+        <li>
+          <a
+            href={item.href}
+            class="text-2xl text-gray-900 hover:text-gray-600 transition-colors font-playfair"
+          >
+            {item.text}
+          </a>
+        </li>
+      ))}
+      <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors font-medium tracking-wide"
+          >
+            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
+            Contáctame
+          </a>
+      <footer class="pt-28">
+        <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-600 font-inter">
+        © {new Date().getFullYear()} @thejasondev. Todos los derechos reservados.
+        </p>
+       </div>
+      </footer>
+    </ul>
+  </div>
+</div>
+
+<style>
+  /* Estilos para el botón hamburguesa */
+  .hamburger-line {
+    @apply absolute left-0 h-0.5 w-full bg-gray-900 transition-all duration-300;
+  }
+  .hamburger-line:first-child {
+    @apply top-1;
+  }
+  .hamburger-line:nth-child(2) {
+    @apply top-3;
+  }
+  .hamburger-line:last-child {
+    @apply top-5;
+  }
+
+  /* Transformación del botón al abrir el menú */
+  #menu-toggle.menu-open .hamburger-line:first-child {
+    @apply top-3 rotate-45;
+  }
+  #menu-toggle.menu-open .hamburger-line:nth-child(2) {
+    @apply opacity-0;
+  }
+  #menu-toggle.menu-open .hamburger-line:last-child {
+    @apply top-3 -rotate-45;
+  }
+</style>
+
+<script>
+  // Referencias a los elementos
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuLinks = document.querySelectorAll('#mobile-menu a');
+
+  // Al hacer clic en el botón hamburguesa se alternan las clases:
+  // - 'menu-open' en el botón (para la animación de líneas).
+  // - 'translate-y-0' en el menú (para mostrarlo u ocultarlo).
+  menuToggle?.addEventListener('click', () => {
+    menuToggle.classList.toggle('menu-open');
+    if (mobileMenu) {
+      mobileMenu.classList.toggle('translate-y-0');
+    }
+  });
+
+  // Al hacer clic en un enlace del menú móvil, se cierra
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle?.classList.remove('menu-open');
+      mobileMenu?.classList.remove('translate-y-0');
+    });
+  });
+</script>
+
