@@ -12,7 +12,7 @@ const services = [
       "Optimización básica",
    ],
     price: "$50 usd",
-    message: "Hola, me interesa el servicio de Plan Básico"
+    message: "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Básico"
   },
   {
     title: "Plan Intermedio",
@@ -26,7 +26,7 @@ const services = [
       "Despliegue en Vercel",
     ],
     price: "$100 usd",
-    message: "Hola, me interesa el servicio de Plan Intermedio."
+    message: "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Intermedio."
   },
   {
     title: "Plan Personalizado",
@@ -39,7 +39,7 @@ const services = [
       "Soporte técnico extendido",
     ],
     price: "Precio a consultar",
-    message: "Hola, me interesa el Plan Personalizado."
+    message: "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Personalizado."
   },
 ];
 
@@ -74,7 +74,7 @@ const getWhatsappLink = (message: string) =>
             href={getWhatsappLink(service.message)}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium w-full justify-center"
+            class="inline-flex items-center rounded-xl px-6 py-3 bg-gray-900 text-white hover:bg-gray-800 transition-colors font-medium w-full justify-center"
           >
             <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
             Contratar
