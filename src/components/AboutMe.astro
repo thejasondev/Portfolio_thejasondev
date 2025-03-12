@@ -1,15 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-
-const technologies = [
-  { name: "HTML5", icon: "mdi:language-html5" },
-  { name: "CSS3", icon: "mdi:language-css3" },
-  { name: "Tailwind CSS", icon: "mdi:tailwind" },
-  { name: "JavaScript", icon: "mdi:language-javascript" },
-  { name: "Astro", icon: "mdi:ansible" },
-  { name: "React", icon: "mdi:react" },
-  { name: "GitHub", icon: "mdi:github" },
-];
+import { technologies } from "../data/icons.js";
 
 const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola, me interesa trabajar contigo.")}`;
 ---
@@ -45,7 +36,7 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
             ¡Hola! Soy<br/><span class="text-gray-800">Jason Guerra</span>
           </h2>
           <p class="text-gray-600 text-lg leading-relaxed font-inter">
-            Un apasionado desarrollador frontend, residente en Miramar, La Habana, Cuba. Mi formación como Ingeniero Industrial me ha proporcionado una sólida base en gestión de proyectos, la resolución creativa de problemas y las comunicaciones estratégicas.
+            Un desarrollador frontend freelance, residente en Miramar, La Habana, Cuba. Mi formación como Ingeniero Industrial me ha proporcionado una sólida base en la gestión de proyectos, la resolución creativa de problemas y las comunicaciones estratégicas.
           </p>
             <h3 class="text-xl font-semibold mt-6 mb-1 text-gray-900 font-playfair">¿Por qué escogerme?</h3>
           <p class="text-gray-600 text-lg leading-relaxed font-inter">
@@ -58,8 +49,10 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
           <div class="flex flex-wrap gap-6">
             {technologies.map(tech => (
               <div class="group flex flex-col items-center space-y-2 hover:-translate-y-1 transition-transform">
-                <Icon name={tech.icon} class="w-10 h-10" />
-                <span class="text-sm text-gray-600">{tech.name}</span>
+                <div class="p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition-shadow">
+                  <Icon name={tech.icon} width={32} height={32} style={{color: tech.color}} />
+                </div>
+                <span class="text-sm text-gray-600 font-medium">{tech.name}</span>
               </div>
             ))}
           </div>

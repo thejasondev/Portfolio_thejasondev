@@ -2,21 +2,15 @@
 const projects = [
   {
     title: "Havanera Nails",
-    description: "Desarrollé la página web de Havanera Nails, un negocio de manicura y pedicura, utilizando Astro y TailwindCSS para lograr una web rápida y eficiente. Implementé JavaScript para mejorar la interactividad y optimicé el SEO para aumentar la visibilidad en buscadores. La página está desplegada en Vercel, garantizando un rendimiento óptimo y tiempos de carga mínimos.",
+    description: "Diseñe y desarrollé la página web de Havanera Nails, un negocio de manicura y pedicura, en La Habana. Utilicé Astro y TailwindCSS para lograr una web rápida y eficiente. Implementé JavaScript para mejorar la interactividad y optimicé el SEO para aumentar la visibilidad en buscadores. La página está desplegada en Vercel, garantizando un rendimiento óptimo y tiempos de carga mínimos.",
     image: "/projects-pic/havanera-nails-project.png",
     url: "https://havanera-nails.vercel.app"
   },
   {
-    title: "Proyecto 2",
-    description: "Un e-commerce responsive con integración de pagos",
-    image: "/placeholder.svg",
-    url: "https://proyecto2.com"
-  },
-  {
-    title: "Proyecto 3",
-    description: "Una aplicación de gestión de tareas con autenticación",
-    image: "/placeholder.svg",
-    url: "https://proyecto3.com"
+    title: "Satori Massage",
+    description: "Diseñé y desarrollé la landing page para Satori Massage, un servicio premium de masajes terapéuticos a domicilio. Utilicé Next.js y TypeScript para crear una experiencia de usuario fluida y moderna, complementada con animaciones sutiles. La implementación de TailwindCSS permitió un diseño responsive y elegante, mientras que la optimización SEO aumentó significativamente su visibilidad online.",
+    image: "/projects-pic/satori-project.png",
+    url: "https://satori-massage.vercel.app"
   },
 ];
 ---
@@ -27,9 +21,9 @@ const projects = [
       Mis Proyectos
     </h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
       {projects.map((project, index) => (
-        <article class="group relative bg-white rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2 animate-fade-up" style={`animation-delay: ${index * 100}ms`}>
+        <article class="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-2 animate-fade-up" style={`animation-delay: ${index * 100}ms`}>
           <a href={project.url} target="_blank" rel="noopener noreferrer" class="block">
             <div class="absolute inset-0 bg-gradient-to-b from-gray-100 to-gray-200 transform scale-[1.02] opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
             <img
@@ -44,12 +38,19 @@ const projects = [
               <p class="text-gray-600 font-inter mb-4">
                 {project.description}
               </p>
-              <span class="text-gray-900 font-medium inline-flex items-center">
-                Ver proyecto
-                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
+              <div class="flex justify-center md:justify-start">
+                <a 
+                  href={project.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-full hover:from-gray-700 hover:to-gray-800 transition-colors font-medium tracking-wide group-hover:shadow-md"
+                >
+                  Visitar sitio
+                  <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </a>
         </article>
