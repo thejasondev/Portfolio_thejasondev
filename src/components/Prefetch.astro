@@ -1,0 +1,20 @@
+---
+// Prefetch de recursos críticos para mejorar la experiencia de usuario
+const criticalResources = [
+  // Ruta principal
+  '/',
+  // Imágenes clave
+  '/profile-pic/profile_pic.webp',
+  '/projects-pic/havanera-nails-project.png',
+  '/projects-pic/satori-project.png',
+  // Iconos
+  '/web-dev.png'
+];
+---
+
+{criticalResources.map((resource) => (
+  <link rel="prefetch" href={resource} />
+))}
+
+<!-- Añadir prefetch para navegación por anclas mediante preconnect -->
+<link rel="preconnect" href="/" /> 

@@ -1,15 +1,24 @@
 ---
 const projects = [
   {
+    title: "Dito's Bartender",
+    description: "Diseñé y desarrollé la página web para Dito's Bartender, un servicio premium de bartending móvil con sede en Estados Unidos. Implementé una interfaz moderna y atractiva utilizando Astro con componentes de React y TypeScript para garantizar un código robusto y mantenible. El diseño responsive creado con TailwindCSS ofrece una experiencia óptima en todos los dispositivos.",
+    image: "/projects-pic/ditos-screen.png",
+    technologies: ["Astro", "React", "TypeScript", "TailwindCSS", "SEO"],
+    url: "https://ditos-bartender.com"
+  },
+  {
     title: "Havanera Nails",
-    description: "Diseñe y desarrollé la página web de Havanera Nails, un negocio de manicura y pedicura, en La Habana. Utilicé Astro y TailwindCSS para lograr una web rápida y eficiente. Implementé JavaScript para mejorar la interactividad y optimicé el SEO para aumentar la visibilidad en buscadores. La página está desplegada en Vercel, garantizando un rendimiento óptimo y tiempos de carga mínimos.",
-    image: "/projects-pic/havanera-nails-project.png",
+    description: "Diseñe y desarrollé la página web de Havanera Nails, un negocio de manicura y pedicura, en La Habana. Utilicé Astro y TailwindCSS para lograr una web rápida y eficiente. Implementé JavaScript para mejorar la interactividad y optimicé el SEO para aumentar la visibilidad en buscadores.",
+    image: "/projects-pic/havanera-screen.png",
+    technologies: ["Astro", "TailwindCSS", "JavaScript", "SEO"],
     url: "https://havanera-nails.vercel.app"
   },
   {
     title: "Satori Massage",
-    description: "Diseñé y desarrollé la landing page para Satori Massage, un servicio premium de masajes terapéuticos a domicilio. Utilicé Next.js y TypeScript para crear una experiencia de usuario fluida y moderna, complementada con animaciones sutiles. La implementación de TailwindCSS permitió un diseño responsive y elegante, mientras que la optimización SEO aumentó significativamente su visibilidad online.",
-    image: "/projects-pic/satori-project.png",
+    description: "Diseñé y desarrollé la landing page para Satori Massage, un servicio premium de masajes terapéuticos a domicilio. Utilicé Next.js y TypeScript para crear una experiencia de usuario fluida y moderna, complementada con animaciones sutiles. La implementación de TailwindCSS permitió un diseño responsive y elegante.",
+    image: "/projects-pic/satori-screen.png",
+    technologies: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
     url: "https://satori-massage.vercel.app"
   },
 ];
@@ -21,29 +30,80 @@ const projects = [
       Mis Proyectos
     </h2>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+    <div class="space-y-24">
       {projects.map((project, index) => (
-        <article class="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-2 animate-fade-up" style={`animation-delay: ${index * 100}ms`}>
-          <a href={project.url} target="_blank" rel="noopener noreferrer" class="block">
-            <div class="absolute inset-0 bg-gradient-to-b from-gray-100 to-gray-200 transform scale-[1.02] opacity-0 group-hover:opacity-100 transition-opacity -z-10"></div>
-            <img
-              src={project.image}
-              alt={project.title}
-              class="w-full h-62 object-contain"
-            />
-            <div class="p-6 border border-gray-100 rounded-b-xl">
-              <h3 class="text-xl font-bold mb-3 text-gray-900 font-playfair">
-                {project.title}
-              </h3>
-              <p class="text-gray-600 font-inter mb-4">
-                {project.description}
-              </p>
-              <div class="flex justify-center md:justify-start">
+        <article class="relative animate-fade-up" style={`animation-delay: ${index * 150}ms`}>
+          <div class={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} md:items-center gap-8 lg:gap-12`}>
+            {/* Contenedor de imagen con efectos visuales */}
+            <div class="md:w-1/2 relative group">
+              {/* Marco decorativo */}
+              <div class="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-100 transform scale-[1.03] rounded-xl -z-10 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+              
+              {/* Círculo decorativo */}
+              <div class="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 z-10"></div>
+              
+              {/* Contenedor de la imagen con sombra y borde */}
+              <div class="relative rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 border-2 border-gray-100">
+                {/* Overlay con gradiente al hacer hover */}
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
+                
+                {/* Imagen del proyecto - Modificado para mejor visualización */}
+                <div class="relative w-full pb-[56.25%]"> {/* Mantiene relación 16:9 */}
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="absolute inset-0 w-full h-full object-contain bg-gray-50"
+                    loading="lazy"
+                  />
+                </div>
+                
+                {/* Overlay inferior con detalles en hover */}
+                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-20">
+                  <a 
+                    href={project.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="inline-flex items-center px-5 py-2.5 bg-white text-gray-900 rounded-full hover:bg-gray-50 transition-colors font-medium tracking-wide shadow-md"
+                  >
+                    Visitar sitio
+                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            {/* Información del proyecto */}
+            <div class="md:w-1/2 space-y-6">
+              <div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-3 text-gray-900 font-playfair group-hover:text-gray-800 transition-colors">
+                  {project.title}
+                </h3>
+                <p class="text-gray-600 font-inter leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+              
+              {/* Tecnologías usadas */}
+              <div>
+                <h4 class="text-sm font-semibold text-gray-700 mb-3 tracking-wider uppercase">Tecnologías</h4>
+                <div class="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span class="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-gray-200 transition-colors transform hover:-translate-y-1 hover:shadow-sm duration-200">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Botón de acción (visible solo en móvil) */}
+              <div class="md:hidden mt-4">
                 <a 
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-full hover:from-gray-700 hover:to-gray-800 transition-colors font-medium tracking-wide group-hover:shadow-md"
+                  class="inline-flex items-center px-5 py-2.5 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors font-medium tracking-wide"
                 >
                   Visitar sitio
                   <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -52,9 +112,24 @@ const projects = [
                 </a>
               </div>
             </div>
-          </a>
+          </div>
+          
+          {/* Elemento decorativo lineal */}
+          <div class="hidden md:block absolute left-1/2 -translate-x-1/2 -bottom-12 w-[150px] h-[2px] bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
         </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  /* Asegurar que los botones redondeados tengan el borde correcto */
+  .rounded-full {
+    border-radius: 9999px !important;
+  }
+  
+  /* Animación mejorada para etiquetas de tecnologías */
+  .bg-gray-100 {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+</style>

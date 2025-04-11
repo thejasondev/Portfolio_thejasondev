@@ -1,0 +1,79 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  keywords: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  type?: string;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  image = "/profile-pic/profile_pic.webp",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  type = "website",
+} = Astro.props;
+
+// Asegúrese de que la imagen tenga una URL completa
+const imageUrl = new URL(image, Astro.site).toString();
+---
+
+<!-- SEO Básico -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="robots" content="index, follow" />
+
+<!-- Verificación de Google -->
+<meta name="google-site-verification" content="A7BT_C6ClgkaWHA9brgG3v0v7gG-1NeclQ6jCfvQF8U" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:site_name" content="Jason Guerra - Desarrollador Frontend" />
+<meta property="og:locale" content="es_ES" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:image" content={imageUrl} />
+
+<!-- Favicon -->
+<link rel="icon" href="/web-dev.png" type="image/png" />
+<link rel="icon" href="/web-dev.png" type="image/png" sizes="16x16" />
+<link rel="icon" href="/web-dev.png" type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href={imageUrl}>
+
+<!-- Structured Data / JSON-LD -->
+<script type="application/ld+json">
+  {
+    JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jason Guerra",
+      "url": Astro.site?.toString(),
+      "image": imageUrl,
+      "jobTitle": "Desarrollador Frontend",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "sameAs": [
+        "https://github.com/thejasondev?",
+        "https://linkedin.com/in/thejasondev?",
+        "https://instagram.com/thejasondev?",
+        "https://wa.me/+5353118193?"
+      ],
+      "description": description
+    })
+  }
+</script> 
