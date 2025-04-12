@@ -5,15 +5,23 @@ import AboutMe from '../components/AboutMe.astro';
 import Projects from '../components/Projects.astro';
 import Services from '../components/Services.astro';
 import ContactForm from '../components/ContactForm.astro';
+
+// Datos estructurados para SEO
+const pageTitle = "Jason Guerra | Desarrollador Frontend Freelance - Especializado en Web Modernas y Atractivas";
+const pageDescription = "Portfolio profesional de Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Especializado en crear sitios web modernos, rápidos y optimizados para SEO utilizando Astro, React, TypeScript y TailwindCSS.";
+const pageKeywords = "desarrollador frontend, portfolio, SEO, diseño web, proyectos web, Jason Guerra, desarrollo web Cuba, Astro, React, TypeScript, TailwindCSS, diseño responsive, frontend freelance";
 ---
 
 <Layout 
-  title="Jason Guerra | Desarrollador Frontend Freelance - Especializado en Web Modernas y Atractivas"
-  description="Portfolio profesional de Jason, desarrollador frontend freelance. Aquí encontrarás proyectos de desarrollo web, optimización SEO y diseño moderno."
-  keywords="desarrollador frontend, portfolio, SEO, diseño web, proyectos web"
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  datePublished="2023-08-01"
+  dateModified={new Date().toISOString().split('T')[0]}
+  type="website"
 >
   <Header />
-  <main class="pt-16">
+  <main class="pt-16" itemscope itemtype="https://schema.org/ProfilePage">
     <AboutMe />
     <Projects />
     <Services />

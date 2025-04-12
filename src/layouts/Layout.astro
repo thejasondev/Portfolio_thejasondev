@@ -8,9 +8,23 @@ interface Props {
   keywords: string;
   image?: string;
   type?: string;
+  datePublished?: string;
+  dateModified?: string;
+  author?: string;
+  alternateLocale?: string[];
 }
 
-const { title, description, keywords, image, type } = Astro.props;
+const { 
+  title, 
+  description, 
+  keywords, 
+  image, 
+  type,
+  datePublished,
+  dateModified,
+  author,
+  alternateLocale
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,9 +38,14 @@ const { title, description, keywords, image, type } = Astro.props;
       keywords={keywords}
       image={image}
       type={type}
+      datePublished={datePublished}
+      dateModified={dateModified}
+      author={author}
+      alternateLocale={alternateLocale}
     />
     <Prefetch />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" crossorigin>
   </head>
   <body class="bg-[#fafafa]">
     <slot />

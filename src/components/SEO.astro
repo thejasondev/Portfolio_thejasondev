@@ -6,6 +6,10 @@ export interface Props {
   image?: string;
   canonicalURL?: URL | string;
   type?: string;
+  author?: string;
+  datePublished?: string;
+  dateModified?: string;
+  alternateLocale?: string[];
 }
 
 const {
@@ -15,21 +19,35 @@ const {
   image = "/profile-pic/profile_pic.webp",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
   type = "website",
+  author = "Jason Guerra",
+  datePublished = new Date().toISOString().split('T')[0],
+  dateModified = new Date().toISOString().split('T')[0],
+  alternateLocale = ["en_US"]
 } = Astro.props;
 
 // Asegúrese de que la imagen tenga una URL completa
 const imageUrl = new URL(image, Astro.site).toString();
+const siteUrl = Astro.site?.toString().replace(/\/$/, '');
+const primaryDomain = "https://thejasondev.vercel.app";
 ---
 
 <!-- SEO Básico -->
 <title>{title}</title>
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
 <link rel="canonical" href={canonicalURL} />
-<meta name="robots" content="index, follow" />
+
+<!-- Control de indexación y seguimiento -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
 <!-- Verificación de Google -->
 <meta name="google-site-verification" content="A7BT_C6ClgkaWHA9brgG3v0v7gG-1NeclQ6jCfvQF8U" />
+
+<!-- Meta para Vercel Analytics -->
+<meta name="view-transition" content="same-origin" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -37,43 +55,159 @@ const imageUrl = new URL(image, Astro.site).toString();
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="Jason Guerra - Desarrollador Frontend" />
 <meta property="og:locale" content="es_ES" />
+{alternateLocale.map(locale => (
+  <meta property="og:locale:alternate" content={locale} />
+))}
+<meta property="og:updated_time" content={dateModified} />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:url" content={canonicalURL} />
-<meta property="twitter:image" content={imageUrl} />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:creator" content="@thejasondev" />
 
-<!-- Favicon -->
+<!-- Enlaces alternativos para dispositivos móviles -->
+<link rel="alternate" media="only screen and (max-width: 640px)" href={`${siteUrl}/mobile${Astro.url.pathname}`} />
+
+<!-- Favicon y App Icons -->
 <link rel="icon" href="/web-dev.png" type="image/png" />
 <link rel="icon" href="/web-dev.png" type="image/png" sizes="16x16" />
 <link rel="icon" href="/web-dev.png" type="image/png" sizes="32x32" />
-<link rel="apple-touch-icon" href={imageUrl}>
+<link rel="apple-touch-icon" href="/web-dev.png" />
+<link rel="manifest" href="/manifest.json" />
 
-<!-- Structured Data / JSON-LD -->
+<!-- Tipo de app para dispositivos móviles -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="application-name" content="Jason Guerra Portfolio" />
+<meta name="apple-mobile-web-app-title" content="Jason Guerra" />
+<meta name="theme-color" content="#0f172a" />
+
+<!-- Enlaces para dominios alternativos - SEO de redirecciones -->
+<link rel="alternate" href={`${primaryDomain}${Astro.url.pathname}`} hreflang="x-default" />
+<link rel="alternate" href={`${primaryDomain}${Astro.url.pathname}`} hreflang="es-ES" />
+
+<!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json">
   {
     JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
+      "@id": `${primaryDomain}/#person`,
       "name": "Jason Guerra",
-      "url": Astro.site?.toString(),
-      "image": imageUrl,
+      "url": primaryDomain,
+      "image": {
+        "@type": "ImageObject",
+        "@id": `${primaryDomain}/#personimage`,
+        "url": imageUrl,
+        "width": "500",
+        "height": "500",
+        "caption": "Jason Guerra - Desarrollador Frontend"
+      },
       "jobTitle": "Desarrollador Frontend",
       "worksFor": {
         "@type": "Organization",
         "name": "Freelance"
       },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "La Habana",
+        "addressRegion": "Miramar",
+        "addressCountry": "Cuba"
+      },
       "sameAs": [
-        "https://github.com/thejasondev?",
-        "https://linkedin.com/in/thejasondev?",
-        "https://instagram.com/thejasondev?",
-        "https://wa.me/+5353118193?"
+        "https://github.com/thejasondev",
+        "https://linkedin.com/in/thejasondev",
+        "https://instagram.com/thejasondev",
+        "https://wa.me/+5353118193"
       ],
-      "description": description
+      "description": description,
+      "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"]
+    })
+  }
+</script>
+
+<!-- Structured Data / JSON-LD para la página web -->
+<script type="application/ld+json">
+  {
+    JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${primaryDomain}/#website`,
+      "url": primaryDomain,
+      "name": "Portfolio de Jason Guerra - Desarrollador Frontend",
+      "description": description,
+      "publisher": {
+        "@id": `${primaryDomain}/#person`
+      },
+      "inLanguage": "es",
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": `${primaryDomain}/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      ]
+    })
+  }
+</script>
+
+<!-- Structured Data / JSON-LD para página del portfolio -->
+{type === "article" && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${canonicalURL}#article`,
+    "headline": title,
+    "description": description,
+    "image": imageUrl,
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "author": {
+      "@id": `${primaryDomain}/#person`
+    },
+    "publisher": {
+      "@id": `${primaryDomain}/#person`
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalURL
+    },
+    "inLanguage": "es"
+  })}>
+  </script>
+)}
+
+<!-- Structured Data / JSON-LD para breadcrumbs -->
+<script type="application/ld+json">
+  {
+    JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@id": primaryDomain,
+            "name": "Inicio"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@id": canonicalURL,
+            "name": title
+          }
+        }
+      ]
     })
   }
 </script> 
