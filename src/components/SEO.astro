@@ -27,8 +27,9 @@ const {
 
 // Asegúrese de que la imagen tenga una URL completa
 const imageUrl = new URL(image, Astro.site).toString();
-const siteUrl = Astro.site?.toString().replace(/\/$/, '');
 const primaryDomain = "https://thejasondev.vercel.app";
+// Simplificar la URL canónica para SPA - usar siempre la URL raíz para todos los fragmentos de página
+const finalCanonicalUrl = primaryDomain + "/";
 ---
 
 <!-- SEO Básico -->
@@ -36,7 +37,7 @@ const primaryDomain = "https://thejasondev.vercel.app";
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
 <meta name="author" content={author} />
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={finalCanonicalUrl} />
 
 <!-- Control de indexación y seguimiento -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -53,7 +54,7 @@ const primaryDomain = "https://thejasondev.vercel.app";
 <meta property="og:type" content={type} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={canonicalURL} />
+<meta property="og:url" content={finalCanonicalUrl} />
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -68,12 +69,9 @@ const primaryDomain = "https://thejasondev.vercel.app";
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:url" content={finalCanonicalUrl} />
 <meta name="twitter:image" content={imageUrl} />
 <meta name="twitter:creator" content="@thejasondev" />
-
-<!-- Enlaces alternativos para dispositivos móviles -->
-<link rel="alternate" media="only screen and (max-width: 640px)" href={`${siteUrl}/mobile${Astro.url.pathname}`} />
 
 <!-- Favicon y App Icons -->
 <link rel="icon" href="/web-dev.png" type="image/png" />
@@ -90,8 +88,8 @@ const primaryDomain = "https://thejasondev.vercel.app";
 <meta name="theme-color" content="#0f172a" />
 
 <!-- Enlaces para dominios alternativos - SEO de redirecciones -->
-<link rel="alternate" href={`${primaryDomain}${Astro.url.pathname}`} hreflang="x-default" />
-<link rel="alternate" href={`${primaryDomain}${Astro.url.pathname}`} hreflang="es-ES" />
+<link rel="alternate" href={`${primaryDomain}/`} hreflang="x-default" />
+<link rel="alternate" href={`${primaryDomain}/`} hreflang="es-ES" />
 
 <!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json">
@@ -146,14 +144,7 @@ const primaryDomain = "https://thejasondev.vercel.app";
       "publisher": {
         "@id": `${primaryDomain}/#person`
       },
-      "inLanguage": "es",
-      "potentialAction": [
-        {
-          "@type": "SearchAction",
-          "target": `${primaryDomain}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
-      ]
+      "inLanguage": "es"
     })
   }
 </script>
@@ -163,7 +154,7 @@ const primaryDomain = "https://thejasondev.vercel.app";
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
-    "@id": `${canonicalURL}#article`,
+    "@id": `${finalCanonicalUrl}#article`,
     "headline": title,
     "description": description,
     "image": imageUrl,
@@ -177,7 +168,7 @@ const primaryDomain = "https://thejasondev.vercel.app";
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": canonicalURL
+      "@id": finalCanonicalUrl
     },
     "inLanguage": "es"
   })}>
@@ -197,14 +188,6 @@ const primaryDomain = "https://thejasondev.vercel.app";
           "item": {
             "@id": primaryDomain,
             "name": "Inicio"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@id": canonicalURL,
-            "name": title
           }
         }
       ]

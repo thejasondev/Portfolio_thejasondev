@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /not-found/
 
 # Sitemap
-Sitemap: https://thejasondev.vercel.app/sitemap-index.xml 
+Sitemap: https://thejasondev.vercel.app/sitemap-index.xml
