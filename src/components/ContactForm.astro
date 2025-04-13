@@ -43,6 +43,40 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
         Contáctame y conversemos sobre cómo podemos trabajar juntos.
       </p>
 
+      <!-- CV Download Cards -->
+      <div class="mb-12 animate-fade-up animate-delay-150">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 font-playfair">Descarga mi Curriculum Vitae</h3>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/CV/CV_Es.pdf" 
+            download
+            class="group flex items-center justify-between bg-white border border-gray-200 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300 hover:border-gray-300"
+          >
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-4 group-hover:bg-gray-900 transition-colors duration-300">
+                <Icon name="mdi:file-document-outline" class="w-5 h-5 text-gray-700 group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span class="font-medium text-gray-800">CV en Español</span>
+            </div>
+            <Icon name="mdi:download" class="w-5 h-5 text-gray-500 group-hover:text-gray-900 ml-4 transition-colors duration-300" />
+          </a>
+          
+          <a 
+            href="/CV/CV_En.pdf" 
+            download
+            class="group flex items-center justify-between bg-white border border-gray-200 rounded-xl px-6 py-4 hover:shadow-md transition-all duration-300 hover:border-gray-300"
+          >
+            <div class="flex items-center">
+              <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-4 group-hover:bg-gray-900 transition-colors duration-300">
+                <Icon name="mdi:file-document-outline" class="w-5 h-5 text-gray-700 group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span class="font-medium text-gray-800">CV in English</span>
+            </div>
+            <Icon name="mdi:download" class="w-5 h-5 text-gray-500 group-hover:text-gray-900 ml-4 transition-colors duration-300" />
+          </a>
+        </div>
+      </div>
+
       <div class="flex justify-center gap-8 mb-12 animate-fade-up animate-delay-200">
         {socialLinks.map(social => (
           <a
