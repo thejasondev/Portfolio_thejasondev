@@ -3,4 +3,4 @@ Allow: /
 Disallow: /404
 
 # Sitemap
-Sitemap: https://thejasondev.vercel.app/sitemap.xml
+Sitemap: https://thejasondev.vercel.app/sitemap-index.xml

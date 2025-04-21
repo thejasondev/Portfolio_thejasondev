@@ -91,104 +91,100 @@ const finalCanonicalUrl = primaryDomain;
 
 <!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json">
-  {
-    JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": `${primaryDomain}/#person`,
-      "name": "Jason Guerra",
-      "url": primaryDomain,
-      "image": {
-        "@type": "ImageObject",
-        "@id": `${primaryDomain}/#personimage`,
-        "url": imageUrl,
-        "width": "500",
-        "height": "500",
-        "caption": "Jason Guerra - Desarrollador Frontend"
-      },
-      "jobTitle": "Desarrollador Frontend",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Freelance"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "La Habana",
-        "addressRegion": "Miramar",
-        "addressCountry": "Cuba"
-      },
-      "sameAs": [
-        "https://github.com/thejasondev",
-        "https://linkedin.com/in/thejasondev",
-        "https://instagram.com/thejasondev",
-        "https://wa.me/+5353118193"
-      ],
-      "description": description,
-      "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"]
-    })
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "${primaryDomain}/#person",
+  "name": "Jason Guerra",
+  "url": "${primaryDomain}",
+  "image": {
+    "@type": "ImageObject",
+    "@id": "${primaryDomain}/#personimage",
+    "url": "${imageUrl}",
+    "width": "500",
+    "height": "500",
+    "caption": "Jason Guerra - Desarrollador Frontend"
+  },
+  "jobTitle": "Desarrollador Frontend",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Freelance"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "La Habana",
+    "addressRegion": "Miramar",
+    "addressCountry": "Cuba"
+  },
+  "sameAs": [
+    "https://github.com/thejasondev",
+    "https://linkedin.com/in/thejasondev",
+    "https://instagram.com/thejasondev",
+    "https://wa.me/+5353118193"
+  ],
+  "description": "${description}",
+  "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"]
+}
 </script>
 
 <!-- Structured Data / JSON-LD para la página web -->
 <script type="application/ld+json">
-  {
-    JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": `${primaryDomain}/#website`,
-      "url": primaryDomain,
-      "name": "Portfolio de Jason Guerra - Desarrollador Frontend",
-      "description": description,
-      "publisher": {
-        "@id": `${primaryDomain}/#person`
-      },
-      "inLanguage": "es"
-    })
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "${primaryDomain}/#website",
+  "url": "${primaryDomain}",
+  "name": "Portfolio de Jason Guerra - Desarrollador Frontend",
+  "description": "${description}",
+  "publisher": {
+    "@id": "${primaryDomain}/#person"
+  },
+  "inLanguage": "es"
+}
 </script>
 
 <!-- Structured Data / JSON-LD para página del portfolio -->
 {type === "article" && (
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "@id": `${finalCanonicalUrl}#article`,
-    "headline": title,
-    "description": description,
-    "image": imageUrl,
-    "datePublished": datePublished,
-    "dateModified": dateModified,
-    "author": {
-      "@id": `${primaryDomain}/#person`
-    },
-    "publisher": {
-      "@id": `${primaryDomain}/#person`
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": finalCanonicalUrl
-    },
-    "inLanguage": "es"
-  })}>
+  <script type="application/ld+json" set:html={`
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "${finalCanonicalUrl}#article",
+  "headline": "${title}",
+  "description": "${description}",
+  "image": "${imageUrl}",
+  "datePublished": "${datePublished}",
+  "dateModified": "${dateModified}",
+  "author": {
+    "@id": "${primaryDomain}/#person"
+  },
+  "publisher": {
+    "@id": "${primaryDomain}/#person"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "${finalCanonicalUrl}"
+  },
+  "inLanguage": "es"
+}
+  `}>
   </script>
 )}
 
 <!-- Structured Data / JSON-LD para breadcrumbs -->
 <script type="application/ld+json">
-  {
-    JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@id": primaryDomain,
-            "name": "Inicio"
-          }
-        }
-      ]
-    })
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "${primaryDomain}",
+        "name": "Inicio"
+      }
+    }
+  ]
+}
 </script> 

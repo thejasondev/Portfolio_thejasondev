@@ -21,7 +21,22 @@ const pageKeywords = "desarrollador frontend, portfolio, SEO, diseño web, proye
   type="website"
 >
   <Header />
-  <main class="pt-16" itemscope itemtype="https://schema.org/ProfilePage">
+  <main class="pt-16">
+    <!-- Schema.org ProfilePage con mainEntity -->
+    <script type="application/ld+json">
+      {
+        JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          "mainEntity": {
+            "@type": "Person",
+            "@id": "https://thejasondev.vercel.app/#person",
+            "name": "Jason Guerra",
+            "jobTitle": "Desarrollador Frontend"
+          }
+        })
+      }
+    </script>
     <AboutMe />
     <Projects />
     <Services />

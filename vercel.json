@@ -10,6 +10,11 @@
           "value": "portfolio-thejasondev.vercel.app"
         }
       ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "permanent": true
     }
   ]
 }
