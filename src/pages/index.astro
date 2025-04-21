@@ -9,7 +9,7 @@ import ContactForm from '../components/ContactForm.astro';
 // Datos estructurados para SEO
 const pageTitle = "Jason Guerra | Desarrollador Frontend Freelance - Especializado en Web Modernas y Atractivas";
 const pageDescription = "Portfolio profesional de Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Especializado en crear sitios web modernos, rápidos y optimizados para SEO utilizando Astro, React, TypeScript y TailwindCSS.";
-const pageKeywords = "desarrollador frontend, portfolio, SEO, diseño web, proyectos web, Jason Guerra, desarrollo web Cuba, Astro, React, TypeScript, TailwindCSS, diseño responsive, frontend freelance";
+const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfolio, SEO, diseño web, proyectos web, Jason Guerra, desarrollo web Cuba, Astro, React, TypeScript, TailwindCSS, diseño responsive, frontend freelance";
 ---
 
 <Layout 
@@ -37,9 +37,119 @@ const pageKeywords = "desarrollador frontend, portfolio, SEO, diseño web, proye
         })
       }
     </script>
-    <AboutMe />
-    <Projects />
-    <Services />
-    <ContactForm />
+    
+    <!-- AboutMe con fade-up -->
+    <section class="scroll-reveal-section">
+      <div class="scroll-reveal animate-fade-up">
+        <AboutMe />
+      </div>
+    </section>
+    
+    <!-- Projects con fade-left y elementos destacados -->
+    <section class="scroll-reveal-section">
+      <div class="scroll-reveal animate-fade-left">
+        <Projects />
+      </div>
+    </section>
+    
+    <!-- Services con scale-up y aparición secuencial -->
+    <section class="scroll-reveal-section card-container">
+      <div class="scroll-reveal animate-scale-up">
+        <Services />
+      </div>
+    </section>
+    
+    <!-- ContactForm con fade-up y blur -->
+    <section class="scroll-reveal-section">
+      <div class="scroll-reveal animate-fade-up fade-in-blur">
+        <ContactForm />
+      </div>
+    </section>
   </main>
 </Layout>
+
+<style>
+  .scroll-reveal-section {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Ajuste básico para el scroll-reveal */
+  .scroll-reveal {
+    opacity: 0;
+    animation-play-state: paused;
+  }
+  
+  .scroll-reveal.revealed {
+    animation-play-state: running;
+  }
+</style>
+
+<script>
+  // Configuración avanzada del Intersection Observer para efectos de scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    // Opciones del observer
+    const options = {
+      root: null, // viewport
+      rootMargin: '0px 0px -10% 0px', // Trigger ligeramente antes
+      threshold: [0.1, 0.3, 0.5] // Múltiples umbrales para efectos más suaves
+    };
+    
+    // Inicialización del observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Animar elementos cuando entran en viewport
+        if (entry.isIntersecting) {
+          // Añadir clase para activar animación
+          entry.target.classList.add('revealed');
+          
+          // Encontrar elementos hijo para animaciones secuenciales
+          if (entry.target.classList.contains('card-container')) {
+            const cards = entry.target.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('revealed');
+              }, 100 * index);
+            });
+          }
+          
+          // Opcional: efecto de paralaje
+          if (entry.target.classList.contains('parallax-scroll')) {
+            const scrollPos = window.scrollY;
+            const translateY = scrollPos * 0.05; // Efecto sutil
+            const targetHtml = entry.target as HTMLElement;
+            targetHtml.style.transform = `translateY(${translateY}px)`;
+          }
+          
+          // Sólo desactivar el observador para elementos particulares
+          const targetEl = entry.target as HTMLElement;
+          if (targetEl.dataset.observeOnce === 'true') {
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, options);
+    
+    // Observar todos los elementos con clase scroll-reveal
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    revealElements.forEach(el => observer.observe(el));
+    
+    // Observar contenedores de tarjetas para animaciones secuenciales
+    const cardContainers = document.querySelectorAll('.card-container');
+    cardContainers.forEach(container => observer.observe(container));
+    
+    // Manejo de efectos de paralaje en scroll
+    const parallaxElements = document.querySelectorAll('.parallax-scroll');
+    if (parallaxElements.length > 0) {
+      window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY;
+        parallaxElements.forEach(el => {
+          const htmlEl = el as HTMLElement;
+          const speed = htmlEl.dataset.parallaxSpeed || '0.1';
+          const offset = scrollPos * parseFloat(speed);
+          htmlEl.style.transform = `translateY(${offset}px)`;
+        });
+      });
+    }
+  });
+</script>
