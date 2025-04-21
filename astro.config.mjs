@@ -9,8 +9,10 @@ export default defineConfig({
     tailwind(),
     icon(),
     sitemap({
-      filter: (page) => page !== "https://thejasondev.vercel.app/not-found",
-      customPages: ["https://thejasondev.vercel.app/"],
+      filter: (page) =>
+        page !== "https://thejasondev.vercel.app/not-found" &&
+        page !== "https://thejasondev.vercel.app/404",
+      customPages: ["https://thejasondev.vercel.app"],
       changefreq: "monthly",
       priority: 1.0,
       lastmod: new Date(),

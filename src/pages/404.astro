@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from "astro-icon/components";
+
+
+// Datos estructurados para SEO
+const pageTitle = "404 - Página no encontrada | Jason Guerra - Desarrollador Frontend";
+const pageDescription = "Página no encontrada. Vuelve al inicio para explorar mi portfolio como desarrollador frontend especializado en web modernas y atractivas.";
+const pageKeywords = "404, página no encontrada, error, Jason Guerra, portfolio, desarrollador frontend";
+---
+
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={pageKeywords}
+  type="website"
+>
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden bg-[#fafafa]">
+    <!-- Elementos decorativos de fondo -->
+    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-gray-100 rounded-full opacity-30 blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gray-200 rounded-full opacity-20 blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    
+    <!-- Código de error con efecto glitch -->
+    <div class="relative mb-4">
+      <div class="text-9xl font-bold font-playfair text-gray-900 relative z-10 glitch-text">404</div>
+      <div class="absolute top-0 left-1 text-9xl font-bold font-playfair text-red-500 opacity-20 z-0 glitch-shadow">404</div>
+      <div class="absolute top-0 -left-1 text-9xl font-bold font-playfair text-blue-500 opacity-20 z-0 glitch-shadow">404</div>
+    </div>
+    
+    <!-- Mensaje principal -->
+    <h1 class="text-3xl md:text-4xl font-playfair font-bold text-center text-gray-900 mb-6 relative">
+      Código perdido en el espacio digital
+    </h1>
+    
+    <!-- Descripción creativa -->
+    <p class="text-lg text-gray-600 text-center max-w-lg mb-12">
+      La página que buscas ha sido refactorizada o nunca llegó a producción. Como buen desarrollador, te invito a volver al código principal.
+    </p>
+    
+    <!-- Iconos de tecnologías flotantes -->
+    <div class="flex justify-center gap-6 mb-10 flex-wrap">
+      {[
+        { name: 'html5', animation: 'floating-1' },
+        { name: 'css3', animation: 'floating-2' },
+        { name: 'javascript', animation: 'floating-3' },
+        { name: 'typescript', animation: 'floating-1' },
+        { name: 'react', animation: 'floating-2' }
+      ].map(tech => (
+        <div class={`w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center ${tech.animation}`}>
+          <Icon name={`simple-icons:${tech.name}`} class="w-6 h-6 text-gray-700" />
+        </div>
+      ))}
+    </div>
+    
+    <!-- Botón de regreso con efecto -->
+    <a 
+      href="/" 
+      class="group relative inline-flex items-center px-10 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg overflow-hidden"
+    >
+      <!-- Efecto de partículas en hover -->
+      <div class="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-20">
+        <div class="particles-container"></div>
+      </div>
+      
+      <Icon name="mdi:arrow-left" class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+      <span>Volver al inicio</span>
+    </a>
+    
+    <!-- Mensaje de código -->
+    <div class="mt-16 text-gray-400 font-mono text-sm px-4 py-2 bg-gray-100 rounded-md relative">
+      <span class="text-gray-500">// TODO:</span> Revisar rutas de navegación y corregir errores 404
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Animaciones para los iconos flotantes */
+  .floating-1 {
+    animation: float1 6s ease-in-out infinite;
+  }
+  
+  .floating-2 {
+    animation: float2 8s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+  
+  .floating-3 {
+    animation: float3 7s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+  
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-8px) translateX(5px); }
+  }
+  
+  @keyframes float3 {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-12px) translateX(-5px); }
+  }
+  
+  /* Efecto glitch para el texto 404 */
+  .glitch-text {
+    position: relative;
+    animation: glitch-effect 3s infinite;
+  }
+  
+  .glitch-shadow {
+    animation: shadow-effect 3s infinite;
+  }
+  
+  @keyframes glitch-effect {
+    0%, 5%, 95%, 100% { transform: skew(0deg); filter: none; }
+    2%, 3% { transform: skew(-3deg); filter: drop-shadow(2px 2px #ff3366); }
+    6%, 7% { transform: skew(3deg); filter: drop-shadow(-2px -2px #3366ff); }
+    92%, 93% { transform: skew(3deg); filter: drop-shadow(2px 2px #ff3366); }
+    94%, 96% { transform: skew(-3deg); filter: drop-shadow(-2px -2px #3366ff); }
+  }
+  
+  @keyframes shadow-effect {
+    0%, 5%, 95%, 100% { opacity: 0.2; transform: translate(0); }
+    2%, 3% { opacity: 0.3; transform: translate(3px, 2px); }
+    6%, 7% { opacity: 0.3; transform: translate(-3px, -2px); }
+    92%, 93% { opacity: 0.3; transform: translate(3px, 2px); }
+    94%, 96% { opacity: 0.3; transform: translate(-3px, -2px); }
+  }
+  
+  /* Simulación de partículas con pseudoelementos */
+  .particles-container::before,
+  .particles-container::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: white;
+    top: 50%;
+    animation: particles 1.5s linear infinite;
+  }
+  
+  .particles-container::before {
+    left: 20%;
+    animation-delay: 0.5s;
+  }
+  
+  .particles-container::after {
+    left: 80%;
+    animation-delay: 1s;
+  }
+  
+  @keyframes particles {
+    0% { top: 100%; transform: translateX(0); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 0%; transform: translateX(30px); opacity: 0; }
+  }
+</style>
+
+<script>
+  // Crear efecto de partículas para el botón
+  const createParticles = () => {
+    const container = document.querySelector('.particles-container');
+    if (!container) return;
+    
+    for (let i = 0; i < 15; i++) {
+      const particle = document.createElement('div');
+      particle.style.position = 'absolute';
+      particle.style.width = '3px';
+      particle.style.height = '3px';
+      particle.style.backgroundColor = 'white';
+      particle.style.borderRadius = '50%';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = '100%';
+      particle.style.opacity = '0';
+      particle.style.animation = `particles ${1 + Math.random()}s linear infinite`;
+      particle.style.animationDelay = `${Math.random()}s`;
+      
+      container.appendChild(particle);
+    }
+  };
+  
+  // Ejecutar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', createParticles);
+</script> 

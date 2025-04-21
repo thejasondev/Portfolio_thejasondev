@@ -28,8 +28,8 @@ const {
 // Asegúrese de que la imagen tenga una URL completa
 const imageUrl = new URL(image, Astro.site).toString();
 const primaryDomain = "https://thejasondev.vercel.app";
-// Simplificar la URL canónica para SPA - usar siempre la URL raíz para todos los fragmentos de página
-const finalCanonicalUrl = primaryDomain + "/";
+// Usar solo la URL principal como canónica sin barra al final para evitar duplicados
+const finalCanonicalUrl = primaryDomain;
 ---
 
 <!-- SEO Básico -->
@@ -87,9 +87,7 @@ const finalCanonicalUrl = primaryDomain + "/";
 <meta name="apple-mobile-web-app-title" content="Jason Guerra" />
 <meta name="theme-color" content="#0f172a" />
 
-<!-- Enlaces para dominios alternativos - SEO de redirecciones -->
-<link rel="alternate" href={`${primaryDomain}/`} hreflang="x-default" />
-<link rel="alternate" href={`${primaryDomain}/`} hreflang="es-ES" />
+<!-- Enlaces para dominios alternativos - Removidos para evitar conflicto de URLs -->
 
 <!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json">
