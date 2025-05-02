@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import compress from "astro-compress";
+import { speedInsights } from "@vercel/speed-insights/astro";
 
 export default defineConfig({
   site: "https://thejasondev.vercel.app",
@@ -34,6 +35,7 @@ export default defineConfig({
       js: true,
       svg: true,
     }),
+    speedInsights(),
   ],
   build: {
     // Inlining de estilos críticos para mejorar First Contentful Paint
