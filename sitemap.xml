@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://thejasondev.vercel.app</loc>
-    <lastmod>2024-07-25</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2024-05-02</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://thejasondev.vercel.app/profile-pic/profile_pic.webp</image:loc>
@@ -15,7 +14,7 @@
     <image:image>
       <image:loc>https://thejasondev.vercel.app/projects-pic/havanera-screen.png</image:loc>
       <image:title>Proyecto Havanera - Jason Guerra</image:title>
-      <image:caption>Captura de pantalla del proyecto Havanera desarrollado por Jason Guerra</image:caption>
+      <image:caption>Captura de pantalla del proyecto Havanera Nails desarrollado por Jason Guerra</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://thejasondev.vercel.app/projects-pic/vitaspoon-screen.png</image:loc>
@@ -25,7 +24,7 @@
     <image:image>
       <image:loc>https://thejasondev.vercel.app/projects-pic/ditos-screen.png</image:loc>
       <image:title>Proyecto Ditos - Jason Guerra</image:title>
-      <image:caption>Captura de pantalla del proyecto Ditos desarrollado por Jason Guerra</image:caption>
+      <image:caption>Captura de pantalla del proyecto Dito's Bartender desarrollado por Jason Guerra</image:caption>
     </image:image>
   </url>
 </urlset>

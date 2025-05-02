@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificación de Imagen</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      img {
+        max-width: 100%;
+        border: 1px solid #ddd;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .image-container {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+      }
+      h2 {
+        margin-top: 0;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Verificación de Imágenes</h1>
+    <p>
+      Esta página se usa para verificar que las imágenes del sitemap son
+      accesibles.
+    </p>
+
+    <div class="container">
+      <div class="image-container">
+        <h2>Imagen 1: Profile Pic</h2>
+        <img
+          src="/profile-pic/profile_pic.webp"
+          alt="Jason Guerra - Desarrollador Frontend"
+        />
+        <p>Ruta: /profile-pic/profile_pic.webp</p>
+      </div>
+
+      <div class="image-container">
+        <h2>Imagen 2: Havanera</h2>
+        <img src="/projects-pic/havanera-screen.png" alt="Proyecto Havanera" />
+        <p>Ruta: /projects-pic/havanera-screen.png</p>
+      </div>
+
+      <div class="image-container">
+        <h2>Imagen 3: Vitaspoon</h2>
+        <img
+          src="/projects-pic/vitaspoon-screen.png"
+          alt="Proyecto Vitaspoon"
+        />
+        <p>Ruta: /projects-pic/vitaspoon-screen.png</p>
+      </div>
+
+      <div class="image-container">
+        <h2>Imagen 4: Ditos</h2>
+        <img src="/projects-pic/ditos-screen.png" alt="Proyecto Ditos" />
+        <p>Ruta: /projects-pic/ditos-screen.png</p>
+      </div>
+    </div>
+  </body>
+</html>
