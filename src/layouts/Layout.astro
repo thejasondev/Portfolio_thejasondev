@@ -50,6 +50,20 @@ const {
   </head>
   <body class="bg-[#fafafa]">
     <slot />
+    <!-- Vercel Speed Insights: Agregado manualmente para evitar problemas de integración -->
+    <script>
+      window.addEventListener('load', function() {
+        // @ts-ignore - Vercel Speed Insights
+        if (typeof window.va === 'undefined') {
+          const script = document.createElement('script');
+          script.src = '/_vercel/speed-insights/script.js';
+          script.defer = true;
+          script.dataset.sdkn = '@vercel/speed-insights';
+          script.dataset.sdkv = '1.0.0';
+          document.body.appendChild(script);
+        }
+      });
+    </script>
   </body>
 </html>
 
