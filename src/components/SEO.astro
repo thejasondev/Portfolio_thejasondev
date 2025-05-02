@@ -138,20 +138,19 @@ const finalCanonicalUrl = primaryDomain;
 </script>
 
 <!-- Structured Data / JSON-LD para persona -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "${primaryDomain}/#person",
+  "@id": `${primaryDomain}/#person`,
   "name": "Jason Guerra",
   "givenName": "Jason",
   "familyName": "Guerra",
   "alternateName": "thejasondev",
-  "url": "${primaryDomain}",
+  "url": primaryDomain,
   "image": {
     "@type": "ImageObject",
-    "@id": "${primaryDomain}/#personimage",
-    "url": "${imageUrl}",
+    "@id": `${primaryDomain}/#personimage`,
+    "url": imageUrl,
     "width": "500",
     "height": "500",
     "caption": "Jason Guerra - Desarrollador Frontend"
@@ -173,7 +172,7 @@ const finalCanonicalUrl = primaryDomain;
     "https://instagram.com/thejasondev",
     "https://wa.me/+5353118193"
   ],
-  "description": "${description}",
+  "description": description,
   "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "Next.js", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"],
   "knowsLanguage": ["es", "en"],
   "hasOccupation": {
@@ -184,32 +183,29 @@ const finalCanonicalUrl = primaryDomain;
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "${primaryDomain}"
+    "@id": primaryDomain
   }
-}
-</script>
+})}></script>
 
 <!-- Structured Data / JSON-LD para la página web -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "${primaryDomain}/#website",
-  "url": "${primaryDomain}",
+  "@id": `${primaryDomain}/#website`,
+  "url": primaryDomain,
   "name": "Portfolio de Jason Guerra - Desarrollador Frontend",
-  "description": "${description}",
+  "description": description,
   "publisher": {
-    "@id": "${primaryDomain}/#person"
+    "@id": `${primaryDomain}/#person`
   },
   "creator": {
-    "@id": "${primaryDomain}/#person"
+    "@id": `${primaryDomain}/#person`
   },
   "inLanguage": "es",
   "copyrightYear": "2024",
-  "datePublished": "${datePublished}",
-  "dateModified": "${dateModified}"
-}
-</script>
+  "datePublished": datePublished,
+  "dateModified": dateModified
+})}></script>
 
 <!-- Structured Data / JSON-LD para página del portfolio -->
 {type === "article" && (
@@ -240,8 +236,7 @@ const finalCanonicalUrl = primaryDomain;
 )}
 
 <!-- Structured Data / JSON-LD para breadcrumbs -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -249,22 +244,20 @@ const finalCanonicalUrl = primaryDomain;
       "@type": "ListItem",
       "position": 1,
       "item": {
-        "@id": "${primaryDomain}",
+        "@id": primaryDomain,
         "name": "Inicio"
       }
     }
   ]
-}
-</script>
+})}></script>
 
 <!-- Structured Data / JSON-LD para servicios profesionales -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
   "serviceType": "Desarrollo Web Frontend",
   "provider": {
-    "@id": "${primaryDomain}/#person"
+    "@id": `${primaryDomain}/#person`
   },
   "description": "Servicios profesionales de desarrollo web frontend con enfoque en experiencia de usuario, rendimiento y SEO.",
   "areaServed": {
@@ -301,5 +294,4 @@ const finalCanonicalUrl = primaryDomain;
       }
     ]
   }
-}
-</script> 
+})}></script> 
