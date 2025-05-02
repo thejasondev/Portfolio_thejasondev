@@ -1,6 +1,26 @@
 User-agent: *
 Allow: /
 Disallow: /404
+Disallow: /not-found
+
+# Allow AI crawling for better understanding
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Tiempo de rastreo recomendado
+Crawl-delay: 5
 
 # Sitemap
-Sitemap: https://thejasondev.vercel.app/sitemap-index.xml
+Sitemap: https://thejasondev.vercel.app/sitemap.xml

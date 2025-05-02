@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.sitemaps.org/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://thejasondev.vercel.app</loc>
-    <lastmod>2025-04-21</lastmod>
+    <lastmod>2024-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://thejasondev.vercel.app/profile-pic/profile_pic.webp</image:loc>
+      <image:title>Jason Guerra - Desarrollador Frontend</image:title>
+      <image:caption>Foto de perfil de Jason Guerra, desarrollador frontend</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://thejasondev.vercel.app/projects-pic/havanera-screen.png</image:loc>
+      <image:title>Proyecto Havanera - Jason Guerra</image:title>
+      <image:caption>Captura de pantalla del proyecto Havanera desarrollado por Jason Guerra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://thejasondev.vercel.app/projects-pic/satori-screen.png</image:loc>
+      <image:title>Proyecto Satori - Jason Guerra</image:title>
+      <image:caption>Captura de pantalla del proyecto Satori desarrollado por Jason Guerra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://thejasondev.vercel.app/projects-pic/ditos-screen.png</image:loc>
+      <image:title>Proyecto Ditos - Jason Guerra</image:title>
+      <image:caption>Captura de pantalla del proyecto Ditos desarrollado por Jason Guerra</image:caption>
+    </image:image>
   </url>
 </urlset>

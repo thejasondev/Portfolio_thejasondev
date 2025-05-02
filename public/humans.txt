@@ -1,0 +1,16 @@
+/* TEAM */
+Developer: Jason Guerra
+Alias: thejasondev
+Site: https://thejasondev.vercel.app
+Location: La Habana, Cuba
+Twitter: @thejasondev
+GitHub: https://github.com/thejasondev
+LinkedIn: https://linkedin.com/in/thejasondev
+Instagram: https://instagram.com/thejasondev
+
+/* SITE */
+Last update: 2025-04-25
+Language: Español / Spanish
+Standards: HTML5, CSS3, JavaScript
+Components: Astro, TypeScript, TailwindCSS, React
+IDE: VS Code 

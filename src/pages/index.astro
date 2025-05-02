@@ -8,8 +8,8 @@ import ContactForm from '../components/ContactForm.astro';
 
 // Datos estructurados para SEO
 const pageTitle = "Jason Guerra | Desarrollador Frontend Freelance - Especializado en Web Modernas y Atractivas";
-const pageDescription = "Portfolio profesional de Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Especializado en crear sitios web modernos, rápidos y optimizados para SEO utilizando Astro, React, TypeScript y TailwindCSS.";
-const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfolio, SEO, diseño web, proyectos web, Jason Guerra, desarrollo web Cuba, desarrollo web La Habana, Astro, React, TypeScript, TailwindCSS, diseño responsive, frontend freelance";
+const pageDescription = "Portfolio profesional de Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Especializado en crear sitios web modernos, rápidos y optimizados para SEO utilizando Astro, React, TypeScript y TailwindCSS. Diseño responsive, alta velocidad de carga y excelente experiencia de usuario.";
+const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfolio, SEO, diseño web, proyectos web, Jason Guerra, desarrollo web Cuba, desarrollo web La Habana, Astro, React, TypeScript, TailwindCSS, diseño responsive, frontend freelance, desarrollo sitios web, sitios web optimizados, rendimiento web";
 ---
 
 <Layout 
@@ -32,8 +32,18 @@ const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfol
             "@type": "Person",
             "@id": "https://thejasondev.vercel.app/#person",
             "name": "Jason Guerra",
-            "jobTitle": "Desarrollador Frontend"
-          }
+            "alternateName": "thejasondev",
+            "jobTitle": "Desarrollador Frontend",
+            "sameAs": [
+              "https://github.com/thejasondev",
+              "https://linkedin.com/in/thejasondev",
+              "https://instagram.com/thejasondev",
+              "https://wa.me/+5353118193"
+            ]
+          },
+          "url": "https://thejasondev.vercel.app/",
+          "name": "Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)",
+          "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend especializado en crear sitios web modernos, rápidos y optimizados para SEO."
         })
       }
     </script>

@@ -2,9 +2,12 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
+import compress from "astro-compress";
 
 export default defineConfig({
   site: "https://thejasondev.vercel.app",
+  // Comprimir assets para mejor rendimiento
+  compressHTML: true,
   integrations: [
     tailwind(),
     icon(),
@@ -16,6 +19,24 @@ export default defineConfig({
       changefreq: "monthly",
       priority: 1.0,
       lastmod: new Date(),
+      i18n: {
+        defaultLocale: "es",
+        locales: {
+          es: "es-ES",
+          en: "en-US",
+        },
+      },
+    }),
+    compress({
+      css: true,
+      html: true,
+      img: true,
+      js: true,
+      svg: true,
     }),
   ],
+  build: {
+    // Inlining de estilos críticos para mejorar First Contentful Paint
+    inlineStylesheets: "auto",
+  },
 });

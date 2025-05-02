@@ -44,11 +44,23 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
+<!-- Información del autor -->
+<link rel="author" href="/humans.txt" />
+
 <!-- Verificación de Google -->
 <meta name="google-site-verification" content="A7BT_C6ClgkaWHA9brgG3v0v7gG-1NeclQ6jCfvQF8U" />
 
-<!-- Meta para Vercel Analytics -->
+<!-- Meta para rendimiento web -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="view-transition" content="same-origin" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="format-detection" content="telephone=no" />
+
+<!-- Nombre y alias para buscadores -->
+<meta name="application-name" content="Jason Guerra | thejasondev" />
+<meta name="creator" content="Jason Guerra (thejasondev)" />
+<meta name="subject" content="Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -58,8 +70,10 @@ const finalCanonicalUrl = primaryDomain;
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Jason Guerra - Desarrollador Frontend" />
 <meta property="og:site_name" content="Jason Guerra - Desarrollador Frontend" />
 <meta property="og:locale" content="es_ES" />
+<meta property="article:author" content="Jason Guerra (thejasondev)" />
 {alternateLocale.map(locale => (
   <meta property="og:locale:alternate" content={locale} />
 ))}
@@ -71,7 +85,9 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="twitter:description" content={description} />
 <meta name="twitter:url" content={finalCanonicalUrl} />
 <meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content="Jason Guerra | Desarrollador Frontend" />
 <meta name="twitter:creator" content="@thejasondev" />
+<meta name="twitter:site" content="@thejasondev" />
 
 <!-- Favicon y App Icons -->
 <link rel="icon" href="/web-dev.png" type="image/png" />
@@ -83,11 +99,14 @@ const finalCanonicalUrl = primaryDomain;
 <!-- Tipo de app para dispositivos móviles -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="application-name" content="Jason Guerra Portfolio" />
 <meta name="apple-mobile-web-app-title" content="Jason Guerra" />
 <meta name="theme-color" content="#0f172a" />
+<meta name="msapplication-TileColor" content="#0f172a" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
 
-<!-- Enlaces para dominios alternativos - Removidos para evitar conflicto de URLs -->
+<!-- DNS Prefetch para recursos externos -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
 <!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json">
@@ -96,6 +115,9 @@ const finalCanonicalUrl = primaryDomain;
   "@type": "Person",
   "@id": "${primaryDomain}/#person",
   "name": "Jason Guerra",
+  "givenName": "Jason",
+  "familyName": "Guerra",
+  "alternateName": "thejasondev",
   "url": "${primaryDomain}",
   "image": {
     "@type": "ImageObject",
@@ -123,7 +145,18 @@ const finalCanonicalUrl = primaryDomain;
     "https://wa.me/+5353118193"
   ],
   "description": "${description}",
-  "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"]
+  "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "Next.js", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"],
+  "knowsLanguage": ["es", "en"],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Desarrollador Frontend",
+    "description": "Especialista en desarrollo de interfaces web modernas, rápidas y optimizadas para SEO",
+    "skills": "HTML, CSS, JavaScript, TypeScript, React, Next.js, Astro, TailwindCSS, SEO"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "${primaryDomain}"
+  }
 }
 </script>
 
@@ -139,7 +172,13 @@ const finalCanonicalUrl = primaryDomain;
   "publisher": {
     "@id": "${primaryDomain}/#person"
   },
-  "inLanguage": "es"
+  "creator": {
+    "@id": "${primaryDomain}/#person"
+  },
+  "inLanguage": "es",
+  "copyrightYear": "2024",
+  "datePublished": "${datePublished}",
+  "dateModified": "${dateModified}"
 }
 </script>
 
@@ -186,5 +225,52 @@ const finalCanonicalUrl = primaryDomain;
       }
     }
   ]
+}
+</script>
+
+<!-- Structured Data / JSON-LD para servicios profesionales -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Desarrollo Web Frontend",
+  "provider": {
+    "@id": "${primaryDomain}/#person"
+  },
+  "description": "Servicios profesionales de desarrollo web frontend con enfoque en experiencia de usuario, rendimiento y SEO.",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Cuba"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Desarrollo Web",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Desarrollo de Sitios Web",
+          "description": "Creación de sitios web modernos y optimizados para SEO"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Optimización SEO",
+          "description": "Mejora del posicionamiento web en buscadores"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Desarrollo Frontend",
+          "description": "Creación de interfaces de usuario interactivas y responsivas"
+        }
+      }
+    ]
+  }
 }
 </script> 
