@@ -1,0 +1,3 @@
+old-domain: portfolio-thejasondev.vercel.app
+new-domain: thejasondev.vercel.app
+transferring-to-domain: thejasondev.vercel.app 

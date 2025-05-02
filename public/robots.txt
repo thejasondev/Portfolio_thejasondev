@@ -3,6 +3,9 @@ Allow: /
 Disallow: /404
 Disallow: /not-found
 
+# Canonical domain - Instructs Google on canonical hostname
+Host: thejasondev.vercel.app
+
 # Allow AI crawling for better understanding
 User-agent: ChatGPT-User
 Allow: /
