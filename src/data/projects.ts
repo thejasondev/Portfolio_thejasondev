@@ -24,11 +24,11 @@ export const projects: Project[] = [
     url: "https://havanera-nails.vercel.app",
   },
   {
-    title: "Satori Massage",
+    title: "Vitaspoon",
     description:
-      "Diseñé y desarrollé la landing page para Satori Massage, un servicio premium de masajes terapéuticos a domicilio. Utilicé Next.js y TypeScript para crear una experiencia de usuario fluida y moderna, complementada con animaciones sutiles. La implementación de TailwindCSS permitió un diseño responsive y elegante.",
-    image: "/projects-pic/satori-screen.png",
-    technologies: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-    url: "https://satori-massage.vercel.app",
+      "Desarrollé Vitaspoon, una innovadora plataforma web que genera recetas personalizadas utilizando IA. Implementada con Astro, React, TypeScript y TailwindCSS, esta aplicación conecta con APIs de OpenAI y Gemini, además de contar con una base de datos local como respaldo. Una característica destacada es su opción para generar recetas que no requieren electricidad, pensada especialmente para usuarios en países que enfrentan apagones frecuentes.",
+    image: "/projects-pic/vitaspoon-screen.png",
+    technologies: ["Astro", "React", "TypeScript", "TailwindCSS", "SEO"],
+    url: "https://vitaspoon.vercel.app",
   },
 ];
