@@ -10,21 +10,25 @@ const __dirname = path.dirname(__filename);
 // Ruta a la imagen de perfil original
 const inputPath = path.join(
   __dirname,
-  "../public/profile-pic/profile_pic.webp"
+  "../public/profile-pic/profile_pic_original.webp"
 );
 const outputDir = path.join(__dirname, "../public/profile-pic");
 
 async function optimizeProfileImage() {
   try {
-    console.log("Optimizando imagen de perfil...");
+    console.log("Optimizando imagen de perfil con mejor calidad...");
 
-    // Crear versión optimizada
+    // Crear versión optimizada con mejor calidad
     await sharp(inputPath)
-      .resize(300) // Dimensión adecuada para avatar
-      .webp({ quality: 80 }) // Formato WebP con buena calidad
+      .resize(400) // Dimensión mayor para mejor calidad
+      .webp({
+        quality: 90, // Calidad más alta (80 -> 90)
+        effort: 6, // Mayor esfuerzo de compresión
+        smartSubsample: true, // Mejor submuestreo para conservar detalles
+      })
       .toFile(path.join(outputDir, "profile_pic_optimized.webp"));
 
-    console.log("Imagen optimizada correctamente.");
+    console.log("Imagen optimizada correctamente con mejor calidad.");
 
     // Obtener y mostrar estadísticas de las imágenes
     const originalSize = fs.statSync(inputPath).size;
