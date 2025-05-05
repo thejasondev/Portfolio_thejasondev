@@ -82,12 +82,15 @@ const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfol
   .scroll-reveal-section {
     position: relative;
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px; /* Valor estimado para reservar espacio */
   }
   
   /* Ajuste básico para el scroll-reveal */
   .scroll-reveal {
     opacity: 0;
     animation-play-state: paused;
+    will-change: opacity, transform;
   }
   
   .scroll-reveal.revealed {
@@ -96,69 +99,77 @@ const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfol
 </style>
 
 <script>
-  // Configuración avanzada del Intersection Observer para efectos de scroll
+  // Configuración más eficiente del Intersection Observer para efectos de scroll
   document.addEventListener('DOMContentLoaded', () => {
-    // Opciones del observer
+    // Opciones del observer - simplificadas para mejor rendimiento
     const options = {
-      root: null, // viewport
-      rootMargin: '0px 0px -10% 0px', // Trigger ligeramente antes
-      threshold: [0.1, 0.3, 0.5] // Múltiples umbrales para efectos más suaves
+      root: null,
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.1 // Un solo umbral para mejor rendimiento
     };
     
     // Inicialización del observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // Animar elementos cuando entran en viewport
         if (entry.isIntersecting) {
-          // Añadir clase para activar animación
           entry.target.classList.add('revealed');
           
-          // Encontrar elementos hijo para animaciones secuenciales
+          // Animación secuencial optimizada para tarjetas
           if (entry.target.classList.contains('card-container')) {
             const cards = entry.target.querySelectorAll('.card');
             cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('revealed');
-              }, 100 * index);
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  card.classList.add('revealed');
+                }, 80 * index); // Tiempos más cortos
+              });
             });
           }
           
-          // Opcional: efecto de paralaje
-          if (entry.target.classList.contains('parallax-scroll')) {
-            const scrollPos = window.scrollY;
-            const translateY = scrollPos * 0.05; // Efecto sutil
-            const targetHtml = entry.target as HTMLElement;
-            targetHtml.style.transform = `translateY(${translateY}px)`;
-          }
-          
-          // Sólo desactivar el observador para elementos particulares
-          const targetEl = entry.target as HTMLElement;
-          if (targetEl.dataset.observeOnce === 'true') {
-            observer.unobserve(entry.target);
-          }
+          // Dejar de observar después de revelar para ahorrar recursos
+          observer.unobserve(entry.target);
         }
       });
     }, options);
     
-    // Observar todos los elementos con clase scroll-reveal
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-    revealElements.forEach(el => observer.observe(el));
+    // Observar elementos - usando requestIdleCallback para no bloquear
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        document.querySelectorAll('.scroll-reveal, .card-container').forEach(el => 
+          observer.observe(el)
+        );
+      });
+    } else {
+      // Fallback para navegadores sin requestIdleCallback
+      setTimeout(() => {
+        document.querySelectorAll('.scroll-reveal, .card-container').forEach(el => 
+          observer.observe(el)
+        );
+      }, 200);
+    }
     
-    // Observar contenedores de tarjetas para animaciones secuenciales
-    const cardContainers = document.querySelectorAll('.card-container');
-    cardContainers.forEach(container => observer.observe(container));
-    
-    // Manejo de efectos de paralaje en scroll
+    // Eficiente manejo de paralaje - usando requestAnimationFrame
     const parallaxElements = document.querySelectorAll('.parallax-scroll');
     if (parallaxElements.length > 0) {
+      let ticking = false;
+      let lastScrollPos = window.scrollY;
+      
       window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-        parallaxElements.forEach(el => {
-          const htmlEl = el as HTMLElement;
-          const speed = htmlEl.dataset.parallaxSpeed || '0.1';
-          const offset = scrollPos * parseFloat(speed);
-          htmlEl.style.transform = `translateY(${offset}px)`;
-        });
+        lastScrollPos = window.scrollY;
+        
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            parallaxElements.forEach(el => {
+              const htmlEl = el as HTMLElement;
+              const speed = htmlEl.dataset.parallaxSpeed || '0.1';
+              const offset = lastScrollPos * parseFloat(speed);
+              htmlEl.style.transform = `translateY(${offset}px)`;
+            });
+            ticking = false;
+          });
+          
+          ticking = true;
+        }
       });
     }
   });

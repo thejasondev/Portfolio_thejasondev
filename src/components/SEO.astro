@@ -111,35 +111,12 @@ const finalCanonicalUrl = primaryDomain;
 <!-- DNS Prefetch para recursos externos -->
 <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Script para medir Core Web Vitals -->
-<script type="text/javascript">
-  // Medir Largest Contentful Paint
-  new PerformanceObserver((entryList) => {
-    for (const entry of entryList.getEntries()) {
-      console.log('LCP:', entry.startTime);
-      window.lelcp = entry.startTime;
-    }
-  }).observe({ type: 'largest-contentful-paint', buffered: true });
-
-  // Medir First Input Delay
-  new PerformanceObserver((entryList) => {
-    for (const entry of entryList.getEntries()) {
-      console.log('FID:', entry.processingStart - entry.startTime);
-    }
-  }).observe({ type: 'first-input', buffered: true });
-
-  // Medir Cumulative Layout Shift
-  new PerformanceObserver((entryList) => {
-    let cumulativeLayoutShift = 0;
-    for (const entry of entryList.getEntries()) {
-      if (!entry.hadRecentInput) {
-        cumulativeLayoutShift += entry.value;
-      }
-    }
-    console.log('CLS:', cumulativeLayoutShift);
-  }).observe({ type: 'layout-shift', buffered: true });
-</script>
+<!-- Carga crítica optimizada de fuentes -->
+<link rel="preload" as="font" href="https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtXK-F2qC0s.woff2" crossorigin />
+<link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" crossorigin />
 
 <!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json" set:html={JSON.stringify({

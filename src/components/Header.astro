@@ -48,7 +48,7 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
 <!-- Menú móvil -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 bg-white/95 backdrop-blur-md transform -translate-y-full transition-all duration-500 ease-in-out md:hidden z-40 flex flex-col"
+  class="fixed inset-0 bg-white/95 backdrop-blur-md transform -translate-y-full transition-all duration-500 ease-in-out md:hidden z-40 flex flex-col opacity-0 pointer-events-none"
 >
   <div class="h-full flex flex-col justify-center px-8">
     <ul class="space-y-6 text-center">
@@ -116,6 +116,22 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
   #mobile-menu.translate-y-0::before {
     @apply opacity-100;
   }
+  
+  /* Optimización de rendimiento */
+  #mobile-menu {
+    contain: content;
+    will-change: transform, opacity;
+  }
+  
+  .menu-item {
+    contain: layout style;
+  }
+  
+  /* Evitar repaints del botón */
+  #menu-toggle {
+    contain: layout style;
+    will-change: transform;
+  }
 </style>
 
 <script>
@@ -127,14 +143,29 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
   
   // Función para mostrar los elementos del menú con delay
   function animateMenuItems(show = true) {
+    if (mobileMenu) {
+      if (show) {
+        mobileMenu.classList.add('opacity-100');
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        setTimeout(() => {
+          mobileMenu.classList.remove('opacity-100');
+          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        }, 300);
+      }
+    }
+  
     menuItems.forEach((item, index) => {
-      setTimeout(() => {
-        if (show) {
-          item.classList.remove('opacity-0', 'translate-y-8');
-        } else {
-          item.classList.add('opacity-0', 'translate-y-8');
-        }
-      }, 100 + (index * 75));
+      // Usar requestAnimationFrame para optimizar las animaciones
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (show) {
+            item.classList.remove('opacity-0', 'translate-y-8');
+          } else {
+            item.classList.add('opacity-0', 'translate-y-8');
+          }
+        }, 80 + (index * 60)); // Tiempos reducidos para mejor UX
+      });
     });
   }
 
