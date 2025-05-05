@@ -24,9 +24,9 @@ export const projects: Project[] = [
     url: "https://havanera-nails.vercel.app",
   },
   {
-    title: "Vitaspoon",
+    title: "VitaSpoon",
     description:
-      "Desarrollé Vitaspoon, una innovadora plataforma web que genera recetas personalizadas utilizando IA. Implementada con Astro, React, TypeScript y TailwindCSS, esta aplicación conecta con APIs de OpenAI y Gemini, además de contar con una base de datos local como respaldo. Una característica destacada es su opción para generar recetas que no requieren electricidad, pensada especialmente para usuarios en países que enfrentan apagones frecuentes.",
+      "Desarrollé VitaSpoon, una innovadora plataforma web que genera recetas personalizadas utilizando IA. Implementada con Astro, React, TypeScript y TailwindCSS, esta aplicación conecta con APIs de OpenAI y Gemini, además de contar con una base de datos local como respaldo. Una característica destacada es su opción para generar recetas que no requieren electricidad, pensada especialmente para usuarios en países que enfrentan apagones frecuentes.",
     image: "/projects-pic/vitaspoon-screen.png",
     technologies: ["Astro", "React", "TypeScript", "TailwindCSS", "SEO"],
     url: "https://vitaspoon.vercel.app",

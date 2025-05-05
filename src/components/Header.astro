@@ -2,10 +2,10 @@
 import { Icon } from "astro-icon/components";
 
 const menuItems = [
-  { text: "Sobre mí", href: "#about" },
-  { text: "Proyectos", href: "#projects" },
-  { text: "Servicios", href: "#services" },
-  { text: "Contacto", href: "#contact" },
+  { text: "Sobre mí", href: "#about", icon: "mdi:account" },
+  { text: "Proyectos", href: "#projects", icon: "mdi:briefcase" },
+  { text: "Servicios", href: "#services", icon: "mdi:cogs" },
+  { text: "Contacto", href: "#contact", icon: "mdi:email" },
 ];
 
 const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola, me interesa trabajar contigo.")}`;
@@ -22,6 +22,7 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
     <button
       id="menu-toggle"
       class="md:hidden relative w-7 h-7 z-60"
+      aria-label="Menu"
     >
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -47,29 +48,34 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
 <!-- Menú móvil -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 bg-white transform -translate-y-full transition-transform duration-300 md:hidden z-40"
+  class="fixed inset-0 bg-white/95 backdrop-blur-md transform -translate-y-full transition-all duration-500 ease-in-out md:hidden z-40 flex flex-col"
 >
-  <div class="h-full flex items-center justify-center top-32">
-    <ul class="space-y-8 text-center mt-44">
+  <div class="h-full flex flex-col justify-center px-8">
+    <ul class="space-y-6 text-center">
       {menuItems.map(item => (
-        <li>
+        <li class="menu-item opacity-0 transform translate-y-8 transition-all duration-300 ease-out">
           <a
             href={item.href}
-            class="text-2xl text-gray-900 hover:text-gray-600 transition-colors font-playfair"
+            class="flex items-center justify-center text-xl text-gray-900 hover:text-gray-600 transition-colors font-playfair group"
           >
+            <span class="menu-icon bg-gray-100 p-2 rounded-full mr-3 group-hover:bg-gray-200 transition-colors">
+              <Icon name={item.icon} class="w-5 h-5" />
+            </span>
             {item.text}
           </a>
         </li>
       ))}
-      <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors font-medium tracking-wide"
-          >
-            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
-            Contáctame
-          </a>
+      <li class="mt-10 menu-item opacity-0 transform translate-y-8 transition-all duration-300 ease-out">
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all font-medium tracking-wide group hover:scale-105 shadow-md"
+        >
+          <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
+          Contáctame
+        </a>
+      </li>
     </ul>
   </div>
 </div>
@@ -94,10 +100,21 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
     @apply top-3 rotate-45;
   }
   #menu-toggle.menu-open .hamburger-line:nth-child(2) {
-    @apply opacity-0;
+    @apply opacity-0 scale-0;
   }
   #menu-toggle.menu-open .hamburger-line:last-child {
     @apply top-3 -rotate-45;
+  }
+  
+  /* Overlay para el menú móvil */
+  #mobile-menu::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-b from-white to-gray-50 opacity-0 transition-opacity duration-500;
+    z-index: -1;
+  }
+  
+  #mobile-menu.translate-y-0::before {
+    @apply opacity-100;
   }
 </style>
 
@@ -105,15 +122,40 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
   // Referencias a los elementos
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuItems = document.querySelectorAll('.menu-item');
   const menuLinks = document.querySelectorAll('#mobile-menu a');
+  
+  // Función para mostrar los elementos del menú con delay
+  function animateMenuItems(show = true) {
+    menuItems.forEach((item, index) => {
+      setTimeout(() => {
+        if (show) {
+          item.classList.remove('opacity-0', 'translate-y-8');
+        } else {
+          item.classList.add('opacity-0', 'translate-y-8');
+        }
+      }, 100 + (index * 75));
+    });
+  }
 
-  // Al hacer clic en el botón hamburguesa se alternan las clases:
-  // - 'menu-open' en el botón (para la animación de líneas).
-  // - 'translate-y-0' en el menú (para mostrarlo u ocultarlo).
+  // Al hacer clic en el botón hamburguesa
   menuToggle?.addEventListener('click', () => {
     menuToggle.classList.toggle('menu-open');
+    
     if (mobileMenu) {
-      mobileMenu.classList.toggle('translate-y-0');
+      const isOpen = mobileMenu.classList.toggle('translate-y-0');
+      
+      if (isOpen) {
+        // Bloquear scroll cuando el menú está abierto
+        document.body.style.overflow = 'hidden';
+        // Animar entrada de elementos
+        animateMenuItems(true);
+      } else {
+        // Restaurar scroll
+        document.body.style.overflow = '';
+        // Animar salida de elementos
+        animateMenuItems(false);
+      }
     }
   });
 
@@ -121,7 +163,17 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       menuToggle?.classList.remove('menu-open');
-      mobileMenu?.classList.remove('translate-y-0');
+      
+      if (mobileMenu?.classList.contains('translate-y-0')) {
+        // Animar salida de elementos
+        animateMenuItems(false);
+        
+        // Esperar a que terminen las animaciones antes de ocultar el menú
+        setTimeout(() => {
+          mobileMenu.classList.remove('translate-y-0');
+          document.body.style.overflow = '';
+        }, 300);
+      }
     });
   });
 </script>
