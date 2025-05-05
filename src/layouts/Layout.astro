@@ -34,21 +34,35 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Super Critical CSS para LCP ultra-rápido -->
+    <style>
+      /* Estilos absolutamente críticos solo para LCP */
+      #site-logo, .logo-text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+        font-weight: bold;
+        color: #111827;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        display: inline-block;
+      }
+    </style>
+    
     <!-- Estilos críticos inline para evitar CLS y acelerar LCP -->
     <style is:inline>
       /* Estilos mínimos iniciales para mostrar contenido rápido */
       body { 
         background-color: #fafafa; 
-        font-family: sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         margin: 0;
         padding: 0;
+        text-rendering: optimizeSpeed;
       }
       .font-playfair, h1, h2, h3, h4, h5, h6 { 
-        font-family: 'Playfair Display', serif;
+        font-family: system-ui, -apple-system, sans-serif;
         font-display: swap;
       }
       .font-inter, body { 
-        font-family: 'Inter', sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         font-display: swap;
       }
       header { 
@@ -165,3 +179,18 @@ const {
     }
   }
 </style>
+
+<script>
+  // Registrar Service Worker para mejorar el rendimiento
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker registrado con éxito:', registration.scope);
+        })
+        .catch(error => {
+          console.log('Error al registrar el Service Worker:', error);
+        });
+    });
+  }
+</script>
