@@ -104,3 +104,19 @@
 .card-container.revealed .card:nth-child(5) {
   transition-delay: 0.5s;
 }
+
+/* Priorizamos un poco las animaciones */
+.priority-high {
+  animation-delay: 0ms !important;
+  transition-delay: 0ms !important;
+}
+
+.priority-medium {
+  animation-delay: 100ms !important;
+  transition-delay: 100ms !important;
+}
+
+.priority-low {
+  animation-delay: 200ms !important;
+  transition-delay: 200ms !important;
+}

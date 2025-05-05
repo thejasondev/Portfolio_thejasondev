@@ -23,34 +23,30 @@ const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfol
   <Header />
   <main class="pt-16">
     <!-- Schema.org ProfilePage con mainEntity -->
-    <script type="application/ld+json">
-      {
-        JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          "mainEntity": {
-            "@type": "Person",
-            "@id": "https://thejasondev.vercel.app/#person",
-            "name": "Jason Guerra",
-            "alternateName": "thejasondev",
-            "jobTitle": "Desarrollador Frontend",
-            "sameAs": [
-              "https://github.com/thejasondev",
-              "https://linkedin.com/in/thejasondev",
-              "https://instagram.com/thejasondev",
-              "https://wa.me/+5353118193"
-            ]
-          },
-          "url": "https://thejasondev.vercel.app/",
-          "name": "Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)",
-          "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend especializado en crear sitios web modernos, rápidos y optimizados para SEO."
-        })
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://thejasondev.vercel.app/#person",
+        "name": "Jason Guerra",
+        "alternateName": "thejasondev",
+        "jobTitle": "Desarrollador Frontend",
+        "sameAs": [
+          "https://github.com/thejasondev",
+          "https://linkedin.com/in/thejasondev",
+          "https://instagram.com/thejasondev",
+          "https://wa.me/+5353118193"
+        ]
+      },
+      "url": "https://thejasondev.vercel.app/",
+      "name": "Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)",
+      "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend especializado en crear sitios web modernos, rápidos y optimizados para SEO."
+    })}></script>
     
-    <!-- AboutMe con fade-up -->
+    <!-- AboutMe con fade-up - PRIORIDAD MÁS ALTA -->
     <section class="scroll-reveal-section">
-      <div class="scroll-reveal animate-fade-up">
+      <div class="scroll-reveal animate-fade-up priority-high">
         <AboutMe />
       </div>
     </section>
@@ -101,29 +97,51 @@ const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfol
 <script>
   // Configuración más eficiente del Intersection Observer para efectos de scroll
   document.addEventListener('DOMContentLoaded', () => {
-    // Opciones del observer - simplificadas para mejor rendimiento
+    // Opciones del observer optimizadas para móviles
     const options = {
       root: null,
-      rootMargin: '0px 0px -10% 0px',
-      threshold: 0.1 // Un solo umbral para mejor rendimiento
+      rootMargin: '0px',
+      threshold: 0.05 // Umbral reducido para móviles
     };
     
-    // Inicialización del observer
+    // Inicialización del observer con optimizaciones
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          // Dar prioridad a elementos marcados como priority-high
+          const isPriority = entry.target.classList.contains('priority-high');
           
-          // Animación secuencial optimizada para tarjetas
+          // Usar rAF para elementos prioritarios, setTimeout para el resto
+          if (isPriority) {
+            requestAnimationFrame(() => {
+              entry.target.classList.add('revealed');
+            });
+          } else {
+            setTimeout(() => {
+              entry.target.classList.add('revealed');
+            }, 100); // Retraso mínimo para elementos no prioritarios
+          }
+          
+          // Animación secuencial optimizada para tarjetas con menor impacto
           if (entry.target.classList.contains('card-container')) {
-            const cards = entry.target.querySelectorAll('.card');
-            cards.forEach((card, index) => {
+            const cards = Array.from(entry.target.querySelectorAll('.card'));
+            // Solo animar las primeras 3 tarjetas de inmediato
+            cards.slice(0, 3).forEach((card, index) => {
               requestAnimationFrame(() => {
                 setTimeout(() => {
                   card.classList.add('revealed');
-                }, 80 * index); // Tiempos más cortos
+                }, 50 * index);
               });
             });
+            
+            // Animar el resto después
+            if (cards.length > 3) {
+              setTimeout(() => {
+                cards.slice(3).forEach((card, index) => {
+                  card.classList.add('revealed');
+                });
+              }, 300);
+            }
           }
           
           // Dejar de observar después de revelar para ahorrar recursos
@@ -132,21 +150,16 @@ const pageKeywords = "Jason Guerra, desarrollador frontend, thejasondev, portfol
       });
     }, options);
     
-    // Observar elementos - usando requestIdleCallback para no bloquear
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        document.querySelectorAll('.scroll-reveal, .card-container').forEach(el => 
-          observer.observe(el)
-        );
-      });
-    } else {
-      // Fallback para navegadores sin requestIdleCallback
-      setTimeout(() => {
-        document.querySelectorAll('.scroll-reveal, .card-container').forEach(el => 
-          observer.observe(el)
-        );
-      }, 200);
-    }
+    // Primero observar elementos prioritarios
+    const priorityElements = document.querySelectorAll('.priority-high');
+    priorityElements.forEach(el => observer.observe(el));
+    
+    // Luego observar el resto de elementos con retraso para priorizar LCP
+    setTimeout(() => {
+      document.querySelectorAll('.scroll-reveal:not(.priority-high), .card-container').forEach(el => 
+        observer.observe(el)
+      );
+    }, 100);
     
     // Eficiente manejo de paralaje - usando requestAnimationFrame
     const parallaxElements = document.querySelectorAll('.parallax-scroll');

@@ -14,10 +14,12 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
 <header class="fixed w-full bg-white/80 backdrop-blur-sm z-50 top-0 border-b border-gray-100">
   <!-- Contenedor de navegación -->
   <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <a href="/" 
-       class="text-xl font-playfair font-bold text-gray-900"
-       aria-label="ThejasonDev Portfolio">
-       {'{ thejasondev }'}
+    <a href="#" 
+       id="site-logo"
+       class="text-xl font-bold text-gray-900 inline-block"
+       aria-label="ThejasonDev Portfolio"
+       style="font-display: swap; font-family: var(--font-playfair);">
+       <span class="inline-block">{'{ thejasondev }'}</span>
     </a>
 
     <!-- Botón hamburguesa -->
@@ -134,6 +136,17 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
     contain: layout style;
     will-change: transform;
   }
+  
+  /* Logo pulse animation */
+  @keyframes logo-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .logo-pulse {
+    animation: logo-pulse 0.3s ease-in-out;
+  }
 </style>
 
 <script>
@@ -142,6 +155,78 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
   const mobileMenu = document.getElementById('mobile-menu');
   const menuItems = document.querySelectorAll('.menu-item');
   const menuLinks = document.querySelectorAll('#mobile-menu a');
+  const siteLogo = document.getElementById('site-logo');
+  const allLinks = document.querySelectorAll('a[href^="#"]');
+  
+  // Scroll to top when clicking on the logo for single page landing
+  if (siteLogo) {
+    siteLogo.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent any navigation
+      
+      // Add a subtle pulse animation when clicking
+      siteLogo.classList.add('logo-pulse');
+      setTimeout(() => {
+        siteLogo.classList.remove('logo-pulse');
+      }, 300);
+      
+      // Smooth scroll to top with animation
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // Close mobile menu if open
+      if (mobileMenu && mobileMenu.classList.contains('translate-y-0')) {
+        menuToggle?.classList.remove('menu-open');
+        mobileMenu.classList.remove('translate-y-0');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+  
+  // Implementar scroll suave para todos los enlaces de ancla
+  allLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      // Solo prevenir comportamiento predeterminado para enlaces de ancla 
+      // (no para enlaces externos o archivos)
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        
+        // Si el enlace es una ancla vacía (#), desplazarse hasta arriba
+        if (href === '#') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          // Obtener el elemento objetivo de la ancla
+          const targetId = href.substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            // Calcular posición con desplazamiento para el header fijo
+            const headerOffset = 80; // Altura aproximada del header
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            // Desplazarse a la posición calculada
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+        
+        // Cerrar el menú móvil si está abierto
+        if (mobileMenu && mobileMenu.classList.contains('translate-y-0')) {
+          menuToggle?.classList.remove('menu-open');
+          mobileMenu.classList.remove('translate-y-0');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+  });
   
   // Función para mostrar los elementos del menú con delay
   function animateMenuItems(show = true) {

@@ -33,6 +33,46 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Estilos críticos inline para evitar CLS y acelerar LCP -->
+    <style is:inline>
+      /* Estilos mínimos iniciales para mostrar contenido rápido */
+      body { 
+        background-color: #fafafa; 
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .font-playfair, h1, h2, h3, h4, h5, h6 { 
+        font-family: 'Playfair Display', serif;
+        font-display: swap;
+      }
+      .font-inter, body { 
+        font-family: 'Inter', sans-serif;
+        font-display: swap;
+      }
+      header { 
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(4px);
+        border-bottom: 1px solid #f3f4f6;
+        z-index: 50;
+      }
+      header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+      /* Contenedor principal con padding para evitar que el contenido se oculte bajo el header */
+      main { padding-top: 4rem; }
+    </style>
+    
+    <!-- SEO y metadatos -->
     <SEO 
       title={title}
       description={description}
@@ -45,17 +85,11 @@ const {
       alternateLocale={alternateLocale}
     />
     <Prefetch />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Optimizar carga de fuentes -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
-    
-    <!-- Estilos críticos inline para evitar CLS -->
-    <style is:inline>
-      /* Estilos mínimos para evitar CLS durante la carga */
-      body { background-color: #fafafa; font-family: sans-serif; }
-      .font-playfair { font-family: 'Playfair Display', serif; }
-      h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
-    </style>
   </head>
   <body class="bg-[#fafafa]">
     <slot />
@@ -91,14 +125,43 @@ const {
 </html>
 
 <style is:global>
-  :root {
-    --font-playfair: 'Playfair Display', serif;
-    --font-inter: 'Inter', sans-serif;
-  }
-  html {
-    font-family: var(--font-inter);
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-playfair);
+  /* Defer non-critical styles */
+  @media screen {
+    :root {
+      --font-playfair: 'Playfair Display', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+    
+    html {
+      font-family: var(--font-inter);
+      scroll-behavior: smooth;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-playfair);
+    }
+    
+    /* Optimizaciones de rendimiento */
+    img, video {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Evitar cambios de layout */
+    main {
+      content-visibility: auto;
+    }
+    
+    /* Utilizar font-display: swap para mejorar CLS */
+    @font-face {
+      font-family: 'Playfair Display';
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'Inter';
+      font-display: swap;
+    }
   }
 </style>
