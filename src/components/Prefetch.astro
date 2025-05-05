@@ -4,7 +4,6 @@ const criticalResources = [
   // Ruta principal
   '/',
   // Imágenes clave
-  '/profile-pic/profile_pic.webp',
   '/projects-pic/havanera-screen.png',
   '/projects-pic/vitaspoon-screen.png',
   '/projects-pic/ditos-screen.png',
@@ -16,6 +15,11 @@ const criticalResources = [
 const externalDomains = [
   'https://fonts.googleapis.com',
   'https://fonts.gstatic.com'
+];
+
+// Recursos que queremos precargar
+const resources = [
+  '/profile-pic/profile_pic_optimized.webp',
 ];
 ---
 
@@ -38,3 +42,7 @@ const externalDomains = [
 
 <!-- Añadir prefetch para navegación por anclas mediante preconnect -->
 <link rel="preconnect" href="/" />
+
+{resources.map(resource => (
+  <link rel="preload" href={resource} as={resource.endsWith('.webp') ? 'image' : 'fetch'} />
+))}

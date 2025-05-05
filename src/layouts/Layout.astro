@@ -46,7 +46,16 @@ const {
     />
     <Prefetch />
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+    
+    <!-- Estilos críticos inline para evitar CLS -->
+    <style is:inline>
+      /* Estilos mínimos para evitar CLS durante la carga */
+      body { background-color: #fafafa; font-family: sans-serif; }
+      .font-playfair { font-family: 'Playfair Display', serif; }
+      h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+    </style>
   </head>
   <body class="bg-[#fafafa]">
     <slot />
