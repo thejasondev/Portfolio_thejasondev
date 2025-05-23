@@ -7,82 +7,60 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
 
 <section id="about" class="py-12 md:py-32 bg-gradient-to-b from-white to-gray-50">
   <div class="container mx-auto px-4">
-    <!-- Mobile design (card-like layout similar to example A) -->
+    <!-- Mobile design -->
     <div class="md:hidden">
-      <!-- Profile card con nuevo diseño -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
-        <!-- Contenedor de imagen mejorado -->
-        <div class="relative h-48">
-          <!-- Fondo decorativo con gradiente -->
-          <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-700"></div>
+      <!-- Profile card -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-6">
+        <!-- Container of image -->
+        <div class="flex flex-col items-center">
+          <!-- Imagen de perfil cuadrada con bordes redondeados -->
+          <div class="mb-5 w-full aspect-square rounded-2xl overflow-hidden">
+            <img
+              src="/profile-pic/profile_pic_optimized.webp"
+              alt="Jason Guerra"
+              class="w-full h-full object-cover"
+              width="400"
+              height="400"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
           
-          <!-- Patrón decorativo -->
-          <div class="absolute inset-0 opacity-10">
-            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <pattern id="pattern-grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
-              </pattern>
-              <rect x="0" y="0" width="100" height="100" fill="url(#pattern-grid)"/>
-            </svg>
-          </div>
-
-          <!-- Contenedor circular para la imagen -->
-          <div class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
-            <div class="relative">
-              <!-- Anillo decorativo exterior -->
-              <div class="absolute -inset-1 bg-white rounded-full"></div>
-              <!-- Imagen de perfil -->
-              <img
-                src="/profile-pic/profile_pic_optimized.webp"
-                alt="Jason Guerra"
-                class="relative w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
-                width="96"
-                height="96"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Contenido del perfil con ajuste de espaciado -->
-        <div class="pt-16 px-6 pb-6">
-          <div class="flex flex-col items-center">
-            <!-- Nombre y título con mejor espaciado -->
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">
+          <!-- Verificación visual -->
+          <div class="flex items-center gap-2 mb-3">
+            <h2 class="text-xl font-bold text-gray-900">
               Jason Guerra
             </h2>
-            
-            <div class="flex items-center gap-2 mb-4">
-              <span class="bg-gray-100 text-gray-700 px-4 py-1.5 rounded-full text-sm font-medium">
-                Desarrollador frontend
-              </span>
-            </div>
-
-            <!-- Stats con mejor diseño -->
-            <div class="w-full grid grid-cols-2 gap-4 mb-6 bg-gray-50 p-4 rounded-xl">
-              <div class="text-center">
-                <span class="block text-lg font-bold text-gray-900">+3</span>
-                <span class="text-sm text-gray-600">Años exp.</span>
-              </div>
-              <div class="text-center">
-                <span class="block text-lg font-bold text-gray-900">10+</span>
-                <span class="text-sm text-gray-600">Proyectos</span>
-              </div>
-            </div>
-
-            <!-- Botón CTA mejorado -->
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full flex items-center justify-center px-4 py-3.5 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all transform hover:scale-[0.98] active:scale-[0.97]"
-            >
-              <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
-              Contáctame
-            </a>
+            <Icon name="mdi:check-decagram" class="w-5 h-5 text-gray-700" />
           </div>
+          
+          <p class="text-gray-600 text-sm mb-5 text-center">
+            Soy un Desarrollador Frontend Freelance que se enfoca en claridad, usabilidad y resultados.
+          </p>
+
+          <!-- Stats con mejor diseño -->
+          <div class="w-full grid grid-cols-2 gap-4 mb-6">
+            <div class="text-center p-3 bg-gray-50 rounded-xl">
+              <span class="block text-lg font-bold text-gray-900">+3</span>
+              <span class="text-xs text-gray-500">Años exp.</span>
+            </div>
+            <div class="text-center p-3 bg-gray-50 rounded-xl">
+              <span class="block text-lg font-bold text-gray-900">+10</span>
+              <span class="text-xs text-gray-500">Proyectos</span>
+            </div>
+          </div>
+
+          <!-- Botón CTA mejorado -->
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full flex items-center justify-center px-4 py-3.5 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all transform hover:scale-[0.98] active:scale-[0.97]"
+          >
+            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
+            Contáctame
+          </a>
         </div>
       </div>
 
@@ -130,7 +108,7 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
             
             <div>
               <h4 class="text-lg font-semibold mb-2 text-gray-900 flex items-center">
-                <Icon name="mdi:check-decagram" class="w-5 h-5 mr-2 text-gray-700" />
+                <Icon name="mdi:check-circle" class="w-5 h-5 mr-2 text-gray-700" />
                 ¿Por qué escogerme?
               </h4>
               <p class="text-gray-600 text-base leading-relaxed">
