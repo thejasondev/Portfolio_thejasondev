@@ -24,6 +24,14 @@ export const projects: Project[] = [
     url: "https://havanera-nails.vercel.app",
   },
   {
+    title: "Panel de Operaciones Aéreas",
+    description:
+      "Desarrollé una aplicación web que es un sistema de gestión de operaciones aéreas para que los coordinadores controlen todo el proceso desde sus dispositivos en tiempo real. Utilizando Astro, React, TypeScript y TailwindCSS, implementé una interfaz intuitiva y responsiva que permite a los usuarios organizar su trabajo de manera eficiente.",
+    image: "/projects-pic/panel-screen.png",
+    technologies: ["Astro", "React", "TypeScript", "TailwindCSS"],
+    url: "https://vra-ops-app.vercel.app",
+  },
+  {
     title: "VitaSpoon",
     description:
       "Desarrollé VitaSpoon, una innovadora plataforma web que genera recetas personalizadas utilizando IA. Implementada con Astro, React, TypeScript y TailwindCSS, esta aplicación conecta con APIs de OpenAI y Gemini, además de contar con una base de datos local como respaldo. Una característica destacada es su opción para generar recetas que no requieren electricidad, pensada especialmente para usuarios en países que enfrentan apagones frecuentes.",
