@@ -17,7 +17,7 @@ export const services: Service[] = [
       "Despliegue en Vercel",
       "Optimización básica",
     ],
-    price: "$50 USD",
+    price: "$100 USD",
     message:
       "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Básico",
   },
@@ -32,7 +32,7 @@ export const services: Service[] = [
       "Optimización SEO",
       "Despliegue en Vercel",
     ],
-    price: "$100 USD",
+    price: "$250 USD",
     message:
       "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Intermedio.",
   },
