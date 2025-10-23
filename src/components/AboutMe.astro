@@ -5,20 +5,28 @@ import { technologies } from "../data/technologies";
 const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola, me interesa trabajar contigo.")}`;
 ---
 
-<section id="about" class="py-12 md:py-32 bg-gradient-to-b from-white to-gray-50">
-  <div class="container mx-auto px-4">
+<section id="about" class="relative py-16 md:py-32 lg:py-40 bg-gradient-to-br from-gray-50 via-white to-gray-100 overflow-hidden">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
+  <div class="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl opacity-20 animate-pulse-slow"></div>
+  <div class="absolute bottom-20 left-10 w-96 h-96 bg-gradient-to-tr from-pink-100 to-orange-100 rounded-full blur-3xl opacity-20 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+  
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <!-- Mobile design -->
     <div class="md:hidden">
-      <!-- Profile card -->
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-6">
-        <!-- Container of image -->
-        <div class="flex flex-col items-center">
-          <!-- Imagen de perfil cuadrada con bordes redondeados -->
-          <div class="mb-5 w-full aspect-square rounded-2xl overflow-hidden">
+      <!-- Profile card with glassmorphism -->
+      <div class="relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-gray-200/50 overflow-hidden mb-8 p-8 border border-gray-100/50 animate-fade-up">
+        <!-- Gradient overlay -->
+        <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-gray-50/50 to-transparent pointer-events-none"></div>
+        
+        <div class="flex flex-col items-center relative">
+          <!-- Profile image with modern styling -->
+          <div class="mb-6 w-full max-w-[280px] aspect-square rounded-3xl overflow-hidden relative group">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <img
               src="/profile-pic/profile_pic_optimized.webp"
-              alt="Jason Guerra"
-              class="w-full h-full object-cover"
+              alt="Jason Guerra - Frontend Developer"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               width="400"
               height="400"
               loading="eager"
@@ -27,92 +35,112 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
             />
           </div>
           
-          <!-- Verificación visual -->
-          <div class="flex items-center gap-2 mb-3">
-            <h2 class="text-xl font-bold text-gray-900">
+          <!-- Name with verification badge -->
+          <div class="flex items-center gap-2.5 mb-2">
+            <h2 class="text-2xl font-bold text-gray-900 tracking-tight">
               Jason Guerra
             </h2>
-            <Icon name="mdi:check-decagram" class="w-5 h-5 text-gray-700" />
+            <div class="relative group/badge">
+              <Icon name="mdi:check-decagram" class="w-6 h-6 text-blue-600 drop-shadow-sm" />
+              <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover/badge:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Verificado</span>
+            </div>
           </div>
           
-          <p class="text-gray-600 text-sm mb-5 text-center">
-            Soy un Desarrollador Frontend Freelance que se enfoca en claridad, usabilidad y resultados.
+          <p class="text-gray-600 text-base mb-7 text-center max-w-xs leading-relaxed">
+            Desarrollador Frontend Freelance enfocado en <span class="font-semibold text-gray-900">claridad</span>, <span class="font-semibold text-gray-900">usabilidad</span> y <span class="font-semibold text-gray-900">resultados</span>.
           </p>
 
-          <!-- Stats con mejor diseño -->
-          <div class="w-full grid grid-cols-2 gap-4 mb-6">
-            <div class="text-center p-3 bg-gray-50 rounded-xl">
-              <span class="block text-lg font-bold text-gray-900">+3</span>
-              <span class="text-xs text-gray-500">Años exp.</span>
+          <!-- Stats with gradient accents -->
+          <div class="w-full grid grid-cols-2 gap-4 mb-7">
+            <div class="relative text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-100/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span class="block text-2xl font-bold text-gray-900 mb-1 relative">+3</span>
+              <span class="text-xs text-gray-600 font-medium relative">Años experiencia</span>
             </div>
-            <div class="text-center p-3 bg-gray-50 rounded-xl">
-              <span class="block text-lg font-bold text-gray-900">+10</span>
-              <span class="text-xs text-gray-500">Proyectos</span>
+            <div class="relative text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border border-purple-100/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span class="block text-2xl font-bold text-gray-900 mb-1 relative">+10</span>
+              <span class="text-xs text-gray-600 font-medium relative">Proyectos completados</span>
             </div>
           </div>
 
-          <!-- Botón CTA mejorado -->
+          <!-- CTA Button with modern design -->
           <a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full flex items-center justify-center px-4 py-3.5 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all transform hover:scale-[0.98] active:scale-[0.97]"
+            class="group/btn w-full relative flex items-center justify-center px-6 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-900/30 hover:-translate-y-0.5 active:translate-y-0"
           >
-            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
-            Contáctame
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2.5 relative z-10 group-hover/btn:scale-110 transition-transform" />
+            <span class="font-semibold text-base relative z-10">Contáctame por WhatsApp</span>
           </a>
         </div>
       </div>
 
-      <!-- Tab navigation mejorado -->
-      <nav class="mb-6 sticky top-0 z-20 bg-white/80 backdrop-blur-md p-2 rounded-xl shadow-sm">
-        <div class="grid grid-cols-2 gap-2">
+      <!-- Modern tab navigation with glassmorphism -->
+      <nav class="mb-8 sticky top-4 z-20 bg-white/70 backdrop-blur-xl p-2 rounded-2xl shadow-lg shadow-gray-200/50 border border-gray-100/50 animate-fade-up" style="animation-delay: 0.1s;">
+        <div class="grid grid-cols-2 gap-2" role="tablist" aria-label="Secciones de perfil">
           <button 
             id="tab-about-btn" 
-            class="tab-btn flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg w-full"
+            class="tab-btn flex items-center justify-center gap-2 px-5 py-3 rounded-xl w-full transition-all duration-300"
             aria-selected="true"
             role="tab"
+            aria-controls="tab-content-about"
           >
-            <Icon name="mdi:account" class="w-5 h-5" />
-            <span class="font-medium">Sobre mí</span>
+            <Icon name="mdi:account" class="w-5 h-5 transition-transform duration-300" />
+            <span class="font-semibold text-sm">Sobre mí</span>
           </button>
           <button 
             id="tab-skills-btn" 
-            class="tab-btn flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg w-full"
+            class="tab-btn flex items-center justify-center gap-2 px-5 py-3 rounded-xl w-full transition-all duration-300"
             aria-selected="false"
             role="tab"
+            aria-controls="tab-content-skills"
           >
-            <Icon name="mdi:code-tags" class="w-5 h-5" />
-            <span class="font-medium">Tecnologías</span>
+            <Icon name="mdi:code-tags" class="w-5 h-5 transition-transform duration-300" />
+            <span class="font-semibold text-sm">Tecnologías</span>
           </button>
         </div>
       </nav>
       
-      <!-- Content sections with transitions -->
-      <div id="tab-content-container" class="relative">
+      <!-- Content sections with modern transitions -->
+      <div id="tab-content-container" class="relative min-h-[400px]">
         <div 
           id="tab-content-about" 
-          class="tab-content bg-white rounded-2xl shadow-lg p-6 mb-8 transition-opacity duration-300 ease-in-out"
+          class="tab-content bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-gray-200/50 p-8 mb-8 transition-all duration-500 ease-out border border-gray-100/50 animate-fade-up"
           role="tabpanel"
+          aria-labelledby="tab-about-btn"
+          style="animation-delay: 0.2s;"
         >
-          <div class="space-y-5">
-            <div>
-              <h3 class="text-xl font-semibold mb-3 text-gray-900 flex items-center">
-                <Icon name="mdi:account-details" class="w-5 h-5 mr-2 text-gray-700" />
-                Sobre mí
-              </h3>
-              <p class="text-gray-600 text-base leading-relaxed mb-4">
-                Mi formación como Ingeniero Industrial me ha proporcionado una sólida base en la gestión de proyectos, la resolución creativa de problemas y las comunicaciones estratégicas.
+          <div class="space-y-6">
+            <div class="group">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2.5 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100/50 group-hover:shadow-md transition-shadow">
+                  <Icon name="mdi:account-details" class="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">
+                  Sobre mí
+                </h3>
+              </div>
+              <p class="text-gray-700 text-base leading-relaxed pl-1">
+                Mi formación como <span class="font-semibold text-gray-900">Ingeniero Industrial</span> me ha proporcionado una sólida base en la gestión de proyectos, la resolución creativa de problemas y las comunicaciones estratégicas.
               </p>
             </div>
             
-            <div>
-              <h4 class="text-lg font-semibold mb-2 text-gray-900 flex items-center">
-                <Icon name="mdi:check-circle" class="w-5 h-5 mr-2 text-gray-700" />
-                ¿Por qué escogerme?
-              </h4>
-              <p class="text-gray-600 text-base leading-relaxed">
-                Estoy comprometido con la calidad, la atención al detalle y el cumplimiento de plazos. Cada proyecto es una oportunidad para demostrar mi profesionalismo y dedicación.
+            <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+            
+            <div class="group">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2.5 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-100/50 group-hover:shadow-md transition-shadow">
+                  <Icon name="mdi:check-circle" class="w-6 h-6 text-green-600" />
+                </div>
+                <h4 class="text-xl font-bold text-gray-900">
+                  ¿Por qué escogerme?
+                </h4>
+              </div>
+              <p class="text-gray-700 text-base leading-relaxed pl-1">
+                Estoy comprometido con la <span class="font-semibold text-gray-900">calidad</span>, la <span class="font-semibold text-gray-900">atención al detalle</span> y el <span class="font-semibold text-gray-900">cumplimiento de plazos</span>. Cada proyecto es una oportunidad para demostrar mi profesionalismo y dedicación.
               </p>
             </div>
           </div>
@@ -120,20 +148,26 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
         
         <div 
           id="tab-content-skills" 
-          class="tab-content bg-white rounded-2xl shadow-lg p-6 mb-8 transition-opacity duration-300 ease-in-out absolute top-0 left-0 w-full opacity-0 pointer-events-none"
+          class="tab-content bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-gray-200/50 p-8 mb-8 transition-all duration-500 ease-out absolute top-0 left-0 w-full opacity-0 pointer-events-none border border-gray-100/50"
           role="tabpanel"
+          aria-labelledby="tab-skills-btn"
         >
-          <h3 class="text-xl font-semibold mb-5 text-gray-900 flex items-center">
-            <Icon name="mdi:tools" class="w-5 h-5 mr-2 text-gray-700" />
-            Tecnologías
-          </h3>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="p-2.5 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-100/50">
+              <Icon name="mdi:tools" class="w-6 h-6 text-purple-600" />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900">
+              Tecnologías
+            </h3>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
             {technologies.map(tech => (
-              <div class="flex flex-col items-center group hover:-translate-y-1 transition-transform" style="contain: paint layout;">
-                <div class="p-3 rounded-xl bg-gray-50 shadow-sm mb-2 group-hover:shadow-md transition-shadow w-full flex justify-center">
-                  <Icon name={tech.icon} width={28} height={28} style={{color: tech.color}} />
+              <div class="flex flex-col items-center group hover:-translate-y-2 transition-all duration-300" style="contain: paint layout;">
+                <div class="relative p-4 rounded-2xl bg-gradient-to-br from-gray-50 to-white border border-gray-100/50 shadow-sm group-hover:shadow-xl group-hover:border-gray-200 transition-all duration-300 w-full flex justify-center mb-2.5">
+                  <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 rounded-2xl transition-all duration-300"></div>
+                  <Icon name={tech.icon} width={32} height={32} style={{color: tech.color}} class="relative z-10 group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <span class="text-xs text-gray-600 text-center font-medium">{tech.name}</span>
+                <span class="text-xs text-gray-700 text-center font-semibold">{tech.name}</span>
               </div>
             ))}
           </div>
@@ -158,15 +192,18 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
             style="content-visibility: auto;"
           />
         </div>
-        <div class="text-center md:text-left animate-fade-up animate-delay-100">
+        
+        <!-- CTA Button -->
+        <div class="text-center md:text-left animate-fade-up" style="animation-delay: 0.2s;">
           <a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-colors font-medium tracking-wide"
+            class="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-semibold tracking-wide relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-gray-900/40 hover:-translate-y-1 active:translate-y-0"
           >
-            <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
-            Contáctame
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+            <Icon name="mdi:whatsapp" class="w-6 h-6 mr-3 relative z-10 group-hover/btn:scale-110 transition-transform" />
+            <span class="relative z-10">Contáctame</span>
           </a>
         </div>
       </div>
@@ -185,15 +222,21 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
           </p>
         </div>
 
-        <div>
-          <h3 class="text-xl font-semibold mb-4 text-gray-900">Tecnologías</h3>
-          <div class="flex flex-wrap gap-6">
+        <!-- Technologies section -->
+        <div class="relative p-8 bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100/50">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="p-3 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border border-purple-100/50">
+              <Icon name="mdi:tools" class="w-7 h-7 text-purple-600" />
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900">Tecnologías</h3>
+          </div>
+          <div class="grid grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {technologies.map(tech => (
               <div class="group flex flex-col items-center space-y-2 hover:-translate-y-1 transition-transform" style="contain: paint layout; content-visibility: auto;">
                 <div class="p-3 rounded-xl bg-white shadow-md hover:shadow-lg transition-shadow">
                   <Icon name={tech.icon} width={32} height={32} style={{color: tech.color}} />
                 </div>
-                <span class="text-sm text-gray-600 font-medium">{tech.name}</span>
+                <span class="text-xs text-gray-700 font-semibold text-center">{tech.name}</span>
               </div>
             ))}
           </div>
@@ -204,44 +247,38 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
 </section>
 
 <style>
+  /* Background pattern */
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Animations */
   .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
-  .animate-gradient {
-    animation: gradient 8s ease infinite;
-    background-size: 200% 200%;
+  .animate-fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
   }
   
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-  
-  @keyframes pulse {
+  @keyframes pulse-slow {
     0%, 100% {
-      opacity: 1;
+      opacity: 0.2;
+      transform: scale(1);
     }
     50% {
-      opacity: 0.8;
+      opacity: 0.3;
+      transform: scale(1.05);
     }
   }
   
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  @keyframes fadeIn {
+  @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -249,33 +286,46 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola
     }
   }
   
+  /* Tab button styles */
   .tab-btn {
     color: #6b7280;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .tab-btn[aria-selected="true"] {
     color: #111827;
-    background-color: #f3f4f6;
-    font-weight: 600;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
   
+  .tab-btn[aria-selected="true"] svg {
+    transform: scale(1.1);
+  }
+  
+  .tab-btn:hover:not([aria-selected="true"]) {
+    color: #374151;
+    background-color: #f9fafb;
+  }
+  
+  .tab-btn:active {
+    transform: scale(0.98);
+  }
+  
+  /* Tab content transitions */
   .tab-content {
-    transition: opacity 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .tab-content.opacity-0 {
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  /* Añadir nuevos estilos para animaciones sutiles */
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
+  /* Smooth scrolling */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
     }
-    50% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
   }
 </style>
 
