@@ -37,6 +37,11 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
 <meta name="author" content={author} />
+<meta name="publisher" content="Jason Guerra (thejasondev)" />
+<meta name="copyright" content="Jason Guerra (thejasondev)" />
+<meta name="owner" content="Jason Guerra" />
+<meta name="designer" content="Jason Guerra (thejasondev)" />
+<meta name="web_author" content="Jason Guerra (thejasondev)" />
 <link rel="canonical" href={finalCanonicalUrl} />
 
 <!-- Enlaces alternativos para indicar cambio de dominio -->
@@ -65,6 +70,29 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="application-name" content="Jason Guerra | thejasondev" />
 <meta name="creator" content="Jason Guerra (thejasondev)" />
 <meta name="subject" content="Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)" />
+
+<!-- Meta tags para Knowledge Graph de Google -->
+<meta itemprop="name" content="Jason Guerra | thejasondev" />
+<meta itemprop="description" content={description} />
+<meta itemprop="image" content={imageUrl} />
+<meta name="thumbnail" content={imageUrl} />
+
+<!-- Información de contacto y redes sociales -->
+<meta name="contact" content="contact@thejasondev.com" />
+<meta name="reply-to" content="contact@thejasondev.com" />
+<meta property="profile:first_name" content="Jason" />
+<meta property="profile:last_name" content="Guerra" />
+<meta property="profile:username" content="thejasondev" />
+
+<!-- Meta tags para mejorar presencia en búsquedas -->
+<meta name="classification" content="Desarrollo Web, Frontend, Portfolio" />
+<meta name="category" content="Technology" />
+<meta name="coverage" content="Worldwide" />
+<meta name="distribution" content="Global" />
+<meta name="rating" content="General" />
+<meta name="target" content="all" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -114,7 +142,6 @@ const finalCanonicalUrl = primaryDomain;
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-
 <!-- Structured Data / JSON-LD para persona -->
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
@@ -123,8 +150,10 @@ const finalCanonicalUrl = primaryDomain;
   "name": "Jason Guerra",
   "givenName": "Jason",
   "familyName": "Guerra",
-  "alternateName": "thejasondev",
+  "alternateName": ["thejasondev", "Jason Guerra Dev", "The Jason Dev"],
   "url": primaryDomain,
+  "email": "mailto:thejasondev@icloud.com",
+  "telephone": "+53-53118193",
   "image": {
     "@type": "ImageObject",
     "@id": `${primaryDomain}/#personimage`,
@@ -142,26 +171,57 @@ const finalCanonicalUrl = primaryDomain;
     "@type": "PostalAddress",
     "addressLocality": "La Habana",
     "addressRegion": "Miramar",
-    "addressCountry": "Cuba"
+    "addressCountry": "CU"
   },
   "sameAs": [
     "https://github.com/thejasondev",
     "https://linkedin.com/in/thejasondev",
     "https://instagram.com/thejasondev",
-    "https://wa.me/+5353118193"
+    "https://twitter.com/thejasondev",
+    "https://wa.me/5353118193",
+    "https://thejasondev.vercel.app"
   ],
   "description": description,
-  "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "Next.js", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS"],
-  "knowsLanguage": ["es", "en"],
+  "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "Next.js", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS", "Web Performance", "UI/UX Design"],
+  "knowsLanguage": [
+    {
+      "@type": "Language",
+      "name": "Spanish",
+      "alternateName": "es"
+    },
+    {
+      "@type": "Language",
+      "name": "English",
+      "alternateName": "en"
+    }
+  ],
   "hasOccupation": {
     "@type": "Occupation",
     "name": "Desarrollador Frontend",
     "description": "Especialista en desarrollo de interfaces web modernas, rápidas y optimizadas para SEO",
-    "skills": "HTML, CSS, JavaScript, TypeScript, React, Next.js, Astro, TailwindCSS, SEO"
+    "skills": "HTML, CSS, JavaScript, TypeScript, React, Next.js, Astro, TailwindCSS, SEO",
+    "occupationalCategory": "15-1254.00"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": primaryDomain
+  },
+  "brand": {
+    "@type": "Brand",
+    "@id": `${primaryDomain}/#brand`,
+    "name": "thejasondev",
+    "alternateName": "Jason Guerra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${primaryDomain}/web-dev.png`,
+      "width": "512",
+      "height": "512"
+    },
+    "slogan": "Desarrollador Frontend Freelance - Creando experiencias web excepcionales"
+  },
+  "owns": {
+    "@type": "Organization",
+    "@id": `${primaryDomain}/#organization`
   }
 })}></script>
 
@@ -185,48 +245,40 @@ const finalCanonicalUrl = primaryDomain;
   "dateModified": dateModified
 })}></script>
 
-<!-- Structured Data / JSON-LD para página del portfolio -->
-{type === "article" && (
-  <script type="application/ld+json" set:html={`
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "@id": "${finalCanonicalUrl}#article",
-  "headline": "${title}",
-  "description": "${description}",
-  "image": "${imageUrl}",
-  "datePublished": "${datePublished}",
-  "dateModified": "${dateModified}",
-  "author": {
-    "@id": "${primaryDomain}/#person"
-  },
-  "publisher": {
-    "@id": "${primaryDomain}/#person"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "${finalCanonicalUrl}"
-  },
-  "inLanguage": "es"
-}
-  `}>
-  </script>
-)}
-
-<!-- Structured Data / JSON-LD para breadcrumbs -->
+<!-- Structured Data / JSON-LD para Organization -->
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@id": primaryDomain,
-        "name": "Inicio"
-      }
-    }
-  ]
+  "@type": "Organization",
+  "@id": `${primaryDomain}/#organization`,
+  "name": "thejasondev",
+  "alternateName": "Jason Guerra",
+  "url": primaryDomain,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${primaryDomain}/web-dev.png`,
+    "width": "512",
+    "height": "512"
+  },
+  "image": imageUrl,
+  "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend freelance especializado en crear sitios web modernos, rápidos y optimizados para SEO.",
+  "founder": {
+    "@id": `${primaryDomain}/#person`
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+53-53118193",
+    "contactType": "customer service",
+    "availableLanguage": ["Spanish", "English"]
+  },
+  "sameAs": [
+    "https://github.com/thejasondev",
+    "https://linkedin.com/in/thejasondev",
+    "https://instagram.com/thejasondev",
+    "https://twitter.com/thejasondev"
+  ],
+  "brand": {
+    "@id": `${primaryDomain}/#brand`
+  }
 })}></script>
 
 <!-- Structured Data / JSON-LD para servicios profesionales -->
@@ -238,10 +290,16 @@ const finalCanonicalUrl = primaryDomain;
     "@id": `${primaryDomain}/#person`
   },
   "description": "Servicios profesionales de desarrollo web frontend con enfoque en experiencia de usuario, rendimiento y SEO.",
-  "areaServed": {
-    "@type": "Country",
-    "name": "Cuba"
-  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Cuba"
+    },
+    {
+      "@type": "Place",
+      "name": "Worldwide"
+    }
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Servicios de Desarrollo Web",
@@ -272,4 +330,86 @@ const finalCanonicalUrl = primaryDomain;
       }
     ]
   }
-})}></script> 
+})}></script>
+
+<!-- Structured Data / JSON-LD para breadcrumbs -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": primaryDomain,
+        "name": "Inicio"
+      }
+    }
+  ]
+})}></script>
+
+<!-- Structured Data / JSON-LD para ProfilePage -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${primaryDomain}/#profile`,
+  "name": "Jason Guerra",
+  "image": imageUrl,
+  "description": description,
+  "isPartOf": {
+    "@id": `${primaryDomain}/#website`
+  },
+  "mainEntity": {
+    "@id": `${primaryDomain}/#person`
+  }
+})}></script>
+
+<!-- Structured Data / JSON-LD para ItemList de redes sociales -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Redes Sociales de Jason Guerra (thejasondev)",
+  "description": "Perfiles oficiales de Jason Guerra en redes sociales",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "ProfilePage",
+        "name": "GitHub - thejasondev",
+        "url": "https://github.com/thejasondev",
+        "identifier": "thejasondev"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "ProfilePage",
+        "name": "LinkedIn - thejasondev",
+        "url": "https://linkedin.com/in/thejasondev",
+        "identifier": "thejasondev"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "ProfilePage",
+        "name": "Instagram - thejasondev",
+        "url": "https://instagram.com/thejasondev",
+        "identifier": "@thejasondev"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "ProfilePage",
+        "name": "Twitter - thejasondev",
+        "url": "https://twitter.com/thejasondev",
+        "identifier": "@thejasondev"
+      }
+    }
+  ]
+})}></script>

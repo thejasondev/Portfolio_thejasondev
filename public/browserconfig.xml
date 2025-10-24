@@ -5,7 +5,21 @@
       <square70x70logo src="/web-dev.png"/>
       <square150x150logo src="/web-dev.png"/>
       <square310x310logo src="/web-dev.png"/>
+      <wide310x150logo src="/web-dev.png"/>
       <TileColor>#0f172a</TileColor>
     </tile>
+    <notification>
+      <polling-uri src="https://thejasondev.vercel.app/"/>
+      <polling-uri2 src="https://thejasondev.vercel.app/"/>
+      <polling-uri3 src="https://thejasondev.vercel.app/"/>
+      <polling-uri4 src="https://thejasondev.vercel.app/"/>
+      <polling-uri5 src="https://thejasondev.vercel.app/"/>
+      <frequency>30</frequency>
+      <cycle>1</cycle>
+    </notification>
+    <badge>
+      <polling-uri src="https://thejasondev.vercel.app/"/>
+      <frequency>30</frequency>
+    </badge>
   </msapplication>
-</browserconfig> 
+</browserconfig>

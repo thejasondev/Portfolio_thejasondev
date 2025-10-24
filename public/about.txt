@@ -1,0 +1,50 @@
+# thejasondev | Jason Guerra
+# Desarrollador Frontend Freelance
+
+Nombre: Jason Guerra
+Marca: thejasondev
+Alias: The Jason Dev, Jason Guerra Dev
+
+## Sobre mí
+Soy Jason Guerra, conocido como thejasondev en redes sociales y plataformas de desarrollo. 
+Desarrollador frontend freelance especializado en crear experiencias web modernas, rápidas y optimizadas.
+
+## Ubicación
+La Habana, Miramar, Cuba
+
+## Especialización
+- Desarrollo Frontend
+- Astro Framework
+- React & Next.js
+- TypeScript
+- TailwindCSS
+- Optimización SEO
+- Web Performance
+- UI/UX Design
+
+## Contacto
+Email: thejasondev@icloud.com
+Teléfono: +53 53118193
+WhatsApp: https://wa.me/5353118193
+
+## Redes Sociales
+GitHub: https://github.com/thejasondev
+LinkedIn: https://linkedin.com/in/thejasondev
+Instagram: https://instagram.com/thejasondev
+Twitter: https://twitter.com/thejasondev
+
+## Portfolio
+Website: https://thejasondev.vercel.app
+
+## Búsquedas relacionadas
+- thejasondev
+- Jason Guerra
+- Jason Guerra desarrollador
+- Jason Guerra frontend
+- thejasondev Cuba
+- desarrollador frontend Cuba
+- Jason Guerra portfolio
+- thejasondev portfolio
+
+---
+© 2024-2025 Jason Guerra (thejasondev). Todos los derechos reservados.

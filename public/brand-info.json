@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Brand",
+  "name": "thejasondev",
+  "alternateName": ["Jason Guerra", "The Jason Dev", "Jason Guerra Dev"],
+  "description": "Marca personal de Jason Guerra, desarrollador frontend freelance especializado en crear sitios web modernos, rapidos y optimizados para SEO.",
+  "url": "https://thejasondev.vercel.app",
+  "logo": "https://thejasondev.vercel.app/web-dev.png",
+  "image": "https://thejasondev.vercel.app/profile-pic/profile_pic_optimized.webp",
+  "founder": {
+    "@type": "Person",
+    "name": "Jason Guerra",
+    "alternateName": "thejasondev",
+    "jobTitle": "Desarrollador Frontend",
+    "email": "thejasondev@icloud.com",
+    "telephone": "+53-53118193",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "La Habana",
+      "addressRegion": "Miramar",
+      "addressCountry": "CU"
+    }
+  },
+  "sameAs": [
+    "https://github.com/thejasondev",
+    "https://linkedin.com/in/thejasondev",
+    "https://instagram.com/thejasondev",
+    "https://twitter.com/thejasondev",
+    "https://wa.me/5353118193"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+53-53118193",
+    "contactType": "customer service",
+    "email": "thejasondev@icloud.com",
+    "availableLanguage": ["Spanish", "English"]
+  }
+}

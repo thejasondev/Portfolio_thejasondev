@@ -1,0 +1,12 @@
+Contact: mailto:thejasondev@icloud.com
+Contact: https://thejasondev.vercel.app
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: es, en
+Canonical: https://thejasondev.vercel.app/.well-known/security.txt
+Acknowledgments: https://thejasondev.vercel.app
+
+# Jason Guerra (thejasondev)
+# Desarrollador Frontend Freelance
+# Portfolio: https://thejasondev.vercel.app
+# GitHub: https://github.com/thejasondev
+# LinkedIn: https://linkedin.com/in/thejasondev

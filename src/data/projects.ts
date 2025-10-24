@@ -27,7 +27,7 @@ export const projects: Project[] = [
     title: "Panel de Operaciones Aéreas",
     description:
       "Desarrollé una aplicación web que es un sistema de gestión de operaciones aéreas para que los coordinadores controlen todo el proceso desde sus dispositivos en tiempo real. Utilizando Astro, React, TypeScript y TailwindCSS, implementé una interfaz intuitiva y responsiva que permite a los usuarios organizar su trabajo de manera eficiente.",
-    image: "/projects-pic/panel-screen.png",
+    image: "/projects-pic/vraops-screen.png",
     technologies: ["Astro", "React", "TypeScript", "TailwindCSS"],
     url: "https://vra-ops-app.vercel.app",
   },
