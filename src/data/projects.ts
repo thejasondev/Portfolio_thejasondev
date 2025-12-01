@@ -8,6 +8,20 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "TheJasonStore",
+    description:
+      "TheJasonStore es una plataforma de e-commerce moderna y minimalista que revoluciona la experiencia de compra al integrar directamente WhatsApp como canal principal de ventas. Desarrollada con las tecnologías web más actuales, como Next.js, React, TypeScript, Tailwind CSS, Shadcn UI y Lucide React. Esta aplicación combina un diseño visualmente impactante con funcionalidad empresarial robusta, ofreciendo tanto una experiencia de usuario excepcional como un completo panel de administración.",
+    image: "/projects-pic/thejasonstore-screen.png",
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+    ],
+    url: "https://thejasonstore.vercel.app",
+  },
+  {
     title: "Dito's Bartender",
     description:
       "Diseñé y desarrollé la página web para Dito's Bartender, un servicio premium de bartending móvil con sede en Estados Unidos. Implementé una interfaz moderna y atractiva utilizando Astro con componentes de React y TypeScript para garantizar un código robusto y mantenible. El diseño responsive creado con TailwindCSS ofrece una experiencia óptima en todos los dispositivos.",
