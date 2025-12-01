@@ -2,309 +2,288 @@
 import { Icon } from "astro-icon/components";
 
 const menuItems = [
-  { text: "Sobre mí", href: "#about", icon: "mdi:account" },
-  { text: "Proyectos", href: "#projects", icon: "mdi:briefcase" },
-  { text: "Servicios", href: "#services", icon: "mdi:cogs" },
-  { text: "Contacto", href: "#contact", icon: "mdi:email" },
+  { text: "Sobre mí", href: "#about" },
+  { text: "Proyectos", href: "#projects" },
+  { text: "Servicios", href: "#services" },
+  { text: "Contacto", href: "#contact" },
 ];
 
-const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent( "Hola, me interesa trabajar contigo.")}`;
+const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent("Hola, me interesa trabajar contigo.")}`;
 ---
 
-<header class="fixed w-full bg-white/80 backdrop-blur-sm z-50 top-0 border-b border-gray-100">
-  <!-- Contenedor de navegación -->
-  <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+<header class="fixed w-full liquid-glass z-50 top-0 border-b border-white/20 transition-all duration-300" id="main-header">
+  <nav class="container-custom flex justify-between items-center h-20 md:h-24">
+    <!-- Logo with Gold Accent -->
     <a href="#" 
        id="site-logo"
-       class="text-xl font-bold text-gray-900 inline-block"
-       aria-label="thejasondev - Jason Guerra Portfolio"
-       title="thejasondev | Jason Guerra - Desarrollador Frontend"
-       itemscope
-       itemtype="https://schema.org/Brand"
-       style="font-display: block; font-family: system-ui, -apple-system, sans-serif;">
-       <span class="inline-block logo-text" itemprop="name">{'{ thejasondev }'}</span>
-       <meta itemprop="alternateName" content="Jason Guerra" />
+       class="group flex items-center gap-2 specular-highlight"
+       aria-label="thejasondev - Jason Guerra Portfolio">
+       <span class="text-2xl font-bold font-heading text-black tracking-tight group-hover:text-gradient-gold transition-all duration-300">
+         {'{ thejasondev }'}
+       </span>
     </a>
 
-    <!-- Botón hamburguesa -->
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex items-center gap-10">
+      <ul class="flex gap-8">
+        {menuItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class="text-xs font-bold text-neutral-700 hover:text-black transition-colors uppercase tracking-widest relative group"
+            >
+              {item.text}
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold-light transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary py-3 px-6 text-xs"
+      >
+        Contáctame
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
     <button
       id="menu-toggle"
-      class="md:hidden relative w-7 h-7 z-60"
-      aria-label="Menu"
+      class="md:hidden relative w-12 h-12 flex items-center justify-center text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg transition-all z-50"
+      aria-label="Abrir menú de navegación"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
     >
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+      <div class="w-6 h-5 relative flex flex-col justify-between">
+        <span class="w-full h-0.5 bg-current transform transition-all duration-300 ease-out"></span>
+        <span class="w-full h-0.5 bg-current transition-all duration-300 ease-out"></span>
+        <span class="w-full h-0.5 bg-current transform transition-all duration-300 ease-out"></span>
+      </div>
     </button>
-
-    <!-- Menú de escritorio -->
-    <ul class="hidden md:flex space-x-8">
-      {menuItems.map(item => (
-        <li>
-          <a
-            href={item.href}
-            class="text-gray-600 hover:text-gray-900 transition-colors font-inter"
-          >
-            {item.text}
-          </a>
-        </li>
-      ))}
-    </ul>
   </nav>
 </header>
 
-<!-- Menú móvil -->
+<!-- Mobile Menu Overlay with Liquid Glass -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 bg-white/95 backdrop-blur-md transform -translate-y-full transition-all duration-500 ease-in-out md:hidden z-40 flex flex-col opacity-0 pointer-events-none"
+  class="fixed inset-0 liquid-glass-dark z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300"
+  aria-modal="true"
+  role="dialog"
+  aria-label="Menú de navegación móvil"
 >
-  <div class="h-full flex flex-col justify-center px-8">
-    <ul class="space-y-6 text-center">
-      {menuItems.map(item => (
-        <li class="menu-item opacity-0 transform translate-y-8 transition-all duration-300 ease-out">
+  <!-- Close Button - Dedicated and Prominent -->
+  <button
+    id="close-menu"
+    class="fixed top-6 right-6 w-14 h-14 rounded-full liquid-glass-gold flex items-center justify-center text-black hover:scale-110 active:scale-95 transition-all duration-300 shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white opacity-0 pointer-events-none"
+    aria-label="Cerrar menú"
+  >
+    <Icon name="mdi:close" class="w-7 h-7" />
+  </button>
+
+  <!-- Menu Container -->
+  <nav class="relative z-10">
+    <ul class="space-y-8 text-center px-8">
+      {menuItems.map((item, index) => (
+        <li class="transform translate-y-4 opacity-0 transition-all duration-500 ease-out" style={`transition-delay: ${index * 80}ms`}>
           <a
             href={item.href}
-            class="flex items-center justify-center text-xl text-gray-900 hover:text-gray-600 transition-colors font-playfair group"
+            class="menu-link block text-4xl md:text-5xl font-heading font-bold text-white hover:text-gradient-gold transition-all duration-300 py-3 px-6 rounded-2xl hover:liquid-glass-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
-            <span class="menu-icon bg-gray-100 p-2 rounded-full mr-3 group-hover:bg-gray-200 transition-colors">
-              <Icon name={item.icon} class="w-5 h-5" />
-            </span>
             {item.text}
           </a>
         </li>
       ))}
-      <li class="mt-10 menu-item opacity-0 transform translate-y-8 transition-all duration-300 ease-out">
+      <li class="transform translate-y-4 opacity-0 transition-all duration-500 ease-out pt-4" style={`transition-delay: ${menuItems.length * 80}ms`}>
         <a
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-8 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all font-medium tracking-wide group hover:scale-105 shadow-md"
+          class="menu-link inline-flex items-center gap-3 text-lg font-bold text-gold hover:text-gold-light border-b-2 border-gold pb-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded px-4"
         >
-          <Icon name="mdi:whatsapp" class="w-5 h-5 mr-2" />
-          Contáctame
+          <Icon name="mdi:whatsapp" class="w-6 h-6" />
+          Iniciar conversación 
+          <Icon name="mdi:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1" />
         </a>
       </li>
     </ul>
-  </div>
+  </nav>
 </div>
 
 <style>
-  /* Estilos para el botón hamburguesa */
-  .hamburger-line {
-    @apply absolute left-0 h-0.5 w-full bg-gray-900 transition-all duration-300;
+  /* Hamburger to X Animation - Enhanced */
+  #menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
   }
-  .hamburger-line:first-child {
-    @apply top-1;
+  #menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
   }
-  .hamburger-line:nth-child(2) {
-    @apply top-3;
-  }
-  .hamburger-line:last-child {
-    @apply top-5;
+  #menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
 
-  /* Transformación del botón al abrir el menú */
-  #menu-toggle.menu-open .hamburger-line:first-child {
-    @apply top-3 rotate-45;
+  /* Change hamburger color when menu is open */
+  #menu-toggle.active {
+    color: white;
   }
-  #menu-toggle.menu-open .hamburger-line:nth-child(2) {
-    @apply opacity-0 scale-0;
-  }
-  #menu-toggle.menu-open .hamburger-line:last-child {
-    @apply top-3 -rotate-45;
+
+  /* Mobile Menu Active State */
+  #mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
   }
   
-  /* Overlay para el menú móvil */
-  #mobile-menu::before {
+  #mobile-menu.active li,
+  #mobile-menu.active #close-menu,
+  #mobile-menu.active #tap-hint {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Close button animation */
+  #mobile-menu.active #close-menu {
+    animation: bounceIn 0.5s ease-out 0.3s both;
+  }
+
+  @keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* Menu link hover effect */
+  .menu-link {
+    position: relative;
+  }
+
+  .menu-link::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-b from-white to-gray-50 opacity-0 transition-opacity duration-500;
-    z-index: -1;
+    position: absolute;
+    inset: -8px;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
   }
-  
-  #mobile-menu.translate-y-0::before {
-    @apply opacity-100;
-  }
-  
-  /* Optimización de rendimiento */
-  #mobile-menu {
-    contain: content;
-    will-change: transform, opacity;
-  }
-  
-  .menu-item {
-    contain: layout style;
-  }
-  
-  /* Evitar repaints del botón */
-  #menu-toggle {
-    contain: layout style;
-    will-change: transform;
-  }
-  
-  /* Optimización para el logo (elemento LCP) */
-  .logo-text {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    contain: layout style;
-    content-visibility: auto;
-    font-display: block;
-  }
-  
-  /* Logo pulse animation */
-  @keyframes logo-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  .logo-pulse {
-    animation: logo-pulse 0.3s ease-in-out;
+
+  .menu-link:hover::before {
+    opacity: 1;
   }
 </style>
 
 <script>
-  // Referencias a los elementos
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  const menuItems = document.querySelectorAll('.menu-item');
-  const menuLinks = document.querySelectorAll('#mobile-menu a');
-  const siteLogo = document.getElementById('site-logo');
-  const allLinks = document.querySelectorAll('a[href^="#"]');
-  
-  // Scroll to top when clicking on the logo for single page landing
-  if (siteLogo) {
-    siteLogo.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevent any navigation
-      
-      // Add a subtle pulse animation when clicking
-      siteLogo.classList.add('logo-pulse');
-      setTimeout(() => {
-        siteLogo.classList.remove('logo-pulse');
-      }, 300);
-      
-      // Smooth scroll to top with animation
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      
-      // Close mobile menu if open
-      if (mobileMenu && mobileMenu.classList.contains('translate-y-0')) {
-        menuToggle?.classList.remove('menu-open');
-        mobileMenu.classList.remove('translate-y-0');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-  
-  // Implementar scroll suave para todos los enlaces de ancla
-  allLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      // Solo prevenir comportamiento predeterminado para enlaces de ancla 
-      // (no para enlaces externos o archivos)
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        
-        // Si el enlace es una ancla vacía (#), desplazarse hasta arriba
-        if (href === '#') {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        } else {
-          // Obtener el elemento objetivo de la ancla
-          const targetId = href.substring(1);
-          const targetElement = document.getElementById(targetId);
-          
-          if (targetElement) {
-            // Calcular posición con desplazamiento para el header fijo
-            const headerOffset = 80; // Altura aproximada del header
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-            // Desplazarse a la posición calculada
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }
-        
-        // Cerrar el menú móvil si está abierto
-        if (mobileMenu && mobileMenu.classList.contains('translate-y-0')) {
-          menuToggle?.classList.remove('menu-open');
-          mobileMenu.classList.remove('translate-y-0');
-          document.body.style.overflow = '';
-        }
-      }
-    });
-  });
-  
-  // Función para mostrar los elementos del menú con delay
-  function animateMenuItems(show = true) {
-    if (mobileMenu) {
-      if (show) {
-        mobileMenu.classList.add('opacity-100');
-        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-      } else {
-        setTimeout(() => {
-          mobileMenu.classList.remove('opacity-100');
-          mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-        }, 300);
-      }
-    }
-  
-    menuItems.forEach((item, index) => {
-      // Usar requestAnimationFrame para optimizar las animaciones
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          if (show) {
-            item.classList.remove('opacity-0', 'translate-y-8');
-          } else {
-            item.classList.add('opacity-0', 'translate-y-8');
-          }
-        }, 80 + (index * 60)); // Tiempos reducidos para mejor UX
-      });
-    });
-  }
+  const closeMenuBtn = document.getElementById('close-menu');
+  const menuLinks = document.querySelectorAll('.menu-link');
+  const header = document.getElementById('main-header');
 
-  // Al hacer clic en el botón hamburguesa
-  menuToggle?.addEventListener('click', () => {
-    menuToggle.classList.toggle('menu-open');
+  let isMenuOpen = false;
+
+  // Function to open menu
+  function openMenu() {
+    isMenuOpen = true;
+    menuToggle?.classList.add('active');
+    mobileMenu?.classList.add('active');
+    menuToggle?.setAttribute('aria-expanded', 'true');
+    menuToggle?.setAttribute('aria-label', 'Cerrar menú de navegación');
+    document.body.style.overflow = 'hidden';
     
-    if (mobileMenu) {
-      const isOpen = mobileMenu.classList.toggle('translate-y-0');
-      
-      if (isOpen) {
-        // Bloquear scroll cuando el menú está abierto
-        document.body.style.overflow = 'hidden';
-        // Animar entrada de elementos
-        animateMenuItems(true);
-      } else {
-        // Restaurar scroll
-        document.body.style.overflow = '';
-        // Animar salida de elementos
-        animateMenuItems(false);
-      }
+    // Focus trap - focus first menu item
+    setTimeout(() => {
+      (menuLinks[0] as HTMLElement)?.focus();
+    }, 400);
+  }
+
+  // Function to close menu
+  function closeMenu() {
+    isMenuOpen = false;
+    menuToggle?.classList.remove('active');
+    mobileMenu?.classList.remove('active');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+    menuToggle?.setAttribute('aria-label', 'Abrir menú de navegación');
+    document.body.style.overflow = '';
+    
+    // Return focus to toggle button
+    menuToggle?.focus();
+  }
+
+  // Toggle Menu
+  menuToggle?.addEventListener('click', () => {
+    if (isMenuOpen) {
+      closeMenu();
+    } else {
+      openMenu();
     }
   });
 
-  // Al hacer clic en un enlace del menú móvil, se cierra
+  // Close button click
+  closeMenuBtn?.addEventListener('click', closeMenu);
+
+  // Close menu on link click
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-      menuToggle?.classList.remove('menu-open');
-      
-      if (mobileMenu?.classList.contains('translate-y-0')) {
-        // Animar salida de elementos
-        animateMenuItems(false);
-        
-        // Esperar a que terminen las animaciones antes de ocultar el menú
-        setTimeout(() => {
-          mobileMenu.classList.remove('translate-y-0');
-          document.body.style.overflow = '';
-        }, 300);
-      }
+      setTimeout(closeMenu, 100); // Small delay for better UX
     });
+  });
+
+  // Close on tap outside (on the overlay itself)
+  mobileMenu?.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) {
+      closeMenu();
+    }
+  });
+
+  // Close with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) {
+      closeMenu();
+    }
+  });
+
+  // Focus trap inside menu
+  document.addEventListener('keydown', (e) => {
+    if (!isMenuOpen || e.key !== 'Tab') return;
+
+    const focusableElements = Array.from(
+      mobileMenu?.querySelectorAll(
+        'a[href], button:not([disabled])'
+      ) || []
+    ) as HTMLElement[];
+
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+    }
+  });
+
+  // Header Scroll Effect - Enhanced liquid glass
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.add('shadow-lg');
+      header?.classList.remove('liquid-glass');
+      header?.classList.add('liquid-glass-dark');
+    } else {
+      header?.classList.remove('shadow-lg', 'liquid-glass-dark');
+      header?.classList.add('liquid-glass');
+    }
   });
 </script>
 

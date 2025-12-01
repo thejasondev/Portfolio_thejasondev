@@ -1,15 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import AboutMe from '../components/AboutMe.astro';
+import Hero from '../components/Hero.astro';
 import Projects from '../components/Projects.astro';
 import Services from '../components/Services.astro';
-import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
 
 // Datos estructurados para SEO
 const pageTitle = "thejasondev | Jason Guerra - Desarrollador Frontend Freelance Cuba";
-const pageDescription = "thejasondev es Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Portfolio profesional especializado en crear sitios web modernos, rápidos y optimizados para SEO con Astro, React, Next.js, TypeScript y TailwindCSS. Diseño responsive, alta velocidad de carga y excelente experiencia de usuario. Contacta a thejasondev para tu proyecto web.";
-const pageKeywords = "thejasondev, Jason Guerra, the jason dev, Jason Guerra desarrollador, Jason Guerra frontend, Jason Guerra Cuba, thejasondev portfolio, thejasondev Cuba, desarrollador frontend Cuba, desarrollador web La Habana, Jason Guerra thejasondev, portfolio Jason Guerra, SEO Cuba, diseño web Cuba, Astro developer, React developer Cuba, TypeScript developer, frontend freelance Cuba, desarrollo sitios web Cuba, sitios web optimizados, rendimiento web, Jason Guerra GitHub, Jason Guerra LinkedIn, thejasondev GitHub, thejasondev LinkedIn, thejasondev Instagram, Jason Guerra contacto";
+const pageDescription = "thejasondev es Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Portfolio profesional especializado en crear sitios web modernos, rápidos y optimizados para SEO con Astro, React, Next.js, TypeScript y TailwindCSS.";
+const pageKeywords = "thejasondev, Jason Guerra, desarrollador frontend, diseño web, Astro, React, Cuba, freelance";
 ---
 
 <Layout 
@@ -21,8 +21,9 @@ const pageKeywords = "thejasondev, Jason Guerra, the jason dev, Jason Guerra des
   type="website"
 >
   <Header />
-  <main class="pt-16 content-visibility-auto">
-    <!-- Schema.org ProfilePage con mainEntity -->
+  
+  <main>
+    <!-- Schema.org ProfilePage -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ProfilePage",
@@ -38,152 +39,16 @@ const pageKeywords = "thejasondev, Jason Guerra, the jason dev, Jason Guerra des
           "https://instagram.com/thejasondev",
           "https://wa.me/+5353118193"
         ]
-      },
-      "url": "https://thejasondev.vercel.app/",
-      "name": "Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)",
-      "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend especializado en crear sitios web modernos, rápidos y optimizados para SEO."
+      }
     })}></script>
     
-    <!-- AboutMe con fade-up - PRIORIDAD MÁS ALTA - Deferred hydration -->
-    <section class="scroll-reveal-section" style="contain: content;">
-      <div class="scroll-reveal animate-fade-up priority-high">
-        <AboutMe />
-      </div>
-    </section>
+    <Hero />
     
-    <!-- Projects con fade-left y elementos destacados - Deferred loading -->
-    <section class="scroll-reveal-section" style="contain: content;">
-      <div class="scroll-reveal animate-fade-left priority-medium">
-        <Projects />
-      </div>
-    </section>
+    <Projects />
     
-    <!-- Services con scale-up y aparición secuencial - Lazy loading -->
-    <section class="scroll-reveal-section card-container" style="contain: content;">
-      <div class="scroll-reveal animate-scale-up priority-low">
-        <Services />
-      </div>
-    </section>
+    <Services />
     
-    <!-- ContactForm con fade-up y blur - Lazy loading -->
-    <section class="scroll-reveal-section" style="contain: content;">
-      <div class="scroll-reveal animate-fade-up fade-in-blur priority-low">
-        <ContactForm />
-      </div>
-    </section>
+    <Footer />
   </main>
 </Layout>
 
-<style>
-  .scroll-reveal-section {
-    position: relative;
-    overflow: hidden;
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 500px; /* Valor estimado para reservar espacio */
-  }
-  
-  /* Ajuste básico para el scroll-reveal */
-  .scroll-reveal {
-    opacity: 0;
-    animation-play-state: paused;
-    will-change: opacity, transform;
-  }
-  
-  .scroll-reveal.revealed {
-    animation-play-state: running;
-  }
-</style>
-
-<script>
-  // Configuración más eficiente del Intersection Observer para efectos de scroll
-  document.addEventListener('DOMContentLoaded', () => {
-    // Opciones del observer optimizadas para móviles
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.05 // Umbral reducido para móviles
-    };
-    
-    // Inicialización del observer con optimizaciones
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Dar prioridad a elementos marcados como priority-high
-          const isPriority = entry.target.classList.contains('priority-high');
-          
-          // Usar rAF para elementos prioritarios, setTimeout para el resto
-          if (isPriority) {
-            requestAnimationFrame(() => {
-              entry.target.classList.add('revealed');
-            });
-          } else {
-            setTimeout(() => {
-              entry.target.classList.add('revealed');
-            }, 100); // Retraso mínimo para elementos no prioritarios
-          }
-          
-          // Animación secuencial optimizada para tarjetas con menor impacto
-          if (entry.target.classList.contains('card-container')) {
-            const cards = Array.from(entry.target.querySelectorAll('.card'));
-            // Solo animar las primeras 3 tarjetas de inmediato
-            cards.slice(0, 3).forEach((card, index) => {
-              requestAnimationFrame(() => {
-                setTimeout(() => {
-                  card.classList.add('revealed');
-                }, 50 * index);
-              });
-            });
-            
-            // Animar el resto después
-            if (cards.length > 3) {
-              setTimeout(() => {
-                cards.slice(3).forEach((card, index) => {
-                  card.classList.add('revealed');
-                });
-              }, 300);
-            }
-          }
-          
-          // Dejar de observar después de revelar para ahorrar recursos
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-    
-    // Primero observar elementos prioritarios
-    const priorityElements = document.querySelectorAll('.priority-high');
-    priorityElements.forEach(el => observer.observe(el));
-    
-    // Luego observar el resto de elementos con retraso para priorizar LCP
-    setTimeout(() => {
-      document.querySelectorAll('.scroll-reveal:not(.priority-high), .card-container').forEach(el => 
-        observer.observe(el)
-      );
-    }, 100);
-    
-    // Eficiente manejo de paralaje - usando requestAnimationFrame
-    const parallaxElements = document.querySelectorAll('.parallax-scroll');
-    if (parallaxElements.length > 0) {
-      let ticking = false;
-      let lastScrollPos = window.scrollY;
-      
-      window.addEventListener('scroll', () => {
-        lastScrollPos = window.scrollY;
-        
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            parallaxElements.forEach(el => {
-              const htmlEl = el as HTMLElement;
-              const speed = htmlEl.dataset.parallaxSpeed || '0.1';
-              const offset = lastScrollPos * parseFloat(speed);
-              htmlEl.style.transform = `translateY(${offset}px)`;
-            });
-            ticking = false;
-          });
-          
-          ticking = true;
-        }
-      });
-    }
-  });
-</script>

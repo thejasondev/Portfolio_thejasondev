@@ -1,6 +1,7 @@
 ---
 import SEO from '../components/SEO.astro';
 import Prefetch from '../components/Prefetch.astro';
+import '../styles/global.css';
 import '../styles/animations.css';
 
 interface Props {
@@ -34,58 +35,6 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Super Critical CSS para LCP ultra-rápido -->
-    <style>
-      /* Estilos absolutamente críticos solo para LCP */
-      #site-logo, .logo-text {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
-        font-weight: bold;
-        color: #111827;
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        display: inline-block;
-      }
-    </style>
-    
-    <!-- Estilos críticos inline para evitar CLS y acelerar LCP -->
-    <style is:inline>
-      /* Estilos mínimos iniciales para mostrar contenido rápido */
-      body { 
-        background-color: #fafafa; 
-        font-family: system-ui, -apple-system, sans-serif;
-        margin: 0;
-        padding: 0;
-        text-rendering: optimizeSpeed;
-      }
-      .font-playfair, h1, h2, h3, h4, h5, h6 { 
-        font-family: system-ui, -apple-system, sans-serif;
-        font-display: swap;
-      }
-      .font-inter, body { 
-        font-family: system-ui, -apple-system, sans-serif;
-        font-display: swap;
-      }
-      header { 
-        position: fixed;
-        width: 100%;
-        top: 0;
-        background-color: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(4px);
-        border-bottom: 1px solid #f3f4f6;
-        z-index: 50;
-      }
-      header nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        max-width: 80rem;
-        margin: 0 auto;
-      }
-      /* Contenedor principal con padding para evitar que el contenido se oculte bajo el header */
-      main { padding-top: 4rem; }
-    </style>
-    
     <!-- SEO y metadatos -->
     <SEO 
       title={title}
@@ -101,26 +50,25 @@ const {
     <Prefetch />
     
     <!-- Optimizar carga de fuentes -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#fafafa]">
+  <body class="bg-white text-gray-900 antialiased selection:bg-indigo-100 selection:text-indigo-900">
     <slot />
-    <!-- Vercel Speed Insights: Solo se carga en producción en Vercel -->
+    
+    <!-- Vercel Speed Insights -->
     <script>
-      // Comprobar si estamos en un entorno de Vercel
       const isVercelProduction = 
         typeof window !== 'undefined' && 
         (window.location.hostname.endsWith('.vercel.app') || 
          window.location.hostname === 'thejasondev.vercel.app' ||
-         
          window.location.hostname.includes('vercel'));
       
       if (isVercelProduction) {
         window.addEventListener('load', function() {
           try {
-            // @ts-ignore - Vercel Speed Insights
+            // @ts-ignore
             if (typeof window.va === 'undefined') {
               const script = document.createElement('script');
               script.src = '/_vercel/speed-insights/script.js';
@@ -130,67 +78,21 @@ const {
               document.body.appendChild(script);
             }
           } catch (e) {
-            console.log('Vercel Speed Insights no pudo cargarse:', e);
+            console.error('Vercel Speed Insights failed to load:', e);
           }
+        });
+      }
+    </script>
+    
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('SW registration failed: ', err);
+          });
         });
       }
     </script>
   </body>
 </html>
-
-<style is:global>
-  /* Defer non-critical styles */
-  @media screen {
-    :root {
-      --font-playfair: 'Playfair Display', serif;
-      --font-inter: 'Inter', sans-serif;
-    }
-    
-    html {
-      font-family: var(--font-inter);
-      scroll-behavior: smooth;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-family: var(--font-playfair);
-    }
-    
-    /* Optimizaciones de rendimiento */
-    img, video {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
-    
-    /* Evitar cambios de layout */
-    main {
-      content-visibility: auto;
-    }
-    
-    /* Utilizar font-display: swap para mejorar CLS */
-    @font-face {
-      font-family: 'Playfair Display';
-      font-display: swap;
-    }
-    
-    @font-face {
-      font-family: 'Inter';
-      font-display: swap;
-    }
-  }
-</style>
-
-<script>
-  // Registrar Service Worker para mejorar el rendimiento
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('Service Worker registrado con éxito:', registration.scope);
-        })
-        .catch(error => {
-          console.log('Error al registrar el Service Worker:', error);
-        });
-    });
-  }
-</script>
