@@ -1,8 +1,17 @@
 ---
+import { siteConfig } from "../config/site";
+import { 
+  getPersonSchema, 
+  getWebSiteSchema, 
+  getOrganizationSchema, 
+  getProfessionalServiceSchema,
+  getSocialProfileSchema 
+} from "../utils/seo";
+
 export interface Props {
-  title: string;
-  description: string;
-  keywords: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
   image?: string;
   canonicalURL?: URL | string;
   type?: string;
@@ -13,13 +22,13 @@ export interface Props {
 }
 
 const {
-  title,
-  description,
-  keywords,
+  title = siteConfig.title,
+  description = siteConfig.description,
+  keywords = siteConfig.seo.keywords,
   image = "/profile-pic/profile_pic_optimized.webp",
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
   type = "website",
-  author = "Jason Guerra",
+  author = siteConfig.author.name,
   datePublished = new Date().toISOString().split('T')[0],
   dateModified = new Date().toISOString().split('T')[0],
   alternateLocale = ["en_US"]
@@ -27,9 +36,16 @@ const {
 
 // Asegúrese de que la imagen tenga una URL completa
 const imageUrl = new URL(image, Astro.site).toString();
-const primaryDomain = "https://thejasondev.vercel.app";
+const primaryDomain = siteConfig.url;
 // Usar solo la URL principal como canónica sin barra al final para evitar duplicados
 const finalCanonicalUrl = primaryDomain;
+
+// Generar schemas
+const personSchema = getPersonSchema();
+const websiteSchema = getWebSiteSchema();
+const orgSchema = getOrganizationSchema();
+const serviceSchema = getProfessionalServiceSchema();
+const socialSchema = getSocialProfileSchema();
 ---
 
 <!-- SEO Básico -->
@@ -37,16 +53,16 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
 <meta name="author" content={author} />
-<meta name="publisher" content="Jason Guerra (thejasondev)" />
-<meta name="copyright" content="Jason Guerra (thejasondev)" />
-<meta name="owner" content="Jason Guerra" />
-<meta name="designer" content="Jason Guerra (thejasondev)" />
-<meta name="web_author" content="Jason Guerra (thejasondev)" />
+<meta name="publisher" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
+<meta name="copyright" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
+<meta name="owner" content={siteConfig.author.name} />
+<meta name="designer" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
+<meta name="web_author" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
 <link rel="canonical" href={finalCanonicalUrl} />
 
 <!-- Enlaces alternativos para indicar cambio de dominio -->
-<link rel="alternate" href="https://thejasondev.vercel.app/" hreflang="x-default" />
-<link rel="alternate" href="https://thejasondev.vercel.app/" hreflang="es" />
+<link rel="alternate" href={primaryDomain} hreflang="x-default" />
+<link rel="alternate" href={primaryDomain} hreflang="es" />
 
 <!-- Control de indexación y seguimiento -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -57,7 +73,7 @@ const finalCanonicalUrl = primaryDomain;
 <link rel="author" href="/humans.txt" />
 
 <!-- Verificación de Google -->
-<meta name="google-site-verification" content="A7BT_C6ClgkaWHA9brgG3v0v7gG-1NeclQ6jCfvQF8U" />
+<meta name="google-site-verification" content={siteConfig.seo.googleVerification} />
 
 <!-- Meta para rendimiento web -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -67,22 +83,22 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="format-detection" content="telephone=no" />
 
 <!-- Nombre y alias para buscadores -->
-<meta name="application-name" content="Jason Guerra | thejasondev" />
-<meta name="creator" content="Jason Guerra (thejasondev)" />
-<meta name="subject" content="Portfolio de Jason Guerra - Desarrollador Frontend (thejasondev)" />
+<meta name="application-name" content={`${siteConfig.author.name} | ${siteConfig.author.username}`} />
+<meta name="creator" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
+<meta name="subject" content={`Portfolio de ${siteConfig.author.name} - ${siteConfig.author.jobTitle} (${siteConfig.author.username})`} />
 
 <!-- Meta tags para Knowledge Graph de Google -->
-<meta itemprop="name" content="Jason Guerra | thejasondev" />
+<meta itemprop="name" content={`${siteConfig.author.name} | ${siteConfig.author.username}`} />
 <meta itemprop="description" content={description} />
 <meta itemprop="image" content={imageUrl} />
 <meta name="thumbnail" content={imageUrl} />
 
 <!-- Información de contacto y redes sociales -->
-<meta name="contact" content="contact@thejasondev.com" />
-<meta name="reply-to" content="contact@thejasondev.com" />
-<meta property="profile:first_name" content="Jason" />
-<meta property="profile:last_name" content="Guerra" />
-<meta property="profile:username" content="thejasondev" />
+<meta name="contact" content={siteConfig.author.email} />
+<meta name="reply-to" content={siteConfig.author.email} />
+<meta property="profile:first_name" content={siteConfig.author.firstName} />
+<meta property="profile:last_name" content={siteConfig.author.lastName} />
+<meta property="profile:username" content={siteConfig.author.username} />
 
 <!-- Meta tags para mejorar presencia en búsquedas -->
 <meta name="classification" content="Desarrollo Web, Frontend, Portfolio" />
@@ -93,6 +109,7 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="target" content="all" />
 <meta name="HandheldFriendly" content="True" />
 <meta name="MobileOptimized" content="320" />
+<meta name="theme-color" content={siteConfig.seo.themeColor} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
@@ -102,10 +119,10 @@ const finalCanonicalUrl = primaryDomain;
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Jason Guerra - Desarrollador Frontend" />
-<meta property="og:site_name" content="Jason Guerra - Desarrollador Frontend" />
+<meta property="og:image:alt" content={`${siteConfig.author.name} - ${siteConfig.author.jobTitle}`} />
+<meta property="og:site_name" content={`${siteConfig.author.name} - ${siteConfig.author.jobTitle}`} />
 <meta property="og:locale" content="es_ES" />
-<meta property="article:author" content="Jason Guerra (thejasondev)" />
+<meta property="article:author" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
 {alternateLocale.map(locale => (
   <meta property="og:locale:alternate" content={locale} />
 ))}
@@ -117,9 +134,9 @@ const finalCanonicalUrl = primaryDomain;
 <meta name="twitter:description" content={description} />
 <meta name="twitter:url" content={finalCanonicalUrl} />
 <meta name="twitter:image" content={imageUrl} />
-<meta name="twitter:image:alt" content="Jason Guerra | Desarrollador Frontend" />
-<meta name="twitter:creator" content="@thejasondev" />
-<meta name="twitter:site" content="@thejasondev" />
+<meta name="twitter:image:alt" content={`${siteConfig.author.name} | ${siteConfig.author.jobTitle}`} />
+<meta name="twitter:creator" content={`@${siteConfig.author.username}`} />
+<meta name="twitter:site" content={`@${siteConfig.author.username}`} />
 
 <!-- Favicon y App Icons -->
 <link rel="icon" href="/web-dev.png" type="image/png" />
@@ -131,9 +148,8 @@ const finalCanonicalUrl = primaryDomain;
 <!-- Tipo de app para dispositivos móviles -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="apple-mobile-web-app-title" content="Jason Guerra" />
-<meta name="theme-color" content="#0f172a" />
-<meta name="msapplication-TileColor" content="#0f172a" />
+<meta name="apple-mobile-web-app-title" content={siteConfig.author.firstName} />
+<meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
 <meta name="msapplication-config" content="/browserconfig.xml" />
 
 <!-- DNS Prefetch para recursos externos -->
@@ -142,274 +158,9 @@ const finalCanonicalUrl = primaryDomain;
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<!-- Structured Data / JSON-LD para persona -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${primaryDomain}/#person`,
-  "name": "Jason Guerra",
-  "givenName": "Jason",
-  "familyName": "Guerra",
-  "alternateName": ["thejasondev", "Jason Guerra Dev", "The Jason Dev"],
-  "url": primaryDomain,
-  "email": "mailto:thejasondev@icloud.com",
-  "telephone": "+53-53118193",
-  "image": {
-    "@type": "ImageObject",
-    "@id": `${primaryDomain}/#personimage`,
-    "url": imageUrl,
-    "width": "500",
-    "height": "500",
-    "caption": "Jason Guerra - Desarrollador Frontend"
-  },
-  "jobTitle": "Desarrollador Frontend",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Freelance"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "La Habana",
-    "addressRegion": "Miramar",
-    "addressCountry": "CU"
-  },
-  "sameAs": [
-    "https://github.com/thejasondev",
-    "https://linkedin.com/in/thejasondev",
-    "https://instagram.com/thejasondev",
-    "https://twitter.com/thejasondev",
-    "https://wa.me/5353118193",
-    "https://thejasondev.vercel.app"
-  ],
-  "description": description,
-  "knowsAbout": ["Desarrollo Web", "Frontend", "Astro", "React", "Next.js", "TypeScript", "TailwindCSS", "SEO", "JavaScript", "NextJS", "Web Performance", "UI/UX Design"],
-  "knowsLanguage": [
-    {
-      "@type": "Language",
-      "name": "Spanish",
-      "alternateName": "es"
-    },
-    {
-      "@type": "Language",
-      "name": "English",
-      "alternateName": "en"
-    }
-  ],
-  "hasOccupation": {
-    "@type": "Occupation",
-    "name": "Desarrollador Frontend",
-    "description": "Especialista en desarrollo de interfaces web modernas, rápidas y optimizadas para SEO",
-    "skills": "HTML, CSS, JavaScript, TypeScript, React, Next.js, Astro, TailwindCSS, SEO",
-    "occupationalCategory": "15-1254.00"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": primaryDomain
-  },
-  "brand": {
-    "@type": "Brand",
-    "@id": `${primaryDomain}/#brand`,
-    "name": "thejasondev",
-    "alternateName": "Jason Guerra",
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${primaryDomain}/web-dev.png`,
-      "width": "512",
-      "height": "512"
-    },
-    "slogan": "Desarrollador Frontend Freelance - Creando experiencias web excepcionales"
-  },
-  "owns": {
-    "@type": "Organization",
-    "@id": `${primaryDomain}/#organization`
-  }
-})}></script>
-
-<!-- Structured Data / JSON-LD para la página web -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${primaryDomain}/#website`,
-  "url": primaryDomain,
-  "name": "Portfolio de Jason Guerra - Desarrollador Frontend",
-  "description": description,
-  "publisher": {
-    "@id": `${primaryDomain}/#person`
-  },
-  "creator": {
-    "@id": `${primaryDomain}/#person`
-  },
-  "inLanguage": "es",
-  "copyrightYear": "2024",
-  "datePublished": datePublished,
-  "dateModified": dateModified
-})}></script>
-
-<!-- Structured Data / JSON-LD para Organization -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": `${primaryDomain}/#organization`,
-  "name": "thejasondev",
-  "alternateName": "Jason Guerra",
-  "url": primaryDomain,
-  "logo": {
-    "@type": "ImageObject",
-    "url": `${primaryDomain}/web-dev.png`,
-    "width": "512",
-    "height": "512"
-  },
-  "image": imageUrl,
-  "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend freelance especializado en crear sitios web modernos, rápidos y optimizados para SEO.",
-  "founder": {
-    "@id": `${primaryDomain}/#person`
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+53-53118193",
-    "contactType": "customer service",
-    "availableLanguage": ["Spanish", "English"]
-  },
-  "sameAs": [
-    "https://github.com/thejasondev",
-    "https://linkedin.com/in/thejasondev",
-    "https://instagram.com/thejasondev",
-    "https://twitter.com/thejasondev"
-  ],
-  "brand": {
-    "@id": `${primaryDomain}/#brand`
-  }
-})}></script>
-
-<!-- Structured Data / JSON-LD para servicios profesionales -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Desarrollo Web Frontend",
-  "provider": {
-    "@id": `${primaryDomain}/#person`
-  },
-  "description": "Servicios profesionales de desarrollo web frontend con enfoque en experiencia de usuario, rendimiento y SEO.",
-  "areaServed": [
-    {
-      "@type": "Country",
-      "name": "Cuba"
-    },
-    {
-      "@type": "Place",
-      "name": "Worldwide"
-    }
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Servicios de Desarrollo Web",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Desarrollo de Sitios Web",
-          "description": "Creación de sitios web modernos y optimizados para SEO"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Optimización SEO",
-          "description": "Mejora del posicionamiento web en buscadores"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Desarrollo Frontend",
-          "description": "Creación de interfaces de usuario interactivas y responsivas"
-        }
-      }
-    ]
-  }
-})}></script>
-
-<!-- Structured Data / JSON-LD para breadcrumbs -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@id": primaryDomain,
-        "name": "Inicio"
-      }
-    }
-  ]
-})}></script>
-
-<!-- Structured Data / JSON-LD para ProfilePage -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "@id": `${primaryDomain}/#profile`,
-  "name": "Jason Guerra",
-  "image": imageUrl,
-  "description": description,
-  "isPartOf": {
-    "@id": `${primaryDomain}/#website`
-  },
-  "mainEntity": {
-    "@id": `${primaryDomain}/#person`
-  }
-})}></script>
-
-<!-- Structured Data / JSON-LD para ItemList de redes sociales -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Redes Sociales de Jason Guerra (thejasondev)",
-  "description": "Perfiles oficiales de Jason Guerra en redes sociales",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "ProfilePage",
-        "name": "GitHub - thejasondev",
-        "url": "https://github.com/thejasondev",
-        "identifier": "thejasondev"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "ProfilePage",
-        "name": "LinkedIn - thejasondev",
-        "url": "https://linkedin.com/in/thejasondev",
-        "identifier": "thejasondev"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "ProfilePage",
-        "name": "Instagram - thejasondev",
-        "url": "https://instagram.com/thejasondev",
-        "identifier": "@thejasondev"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "ProfilePage",
-        "name": "Twitter - thejasondev",
-        "url": "https://twitter.com/thejasondev",
-        "identifier": "@thejasondev"
-      }
-    }
-  ]
-})}></script>
+<!-- JSON-LD Schemas -->
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(socialSchema)} />

@@ -1,5 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
+import { getWhatsappLink } from "../data/social-links";
+import "../styles/header.css";
 
 const menuItems = [
   { text: "Sobre mí", href: "#about" },
@@ -7,7 +9,7 @@ const menuItems = [
   { text: "Servicios", href: "#services" },
 ];
 
-const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent("Hola, me interesa trabajar contigo.")}`;
+const whatsappLink = getWhatsappLink();
 ---
 
 <header class="fixed w-full liquid-glass z-50 top-0 border-b border-white/20 transition-all duration-300" id="main-header">
@@ -110,179 +112,7 @@ const whatsappLink = `https://wa.me/+5353118193?text=${encodeURIComponent("Hola,
   </nav>
 </div>
 
-<style>
-  /* Hamburger to X Animation - Enhanced */
-  #menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-  #menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  #menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  /* Change hamburger color when menu is open */
-  #menu-toggle.active {
-    color: white;
-  }
-
-  /* Mobile Menu Active State */
-  #mobile-menu.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  #mobile-menu.active li,
-  #mobile-menu.active #close-menu,
-  #mobile-menu.active #tap-hint {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  /* Close button animation */
-  #mobile-menu.active #close-menu {
-    animation: bounceIn 0.5s ease-out 0.3s both;
-  }
-
-  @keyframes bounceIn {
-    0% { transform: scale(0); opacity: 0; }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  /* Menu link hover effect */
-  .menu-link {
-    position: relative;
-  }
-
-  .menu-link::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border-radius: 16px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
-  .menu-link:hover::before {
-    opacity: 1;
-  }
-</style>
-
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeMenuBtn = document.getElementById('close-menu');
-  const menuLinks = document.querySelectorAll('.menu-link');
-  const header = document.getElementById('main-header');
-
-  let isMenuOpen = false;
-
-  // Function to open menu
-  function openMenu() {
-    isMenuOpen = true;
-    menuToggle?.classList.add('active');
-    mobileMenu?.classList.add('active');
-    menuToggle?.setAttribute('aria-expanded', 'true');
-    menuToggle?.setAttribute('aria-label', 'Cerrar menú de navegación');
-    document.body.style.overflow = 'hidden';
-    
-    // Focus trap - focus first menu item
-    setTimeout(() => {
-      (menuLinks[0] as HTMLElement)?.focus();
-    }, 400);
-  }
-
-  // Function to close menu
-  function closeMenu() {
-    isMenuOpen = false;
-    menuToggle?.classList.remove('active');
-    mobileMenu?.classList.remove('active');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-    menuToggle?.setAttribute('aria-label', 'Abrir menú de navegación');
-    document.body.style.overflow = '';
-    
-    // Return focus to toggle button
-    menuToggle?.focus();
-  }
-
-  // Toggle Menu
-  menuToggle?.addEventListener('click', () => {
-    if (isMenuOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  // Close button click
-  closeMenuBtn?.addEventListener('click', closeMenu);
-
-  // Close menu on link click
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      setTimeout(closeMenu, 100); // Small delay for better UX
-    });
-  });
-
-  // Close on tap outside (on the overlay itself)
-  mobileMenu?.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      closeMenu();
-    }
-  });
-
-  // Close with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isMenuOpen) {
-      closeMenu();
-    }
-  });
-
-  // Focus trap inside menu
-  document.addEventListener('keydown', (e) => {
-    if (!isMenuOpen || e.key !== 'Tab') return;
-
-    const focusableElements = Array.from(
-      mobileMenu?.querySelectorAll(
-        'a[href], button:not([disabled])'
-      ) || []
-    ) as HTMLElement[];
-
-    if (focusableElements.length === 0) return;
-
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-
-    if (e.shiftKey) {
-      // Shift + Tab
-      if (document.activeElement === firstElement) {
-        lastElement.focus();
-        e.preventDefault();
-      }
-    } else {
-      // Tab
-      if (document.activeElement === lastElement) {
-        firstElement.focus();
-        e.preventDefault();
-      }
-    }
-  });
-
-  // Header Scroll Effect - Enhanced liquid glass
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header?.classList.add('shadow-lg');
-      header?.classList.remove('liquid-glass');
-      header?.classList.add('liquid-glass-dark');
-    } else {
-      header?.classList.remove('shadow-lg', 'liquid-glass-dark');
-      header?.classList.add('liquid-glass');
-    }
-  });
+  import '../scripts/mobile-menu.ts';
 </script>
 

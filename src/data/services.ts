@@ -1,9 +1,12 @@
+import { siteConfig } from "../config/site";
+
 export interface Service {
   title: string;
   description: string;
   features: string[];
   price: string;
   message: string;
+  icon: string;
 }
 
 export const services: Service[] = [
@@ -20,6 +23,7 @@ export const services: Service[] = [
     price: "$100 USD",
     message:
       "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Básico",
+    icon: "mdi:rocket-launch",
   },
   {
     title: "Plan Intermedio",
@@ -35,6 +39,7 @@ export const services: Service[] = [
     price: "$250 USD",
     message:
       "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Intermedio.",
+    icon: "mdi:chart-line",
   },
   {
     title: "Plan Personalizado",
@@ -49,8 +54,9 @@ export const services: Service[] = [
     price: "Precio a consultar",
     message:
       "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Personalizado.",
+    icon: "mdi:star",
   },
 ];
 
 export const getWhatsappLink = (message: string): string =>
-  `https://wa.me/+5353118193?text=${encodeURIComponent(message)}`;
+  `${siteConfig.social.whatsapp}?text=${encodeURIComponent(message)}`;

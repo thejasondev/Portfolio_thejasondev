@@ -5,17 +5,14 @@ import Hero from '../components/Hero.astro';
 import Projects from '../components/Projects.astro';
 import Services from '../components/Services.astro';
 import Footer from '../components/Footer.astro';
-
-// Datos estructurados para SEO
-const pageTitle = "thejasondev | Jason Guerra - Desarrollador Frontend Freelance Cuba";
-const pageDescription = "thejasondev es Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Portfolio profesional especializado en crear sitios web modernos, rápidos y optimizados para SEO con Astro, React, Next.js, TypeScript y TailwindCSS.";
-const pageKeywords = "thejasondev, Jason Guerra, desarrollador frontend, diseño web, Astro, React, Cuba, freelance";
+import { siteConfig } from '../config/site';
+import { getPersonSchema } from '../utils/seo';
 ---
 
 <Layout 
-  title={pageTitle}
-  description={pageDescription}
-  keywords={pageKeywords}
+  title={siteConfig.title}
+  description={siteConfig.description}
+  keywords={siteConfig.seo.keywords}
   datePublished="2025-04-21"
   dateModified={new Date().toISOString().split('T')[0]}
   type="website"
@@ -24,23 +21,7 @@ const pageKeywords = "thejasondev, Jason Guerra, desarrollador frontend, diseño
   
   <main>
     <!-- Schema.org ProfilePage -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "@id": "https://thejasondev.vercel.app/#person",
-        "name": "Jason Guerra",
-        "alternateName": "thejasondev",
-        "jobTitle": "Desarrollador Frontend",
-        "sameAs": [
-          "https://github.com/thejasondev",
-          "https://linkedin.com/in/thejasondev",
-          "https://instagram.com/thejasondev",
-          "https://wa.me/+5353118193"
-        ]
-      }
-    })}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(getPersonSchema())}></script>
     
     <Hero />
     

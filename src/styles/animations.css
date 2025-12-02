@@ -1,125 +1,51 @@
-/* Estilos para animaciones de scroll reveal - Optimizado para rendimiento */
+/* Animaciones optimizadas para el portfolio */
 
-/* Priorización de elementos críticos */
-.priority-high {
-  animation-delay: 0ms !important;
-  transition-delay: 0ms !important;
-}
-
-.priority-medium {
-  animation-delay: 100ms !important;
-  transition-delay: 100ms !important;
-}
-
-.priority-low {
-  animation-delay: 200ms !important;
-  transition-delay: 200ms !important;
-}
-
-/* Animaciones base con optimización de rendimiento */
-.scroll-reveal {
-  opacity: 0;
-  animation-duration: 0.5s; /* Reducido para mejor rendimiento */
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out; /* Simplificado para rendimiento */
-  animation-play-state: paused;
-  will-change: opacity, transform;
-  contain: layout style;
-}
-
-.scroll-reveal.revealed {
-  animation-play-state: running;
-}
-
-/* Tiempos de retardo optimizados */
-.delay-100 {
-  animation-delay: 0.1s;
-}
-
-.delay-200 {
-  animation-delay: 0.15s; /* Reducido para rendimiento */
-}
-
-.delay-300 {
-  animation-delay: 0.2s; /* Reducido para rendimiento */
-}
-
-.delay-400 {
-  animation-delay: 0.25s; /* Reducido para rendimiento */
-}
-
-.delay-500 {
-  animation-delay: 0.3s; /* Reducido para rendimiento */
-}
-
-/* Efectos específicos para elementos destacados - Optimizado */
-.fade-in-blur {
-  opacity: 0;
-  filter: blur(5px); /* Reducido para rendimiento */
-  transition: opacity 0.5s ease, filter 0.5s ease; /* Simplificado */
-}
-
-.fade-in-blur.revealed {
-  opacity: 1;
-  filter: blur(0);
-}
-
-/* Efecto de paralaje suave - Optimizado */
-.parallax-scroll {
-  transition: transform 0.3s ease-out; /* Simplificado */
-  will-change: transform;
-  contain: paint;
-}
-
-/* Destacado de elementos */
-.highlight-reveal {
-  position: relative;
-}
-
-.highlight-reveal::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, currentColor, transparent);
-  transform: scaleX(0);
-  transition: transform 0.6s ease;
-}
-
-.highlight-reveal.revealed::after {
-  transform: scaleX(1);
-}
-
-/* Efecto de aparición de tarjetas secuencial */
-.card-container .card {
+/* ============================================
+   Fade In Up - Animación principal
+   ============================================ */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.card-container.revealed .card {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.card-container.revealed .card:nth-child(1) {
-  transition-delay: 0.1s;
+/* ============================================
+   Float - Animación flotante
+   ============================================ */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.card-container.revealed .card:nth-child(2) {
-  transition-delay: 0.2s;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-.card-container.revealed .card:nth-child(3) {
-  transition-delay: 0.3s;
+/* ============================================
+   Pulse Slow - Pulso lento
+   ============================================ */
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.card-container.revealed .card:nth-child(4) {
-  transition-delay: 0.4s;
-}
-
-.card-container.revealed .card:nth-child(5) {
-  transition-delay: 0.5s;
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

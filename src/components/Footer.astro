@@ -1,12 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-
-const socialLinks = [
-  { name: "GitHub", icon: "mdi:github", url: "https://github.com/thejasondev" },
-  { name: "LinkedIn", icon: "mdi:linkedin", url: "https://linkedin.com/in/thejasondev" },
-  { name: "Instagram", icon: "mdi:instagram", url: "https://instagram.com/thejasondev" },
-  { name: "Twitter", icon: "mdi:twitter", url: "https://twitter.com/thejasondev" },
-];
+import { socialLinks } from "../data/social-links";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -36,7 +30,7 @@ const currentYear = new Date().getFullYear();
             target="_blank"
             rel="noopener noreferrer"
             class="p-4 rounded-full liquid-glass-dark hover:liquid-glass-gold text-neutral-400 hover:text-black transition-all duration-300 transform hover:-translate-y-1"
-            aria-label={`Visitar mi perfil de ${social.name}`}
+            aria-label={social.label}
           >
             <Icon name={social.icon} class="w-5 h-5" />
           </a>

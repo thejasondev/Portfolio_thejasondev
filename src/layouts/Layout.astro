@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro'
 import SEO from '../components/SEO.astro';
 import Prefetch from '../components/Prefetch.astro';
 import '../styles/global.css';
@@ -57,42 +58,17 @@ const {
   <body class="bg-white text-gray-900 antialiased selection:bg-indigo-100 selection:text-indigo-900">
     <slot />
     
-    <!-- Vercel Speed Insights -->
+    <!-- Analytics & Service Worker -->
     <script>
-      const isVercelProduction = 
-        typeof window !== 'undefined' && 
-        (window.location.hostname.endsWith('.vercel.app') || 
-         window.location.hostname === 'thejasondev.vercel.app' ||
-         window.location.hostname.includes('vercel'));
-      
-      if (isVercelProduction) {
-        window.addEventListener('load', function() {
-          try {
-            // @ts-ignore
-            if (typeof window.va === 'undefined') {
-              const script = document.createElement('script');
-              script.src = '/_vercel/speed-insights/script.js';
-              script.defer = true;
-              script.dataset.sdkn = '@vercel/speed-insights';
-              script.dataset.sdkv = '1.0.0';
-              document.body.appendChild(script);
-            }
-          } catch (e) {
-            console.error('Vercel Speed Insights failed to load:', e);
-          }
-        });
-      }
+      import { initializeVercelAnalytics } from '../utils/analytics.ts';
+      initializeVercelAnalytics();
     </script>
     
     <script>
-      // Service Worker Registration
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(err => {
-            console.log('SW registration failed: ', err);
-          });
-        });
-      }
+      import { ServiceWorkerManager } from '../scripts/service-worker.ts';
+      ServiceWorkerManager.init();
     </script>
+    
+    <Analytics />
   </body>
 </html>

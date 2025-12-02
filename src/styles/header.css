@@ -1,0 +1,74 @@
+/* ============================================
+   Header Component Styles
+   Estilos específicos para el componente Header
+   ============================================ */
+
+/* Hamburger to X Animation - Enhanced */
+#menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+#menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+#menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Change hamburger color when menu is open */
+#menu-toggle.active {
+  color: white;
+}
+
+/* Mobile Menu Active State */
+#mobile-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#mobile-menu.active li,
+#mobile-menu.active #close-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Close button animation */
+#mobile-menu.active #close-menu {
+  animation: bounceIn 0.5s ease-out 0.3s both;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Menu link hover effect */
+.menu-link {
+  position: relative;
+}
+
+.menu-link::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.menu-link:hover::before {
+  opacity: 1;
+}
