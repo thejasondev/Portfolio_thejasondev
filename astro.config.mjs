@@ -3,9 +3,16 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import compress from "astro-compress";
+import vercel from "@astrojs/vercel/static";
 
 export default defineConfig({
   site: "https://thejasondev.vercel.app",
+  output: "static",
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   // Comprimir assets para mejor rendimiento
   compressHTML: true,
   integrations: [
@@ -27,13 +34,13 @@ export default defineConfig({
         },
       },
     }),
-    compress({
+    /* compress({
       css: true,
       html: true,
       img: true,
       js: true,
       svg: true,
-    }),
+    }), */
   ],
   build: {
     // Inlining de estilos críticos para mejorar First Contentful Paint
