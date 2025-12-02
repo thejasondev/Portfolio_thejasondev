@@ -8,11 +8,7 @@ import vercel from "@astrojs/vercel/static";
 export default defineConfig({
   site: "https://thejasondev.vercel.app",
   output: "static",
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+  adapter: vercel(),
   // Comprimir assets para mejor rendimiento
   compressHTML: true,
   integrations: [

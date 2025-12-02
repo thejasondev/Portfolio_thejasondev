@@ -31,40 +31,12 @@ export const isVercelProduction = (): boolean => {
  * Inicializa Vercel Speed Insights
  * Solo se ejecuta en producción de Vercel
  */
+/**
+ * Inicializa Vercel Speed Insights
+ * DEPRECATED: Usando componente oficial <SpeedInsights />
+ */
 export const initializeVercelAnalytics = (): void => {
-  if (!isVercelProduction()) {
-    console.log("Analytics: Skipped (not Vercel production)");
-    return;
-  }
-
-  window.addEventListener("load", () => {
-    try {
-      // Verificar si ya está cargado
-      if (typeof window.va !== "undefined") {
-        console.log("Analytics: Already loaded");
-        return;
-      }
-
-      // Cargar el script de Vercel Speed Insights
-      const script = document.createElement("script");
-      script.src = "/_vercel/speed-insights/script.js";
-      script.defer = true;
-      script.dataset.sdkn = "@vercel/speed-insights";
-      script.dataset.sdkv = "1.0.0";
-
-      script.onload = () => {
-        console.log("Analytics: Loaded successfully");
-      };
-
-      script.onerror = () => {
-        console.error("Analytics: Failed to load script");
-      };
-
-      document.body.appendChild(script);
-    } catch (error) {
-      console.error("Analytics: Initialization error", error);
-    }
-  });
+  console.log("Analytics: Managed by official Vercel components");
 };
 
 /**
