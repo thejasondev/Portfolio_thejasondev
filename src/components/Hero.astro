@@ -40,15 +40,12 @@ const whatsappLink = getWhatsappLink();
           Especialista en crear <span class="font-semibold text-black">experiencias digitales premium</span> que combinan diseño sofisticado con rendimiento excepcional.
         </p>
 
-        {/* CTA Buttons with new styles */}
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-          <a href="#projects" class="btn-primary flex items-center justify-center gap-2 group">
-            Ver Proyectos
-            <Icon name="mdi:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-secondary flex items-center justify-center gap-2">
-            <Icon name="mdi:whatsapp" class="w-4 h-4" />
+        {/* CTA Button - Single focused action */}
+        <div class="flex justify-center lg:justify-start pt-4">
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-primary flex items-center justify-center gap-2 group">
+            <Icon name="mdi:whatsapp" class="w-5 h-5" />
             Contáctame
+            <Icon name="mdi:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
 
@@ -97,7 +94,7 @@ const whatsappLink = getWhatsappLink();
               </div>
               <div>
                 <p class="text-xs text-neutral-600 font-bold uppercase tracking-wider mb-1">Experiencia</p>
-                <p class="text-2xl font-heading font-bold text-black">+3 Años</p>
+                <p class="text-2xl font-heading font-bold text-black">+4 Años</p>
               </div>
             </div>
           </div>

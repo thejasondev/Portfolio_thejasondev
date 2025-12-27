@@ -8,9 +8,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "Castropol Menu",
+    description:
+      "Desarrollé un sistema web completo de menú digital para restaurante con panel de administración. La aplicación cuenta con diseño mobile-first, sistema multi-moneda con conversión automática (CUP, USD, EUR), soporte para múltiples menús, gestión de categorías y productos con drag & drop, y selección de pedidos, con autenticación segura con Supabase, Row Level Security, rate limiting y validación con Zod para garantizar la seguridad del sistema.",
+    image: "/projects-pic/castropol-screen.webp",
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Zod",
+    ],
+    url: "https://castropol-menu.vercel.app",
+  },
+  {
     title: "TheJasonStore",
     description:
-      "TheJasonStore es una plataforma de e-commerce moderna y minimalista que revoluciona la experiencia de compra al integrar directamente WhatsApp como canal principal de ventas. Desarrollada con las tecnologías web más actuales, como Next.js, React, TypeScript, Tailwind CSS, Shadcn UI y Lucide React. Esta aplicación combina un diseño visualmente impactante con funcionalidad empresarial robusta, ofreciendo tanto una experiencia de usuario excepcional como un completo panel de administración.",
+      "TheJasonStore es una plataforma de e-commerce moderna y minimalista que revoluciona la experiencia de compra al integrar directamente WhatsApp como canal principal de ventas. Desarrollada con las tecnologías web más actuales, como Next.js, React, TypeScript, Tailwind CSS, Shadcn UI y Lucide React. Esta aplicación combina un diseño visualmente impactante con funcionalidad empresarial robusta, ofreciendo tanto una experiencia de usuario excepcional como un completo panel de administración con autenticación segura con Supabase, Row Level Security y rate limiting.",
     image: "/projects-pic/thejasonstore-screen.png",
     technologies: [
       "Next.js",
