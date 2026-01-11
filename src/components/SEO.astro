@@ -5,7 +5,8 @@ import {
   getWebSiteSchema, 
   getOrganizationSchema, 
   getProfessionalServiceSchema,
-  getSocialProfileSchema 
+  getSocialProfileSchema,
+  getFAQSchema 
 } from "../utils/seo";
 
 export interface Props {
@@ -46,6 +47,7 @@ const websiteSchema = getWebSiteSchema();
 const orgSchema = getOrganizationSchema();
 const serviceSchema = getProfessionalServiceSchema();
 const socialSchema = getSocialProfileSchema();
+const faqSchema = getFAQSchema();
 ---
 
 <!-- SEO Básico -->
@@ -164,3 +166,4 @@ const socialSchema = getSocialProfileSchema();
 <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(socialSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

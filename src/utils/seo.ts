@@ -213,3 +213,45 @@ export const getSocialProfileSchema = () => ({
     },
   ],
 });
+
+/**
+ * Genera el schema FAQ para preguntas comunes de búsqueda
+ */
+export const getFAQSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Quién es thejasondev?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `thejasondev es ${siteConfig.author.name}, un desarrollador frontend freelance especializado en crear sitios web modernos, rápidos y optimizados para SEO. Ubicado en ${siteConfig.author.location.city}, ${siteConfig.author.location.country}.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Dónde puedo ver el portfolio de Jason Guerra?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `El portfolio profesional de Jason Guerra (thejasondev) está disponible en ${baseUrl}. Incluye proyectos de desarrollo web con tecnologías como Astro, React, Next.js y TypeScript.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué servicios ofrece thejasondev?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "thejasondev ofrece servicios de desarrollo frontend, creación de sitios web, optimización SEO, y desarrollo de aplicaciones web modernas con las últimas tecnologías.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cómo contactar a Jason Guerra desarrollador?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Puedes contactar a Jason Guerra a través de WhatsApp (${siteConfig.author.phone}), email (${siteConfig.author.email}), o visitando su portfolio en ${baseUrl}.`,
+      },
+    },
+  ],
+});

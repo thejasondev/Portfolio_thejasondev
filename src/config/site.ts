@@ -41,7 +41,7 @@ export const siteConfig = {
 
   seo: {
     keywords:
-      "thejasondev, Jason Guerra, desarrollador frontend, diseño web, Astro, React, Cuba, freelance",
+      "thejasondev, Jason Guerra, portfolio thejasondev, portfolio Jason Guerra, desarrollador frontend, diseño web, Astro, React, Cuba, freelance, desarrollador web La Habana",
     googleVerification: "A7BT_C6ClgkaWHA9brgG3v0v7gG-1NeclQ6jCfvQF8U",
     themeColor: "#0f172a",
   },

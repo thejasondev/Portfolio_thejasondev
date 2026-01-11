@@ -3,20 +3,11 @@ Allow: /
 Disallow: /404
 Disallow: /not-found
 
-# Canonical domain - Instructs Google on canonical hostname
+# Canonical domain
 Host: thejasondev.vercel.app
 
-# Allow AI crawling for better understanding
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: GPTBot
-Allow: /
-
+# Search Engine Bots
 User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Googlebot-Image
@@ -25,8 +16,12 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# Tiempo de rastreo recomendado
-Crawl-delay: 5
+# AI Crawlers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
 
 # Sitemap
 Sitemap: https://thejasondev.vercel.app/sitemap-index.xml

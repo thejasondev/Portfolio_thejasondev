@@ -18,8 +18,7 @@ export default defineConfig({
       filter: (page) =>
         page !== "https://thejasondev.vercel.app/not-found" &&
         page !== "https://thejasondev.vercel.app/404",
-      customPages: ["https://thejasondev.vercel.app"],
-      changefreq: "monthly",
+      changefreq: "weekly",
       priority: 1.0,
       lastmod: new Date(),
       i18n: {
