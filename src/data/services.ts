@@ -13,32 +13,51 @@ export const services: Service[] = [
   {
     title: "Plan Básico",
     description:
-      "Ideal para pequeños proyectos o negocios que necesitan presencia en línea. Incluye:",
+      "Ideal para negocios que necesitan promocionarse y tener presencia en línea. Incluye:",
     features: [
       "Landing page",
-      "Hasta 4 secciones",
+      "Integración de Formulario de Contacto",
       "Despliegue en Vercel",
       "Optimización básica",
     ],
-    price: "$100 USD",
+    price: "$50 USD",
     message:
       "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Básico",
     icon: "mdi:rocket-launch",
   },
   {
-    title: "Plan Intermedio",
+    title: "Plan Pro",
     description:
-      "Perfecto para negocios que buscan funcionalidades adicionales. Incluye:",
+      "Ideal para negocios que buscan funcionalidades adicionales y brindar servicios de manera profesional. Incluye:",
     features: [
       "Página web de hasta 5 secciones (Inicio, Servicios, Contacto...)",
-      "Integración básica de Formulario de Contacto",
+      "Integración de Formulario de Contacto",
       "Integración de redes sociales",
+      "Ventas de servicios en línea",
       "Optimización SEO",
       "Despliegue en Vercel",
     ],
-    price: "$250 USD",
+    price: "$100 USD",
     message:
-      "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Intermedio.",
+      "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Pro.",
+    icon: "mdi:chart-line",
+  },
+  {
+    title: "Tienda Online",
+    description:
+      "Ideal para negocios que buscan llevar su tienda física a la web. Incluye:",
+    features: [
+      "Tienda Online",
+      "Integración de Formulario de Contacto",
+      "Integración de redes sociales",
+      "Ventas de servicios en línea",
+      "Dashboard de admin donde controlas tus precios, productos..etc",
+      "Optimización SEO",
+      "Despliegue en Vercel",
+    ],
+    price: "$150 USD",
+    message:
+      "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Pro.",
     icon: "mdi:chart-line",
   },
   {
