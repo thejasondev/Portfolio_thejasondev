@@ -154,11 +154,7 @@ const faqSchema = getFAQSchema();
 <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
 <meta name="msapplication-config" content="/browserconfig.xml" />
 
-<!-- DNS Prefetch para recursos externos -->
-<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- DNS Prefetch/preconnect para fonts se manejan en Layout.astro (único lugar) -->
 
 <!-- JSON-LD Schemas -->
 <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

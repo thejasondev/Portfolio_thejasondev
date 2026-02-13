@@ -29,16 +29,16 @@ export default defineConfig({
         },
       },
     }),
-    /* compress({
+    compress({
       css: true,
       html: true,
-      img: true,
+      img: false, // Las imágenes se gestionan individualmente
       js: true,
       svg: true,
-    }), */
+    }),
   ],
   build: {
-    // Inlining de estilos críticos para mejorar First Contentful Paint
-    inlineStylesheets: "auto",
+    // Inline ALL stylesheets para eliminar round-trips de CSS externos
+    inlineStylesheets: "always",
   },
 });

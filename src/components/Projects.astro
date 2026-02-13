@@ -5,24 +5,23 @@ import { Icon } from "astro-icon/components";
 
 <section id="projects" class="section-padding bg-white relative overflow-hidden">
   <div class="container-custom relative z-10">
-    <div class="text-center max-w-3xl mx-auto mb-20 animate-fade-in-up">
-      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6 text-black">
+    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20 animate-fade-in-up">
+      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-4 md:mb-6 text-black">
         Proyectos <span class="text-gradient-gold">Destacados</span>
       </h2>
-      <p class="text-lg text-neutral-600 leading-relaxed font-light">
+      <p class="text-base md:text-lg text-neutral-600 leading-relaxed font-light">
         Una selección de trabajos donde combino diseño sofisticado y funcionalidad para crear experiencias web únicas.
       </p>
     </div>
 
-    <div class="space-y-24">
+    {/* Desktop Layout */}
+    <div class="hidden md:block space-y-24">
       {projects.map((project, index) => (
-        <article class="group relative grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
+        <article class="group relative grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* Project Image / Logo */}
+          {/* Project Image */}
           <div class={`relative ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-            
-            {/* Desktop: Full Screenshot */}
-            <div class="hidden md:block relative rounded-3xl overflow-hidden shadow-2xl shadow-neutral-900/10 liquid-glass border-2 border-white/80 group-hover:border-gold/40 transition-all duration-500">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-neutral-900/10 liquid-glass border-2 border-white/80 group-hover:border-gold/40 transition-all duration-500">
               <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
               <img
                 src={project.image}
@@ -32,40 +31,25 @@ import { Icon } from "astro-icon/components";
                 decoding="async"
               />
             </div>
-
-            {/* Mobile: Logo con glassmorphism */}
-            <div class="md:hidden flex items-center justify-center py-2">
-              <div class="project-logo-container relative w-24 h-24 rounded-2xl overflow-hidden liquid-glass border-2 border-white/80 shadow-lg shadow-neutral-900/10 transition-all duration-500">
-                <img
-                  src={project.logo}
-                  alt={`${project.title} logo`}
-                  class="w-full h-full object-contain p-2"
-                  loading="lazy"
-                  decoding="async"
-                  width="96"
-                  height="96"
-                />
-              </div>
-            </div>
-
-            {/* Decorative Gold Ring - solo desktop */}
+            
+            {/* Decorative Gold Ring */}
             <div class="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-gold rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 hidden lg:block"></div>
           </div>
 
           {/* Project Info */}
           <div class={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
             <div class="space-y-4">
-              <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold font-heading text-black specular-highlight">
+              <h3 class="text-3xl lg:text-4xl font-bold font-heading text-black specular-highlight">
                 {project.title}
               </h3>
-              <p class="text-base md:text-lg text-neutral-600 leading-relaxed font-light">
+              <p class="text-lg text-neutral-600 leading-relaxed font-light">
                 {project.description}
               </p>
             </div>
 
-            <div class="flex flex-wrap gap-2 md:gap-3">
+            <div class="flex flex-wrap gap-3">
               {project.technologies.map((tech) => (
-                <span class="px-3 md:px-4 py-1.5 md:py-2 liquid-glass text-neutral-700 text-xs font-bold uppercase tracking-wider rounded-full border border-neutral-200 hover:border-gold/40 hover:liquid-glass-gold transition-all duration-300">
+                <span class="px-4 py-2 liquid-glass text-neutral-700 text-xs font-bold uppercase tracking-wider rounded-full border border-neutral-200 hover:border-gold/40 hover:liquid-glass-gold transition-all duration-300">
                   {tech}
                 </span>
               ))}
@@ -86,12 +70,72 @@ import { Icon } from "astro-icon/components";
         </article>
       ))}
     </div>
+
+    {/* Mobile Layout — Card compacta con logo inline */}
+    <div class="md:hidden space-y-5">
+      {projects.map((project) => (
+        <article class="project-card rounded-2xl p-5 border border-neutral-100 shadow-sm">
+          
+          {/* Header: Logo + Título inline */}
+          <div class="flex items-center gap-3.5 mb-3">
+            <div class="project-logo-mobile flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-neutral-200 shadow-sm">
+              <img
+                src={project.logo}
+                alt={`${project.title} logo`}
+                class="w-full h-full object-contain p-1.5"
+                loading="lazy"
+                decoding="async"
+                width="48"
+                height="48"
+              />
+            </div>
+            <h3 class="text-lg font-bold font-heading text-black leading-tight">
+              {project.title}
+            </h3>
+          </div>
+
+          {/* Descripción completa */}
+          <p class="text-sm text-neutral-600 leading-relaxed font-light mb-4">
+            {project.description}
+          </p>
+
+          {/* Tech badges */}
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            {project.technologies.map((tech) => (
+              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-600 rounded-full border border-neutral-200 bg-neutral-50">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <a 
+            href={project.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-gold-dark transition-colors duration-300"
+            aria-label={`Visitar ${project.title}`}
+          >
+            Visitar Sitio
+            <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
+          </a>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
-  /* Animación sutil para los logos en mobile */
-  .project-logo-container {
+  /* Mobile card styles */
+  .project-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(250, 250, 250, 1) 100%
+    );
+  }
+
+  .project-logo-mobile {
     background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.95) 0%,
@@ -99,9 +143,4 @@ import { Icon } from "astro-icon/components";
     );
   }
 
-  @media (max-width: 767px) {
-    .space-y-24 > * + * {
-      margin-top: 3rem;
-    }
-  }
 </style>

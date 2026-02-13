@@ -1,48 +1,23 @@
 ---
-// Prefetch de recursos críticos para mejorar la experiencia de usuario
-const criticalResources = [
-  // Ruta principal
-  '/',
-  // Imágenes clave
+// Prefetch de imágenes clave para mejorar la experiencia de usuario
+const prefetchResources = [
   '/projects-pic/havanera-screen.png',
   '/projects-pic/vitaspoon-screen.png',
   '/projects-pic/ditos-screen.png',
-  // Iconos
-  '/web-dev.png'
 ];
 
-// Dominios externos que necesitan preconnect
-const externalDomains = [
-  'https://fonts.googleapis.com',
-  'https://fonts.gstatic.com'
-];
-
-// Recursos que queremos precargar
-const resources = [
+// Recursos críticos que queremos precargar (above-the-fold)
+const preloadResources = [
   '/profile-pic/profile_pic_optimized.webp',
 ];
 ---
 
-<!-- Prefetch de recursos clave -->
-{criticalResources.map((resource) => (
+<!-- Prefetch de imágenes de proyectos (baja prioridad, no bloquea) -->
+{prefetchResources.map((resource) => (
   <link rel="prefetch" href={resource} />
 ))}
 
-<!-- Preconexiones para recursos externos -->
-{externalDomains.map((domain) => (
-  <link rel="preconnect" href={domain} crossorigin />
-))}
-
-<!-- Preload de fuentes web para reducir CLS -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" as="font" type="font/woff2" crossorigin />
-
-<!-- Sugerencias para el navegador -->
-<link rel="dns-prefetch" href="https://thejasondev.vercel.app" />
-
-<!-- Añadir prefetch para navegación por anclas mediante preconnect -->
-<link rel="preconnect" href="/" />
-
-{resources.map(resource => (
-  <link rel="preload" href={resource} as={resource.endsWith('.webp') ? 'image' : 'fetch'} />
+<!-- Preload de imagen de perfil (above-the-fold, alta prioridad) -->
+{preloadResources.map(resource => (
+  <link rel="preload" href={resource} as="image" />
 ))}

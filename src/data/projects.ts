@@ -20,42 +20,11 @@ export const projects: Project[] = [
       "TypeScript",
       "Tailwind CSS",
       "Supabase",
+      "Row Level Security",
+      "Rate Limiting",
       "Zod",
     ],
     url: "https://castropol-menu.vercel.app",
-  },
-  {
-    title: "El Feka",
-    description:
-      "Desarrollé El Feka, un juego multijugador online personalizado inspirado en el clásico juego del impostor. Los jugadores se enfrentan en partidas de deducción social en tiempo real, donde deben descubrir quién es el feka entre ellos. Diseñado con una estética vibrante estilo neón que complementa la intensidad del juego.",
-    image: "/projects-pic/logos-mobile/logo-feka.png",
-    logo: "/projects-pic/logos-mobile/logo-feka.png",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    url: "#",
-  },
-  {
-    title: "Fuleando",
-    description:
-      "Desarrollé Fuleando, una PWA innovadora diseñada para la gestión inteligente de operaciones de cambio de divisas en Cuba. La aplicación permite a los cambistas gestionar su inventario multi-moneda, registrar transacciones, calcular márgenes y llevar un control detallado de sus operaciones diarias, todo desde el móvil con soporte offline.",
-    image: "/projects-pic/logos-mobile/logo-fulean2.png",
-    logo: "/projects-pic/logos-mobile/logo-fulean2.png",
-    technologies: ["PWA", "React", "TypeScript", "Tailwind CSS"],
-    url: "#",
-  },
-  {
-    title: "TheJasonStore",
-    description:
-      "TheJasonStore es una plataforma de e-commerce moderna y minimalista que revoluciona la experiencia de compra al integrar directamente WhatsApp como canal principal de ventas. Desarrollada con las tecnologías web más actuales, como Next.js, React, TypeScript, Tailwind CSS, Shadcn UI y Lucide React. Esta aplicación combina un diseño visualmente impactante con funcionalidad empresarial robusta, ofreciendo tanto una experiencia de usuario excepcional como un completo panel de administración con autenticación segura con Supabase, Row Level Security y rate limiting.",
-    image: "/projects-pic/thejasonstore-screen.png",
-    logo: "/projects-pic/logos-mobile/logo-thejasonstore.jpg",
-    technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Shadcn UI",
-    ],
-    url: "https://thejasonstore.vercel.app",
   },
   {
     title: "Dito's Bartender",
@@ -83,6 +52,43 @@ export const projects: Project[] = [
     logo: "/projects-pic/logos-mobile/logo-ops.png",
     technologies: ["Astro", "React", "TypeScript", "TailwindCSS"],
     url: "https://vra-ops-app.vercel.app",
+  },
+  {
+    title: "El Feka",
+    description:
+      "Desarrollé El Feka, un juego multijugador online personalizado inspirado en el clásico juego del impostor. Los jugadores se enfrentan en partidas de deducción social en tiempo real, donde deben descubrir quién es el feka entre ellos. Diseñado con una estética vibrante estilo neón que complementa la intensidad del juego.",
+    image: "/projects-pic/logos-mobile/logo-feka.png",
+    logo: "/projects-pic/logos-mobile/logo-feka.png",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    url: "https://el-feka.vercel.app",
+  },
+  {
+    title: "Fulean2",
+    description:
+      "Desarrollé Fulean2, una PWA innovadora diseñada para la gestión inteligente de operaciones de cambio de divisas en Cuba. La aplicación permite a los cambistas gestionar su inventario multi-moneda, registrar transacciones, calcular márgenes y llevar un control detallado de sus operaciones diarias, todo desde el móvil con soporte offline.",
+    image: "/projects-pic/logos-mobile/logo-fulean2.png",
+    logo: "/projects-pic/logos-mobile/logo-fulean2.png",
+    technologies: ["PWA", "React", "TypeScript", "Tailwind CSS"],
+    url: "https://fulean2.vercel.app",
+  },
+  {
+    title: "TheJasonStore",
+    description:
+      "TheJasonStore es una plataforma de e-commerce moderna y minimalista que revoluciona la experiencia de compra al integrar directamente WhatsApp como canal principal de ventas. Desarrollada con las tecnologías web más actuales, como Next.js, React, TypeScript, Tailwind CSS, Shadcn UI y Lucide React. Esta aplicación combina un diseño visualmente impactante con funcionalidad empresarial robusta, ofreciendo tanto una experiencia de usuario excepcional como un completo panel de administración con autenticación segura con Supabase, Row Level Security y rate limiting.",
+    image: "/projects-pic/thejasonstore-screen.png",
+    logo: "/projects-pic/logos-mobile/logo-thejasonstore.jpg",
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Lucide React",
+      "Supabase",
+      "Row Level Security",
+      "Rate Limiting",
+    ],
+    url: "https://thejasonstore.vercel.app",
   },
   {
     title: "VitaSpoon",
