@@ -22,7 +22,7 @@ export const projects: Project[] = [
       "PWA",
       "Workbox",
     ],
-    url: "#",
+    url: "https://viasegura.vercel.app",
   },
   {
     title: "Castropol Menu",
