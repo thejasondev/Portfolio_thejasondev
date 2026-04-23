@@ -9,6 +9,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "VíaSegura",
+    description:
+      "Desarrollé VíaSegura, una PWA offline-first de alto rendimiento para la preparación del examen de conducción en Cuba (Ley 109). Incluye módulo de estudio estructurado, simulador de exámenes con modo práctica y modo examen con temporizador, directorio interactivo de señales de tránsito, sistema de progreso persistente y experiencia gamificada. Tras su primera carga, funciona completamente sin conexión a internet, instalable como app nativa en cualquier dispositivo.",
+    image: "/projects-pic/via-screen.png",
+    logo: "/projects-pic/logos-mobile/logo-via.png",
+    technologies: [
+      "Astro 5",
+      "React 19",
+      "Tailwind CSS v4",
+      "Nanostores",
+      "PWA",
+      "Workbox",
+    ],
+    url: "#",
+  },
+  {
     title: "Castropol Menu",
     description:
       "Desarrollé un sistema web completo de menú digital para restaurante con panel de administración. La aplicación cuenta con diseño mobile-first, sistema multi-moneda con conversión automática (CUP, USD, EUR), soporte para múltiples menús, gestión de categorías y productos con drag & drop, y selección de pedidos, con autenticación segura con Supabase, Row Level Security, rate limiting y validación con Zod para garantizar la seguridad del sistema.",
