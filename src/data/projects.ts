@@ -9,22 +9,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "VíaSegura",
-    description:
-      "Desarrollé VíaSegura, una PWA offline-first de alto rendimiento para la preparación del examen de conducción en Cuba (Ley 109). Incluye módulo de estudio estructurado, simulador de exámenes con modo práctica y modo examen con temporizador, directorio interactivo de señales de tránsito, sistema de progreso persistente y experiencia gamificada. Tras su primera carga, funciona completamente sin conexión a internet, instalable como app nativa en cualquier dispositivo.",
-    image: "/projects-pic/via-screen.png",
-    logo: "/projects-pic/logos-mobile/logo-via.png",
-    technologies: [
-      "Astro 5",
-      "React 19",
-      "Tailwind CSS v4",
-      "Nanostores",
-      "PWA",
-      "Workbox",
-    ],
-    url: "https://viasegura.vercel.app",
-  },
-  {
     title: "Castropol Menu",
     description:
       "Desarrollé un sistema web completo de menú digital para restaurante con panel de administración. La aplicación cuenta con diseño mobile-first, sistema multi-moneda con conversión automática (CUP, USD, EUR), soporte para múltiples menús, gestión de categorías y productos con drag & drop, y selección de pedidos, con autenticación segura con Supabase, Row Level Security, rate limiting y validación con Zod para garantizar la seguridad del sistema.",
@@ -88,31 +72,19 @@ export const projects: Project[] = [
     url: "https://fulean2.vercel.app",
   },
   {
-    title: "TheJasonStore",
+    title: "VíaSegura",
     description:
-      "TheJasonStore es una plataforma de e-commerce moderna y minimalista que revoluciona la experiencia de compra al integrar directamente WhatsApp como canal principal de ventas. Desarrollada con las tecnologías web más actuales, como Next.js, React, TypeScript, Tailwind CSS, Shadcn UI y Lucide React. Esta aplicación combina un diseño visualmente impactante con funcionalidad empresarial robusta, ofreciendo tanto una experiencia de usuario excepcional como un completo panel de administración con autenticación segura con Supabase, Row Level Security y rate limiting.",
-    image: "/projects-pic/thejasonstore-screen.png",
-    logo: "/projects-pic/logos-mobile/logo-thejasonstore.jpg",
+      "Desarrollé VíaSegura, una PWA offline-first de alto rendimiento para la preparación del examen de conducción en Cuba (Ley 109). Incluye módulo de estudio estructurado, simulador de exámenes con modo práctica y modo examen con temporizador, directorio interactivo de señales de tránsito, sistema de progreso persistente y experiencia gamificada. Tras su primera carga, funciona completamente sin conexión a internet, instalable como app nativa en cualquier dispositivo.",
+    image: "/projects-pic/via-screen.png",
+    logo: "/projects-pic/logos-mobile/logo-via.png",
     technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Shadcn UI",
-      "Lucide React",
-      "Supabase",
-      "Row Level Security",
-      "Rate Limiting",
+      "Astro 5",
+      "React 19",
+      "Tailwind CSS v4",
+      "Nanostores",
+      "PWA",
+      "Workbox",
     ],
-    url: "https://thejasonstore.vercel.app",
-  },
-  {
-    title: "VitaSpoon",
-    description:
-      "Desarrollé VitaSpoon, una innovadora plataforma web que genera recetas personalizadas utilizando IA. Implementada con Astro, React, TypeScript y TailwindCSS, esta aplicación conecta con APIs de OpenAI y Gemini, además de contar con una base de datos local como respaldo. Una característica destacada es su opción para generar recetas que no requieren electricidad, pensada especialmente para usuarios en países que enfrentan apagones frecuentes.",
-    image: "/projects-pic/vitaspoon-screen.png",
-    logo: "/projects-pic/logos-mobile/logo-VitaSpoon.png",
-    technologies: ["Astro", "React", "TypeScript", "TailwindCSS", "SEO"],
-    url: "https://vitaspoon.vercel.app",
+    url: "https://viasegura.vercel.app",
   },
 ];
