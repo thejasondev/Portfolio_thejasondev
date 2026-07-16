@@ -26,7 +26,7 @@ export const getPersonSchema = () => ({
   image: {
     "@type": "ImageObject",
     "@id": `${baseUrl}/#personimage`,
-    url: `${baseUrl}/profile-pic/profile_pic_optimized.webp`,
+    url: `${baseUrl}/profile-pic/thejasondev-perfil.webp`,
     width: "500",
     height: "500",
     caption: `${siteConfig.author.name} - ${siteConfig.author.jobTitle}`,
@@ -134,7 +134,13 @@ export const getProfessionalServiceSchema = () => ({
   "@type": "ProfessionalService",
   "@id": `${baseUrl}/#service`,
   name: `${siteConfig.author.name} - ${siteConfig.author.jobTitle}`,
-  image: `${baseUrl}/profile-pic/profile_pic_optimized.webp`,
+  image: {
+    "@type": "ImageObject",
+    width: 1200,
+    height: 630,
+    url: `${baseUrl}/profile-pic/thejasondev-perfil.webp`,
+    alt: `Logo de ${siteConfig.author.name}`,
+  },
   telephone: siteConfig.author.phone,
   url: baseUrl,
   address: {

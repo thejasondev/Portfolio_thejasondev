@@ -8,6 +8,15 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+    title: "Elevate CSM",
+    description:
+      "Diseñé y desarrollé el portfolio web para Elevate CSM, una agencia de marketing digital con sede en Estados Unidos. Implementé una interfaz elegante y sofisticada utilizando Astro con componentes de React y TypeScript para un código robusto y escalable. El diseño responsive creado con TailwindCSS transmite la identidad premium de la marca y ofrece una experiencia fluida en todos los dispositivos.",
+    image: "/projects-pic/elevatecsm-screen.png",
+    logo: "/projects-pic/logos-mobile/logo-elevate.png",
+    technologies: ["Astro", "React", "TypeScript", "TailwindCSS", "SEO"],
+    url: "https://elevatecsm.vercel.app",
+  },
   {
     title: "Castropol Menu",
     description:
@@ -47,26 +56,17 @@ export const projects: Project[] = [
   {
     title: "Panel de Operaciones Aéreas",
     description:
-      "Desarrollé una aplicación web que es un sistema de gestión de operaciones aéreas para que los coordinadores controlen todo el proceso desde sus dispositivos en tiempo real. Utilizando Astro, React, TypeScript y TailwindCSS, implementé una interfaz intuitiva y responsiva que permite a los usuarios organizar su trabajo de manera eficiente.",
+      "Desarrollé una aplicación web que es un sistema de gestión de operaciones aéreas para que los coordinadores de OPS controlen todo el proceso de los vuelos desde sus dispositivos en tiempo real. Utilizando Astro, React, TypeScript y TailwindCSS, implementé una interfaz intuitiva y responsiva que permite a los usuarios organizar su trabajo de manera eficiente.",
     image: "/projects-pic/vraops-screen.png",
     logo: "/projects-pic/logos-mobile/logo-ops.png",
     technologies: ["Astro", "React", "TypeScript", "TailwindCSS"],
-    url: "https://vra-ops-app.vercel.app",
-  },
-  {
-    title: "El Feka",
-    description:
-      "Desarrollé El Feka, un juego multijugador online personalizado inspirado en el clásico juego del impostor. Los jugadores se enfrentan en partidas de deducción social en tiempo real, donde deben descubrir quién es el feka entre ellos. Diseñado con una estética vibrante estilo neón que complementa la intensidad del juego.",
-    image: "/projects-pic/logos-mobile/logo-feka.png",
-    logo: "/projects-pic/logos-mobile/logo-feka.png",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    url: "https://el-feka.vercel.app",
+    url: "https://cub-ops.vercel.app",
   },
   {
     title: "Fulean2",
     description:
       "Desarrollé Fulean2, una PWA innovadora diseñada para la gestión inteligente de operaciones de cambio de divisas en Cuba. La aplicación permite a los cambistas gestionar su inventario multi-moneda, registrar transacciones, calcular márgenes y llevar un control detallado de sus operaciones diarias, todo desde el móvil con soporte offline.",
-    image: "/projects-pic/logos-mobile/logo-fulean2.png",
+    image: "/projects-pic/fulean2-screen.png",
     logo: "/projects-pic/logos-mobile/logo-fulean2.png",
     technologies: ["PWA", "React", "TypeScript", "Tailwind CSS"],
     url: "https://fulean2.vercel.app",

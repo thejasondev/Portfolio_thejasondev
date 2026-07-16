@@ -3,8 +3,7 @@ import { Icon } from "astro-icon/components";
 import { getWhatsappLink } from "../data/social-links";
 import "../styles/header.css";
 
-const menuItems = [
-  { text: "Sobre mí", href: "#about" },
+const desktopMenuItems = [
   { text: "Proyectos", href: "#projects" },
   { text: "Servicios", href: "#services" },
 ];
@@ -24,95 +23,36 @@ const whatsappLink = getWhatsappLink();
        </span>
     </a>
 
-    <!-- Desktop Menu -->
-    <div class="hidden md:flex items-center gap-10">
-      <ul class="flex gap-8">
-        {menuItems.map(item => (
-          <li>
-            <a
-              href={item.href}
-              class="text-xs font-bold text-neutral-700 hover:text-black transition-colors uppercase tracking-widest relative group"
-            >
-              {item.text}
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold-light transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <a
-        href={whatsappLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-primary py-3 px-6 text-xs"
-      >
-        Contáctame
-      </a>
-    </div>
-
-    <!-- Mobile Menu Button -->
-    <button
-      id="menu-toggle"
-      class="md:hidden relative w-12 h-12 flex items-center justify-center text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg transition-all z-50"
-      aria-label="Abrir menú de navegación"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <div class="w-6 h-5 relative flex flex-col justify-between">
-        <span class="w-full h-0.5 bg-current transform transition-all duration-300 ease-out"></span>
-        <span class="w-full h-0.5 bg-current transition-all duration-300 ease-out"></span>
-        <span class="w-full h-0.5 bg-current transform transition-all duration-300 ease-out"></span>
-      </div>
-    </button>
-  </nav>
-</header>
-
-<!-- Mobile Menu Overlay with Liquid Glass -->
-<div
-  id="mobile-menu"
-  class="fixed inset-0 liquid-glass-dark z-40 flex flex-col justify-center items-center opacity-0 pointer-events-none transition-all duration-300"
-  aria-modal="true"
-  role="dialog"
-  aria-label="Menú de navegación móvil"
->
-  <!-- Close Button - Dedicated and Prominent -->
-  <button
-    id="close-menu"
-    class="fixed top-6 right-6 w-14 h-14 rounded-full liquid-glass-gold flex items-center justify-center text-black hover:scale-110 active:scale-95 transition-all duration-300 shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white opacity-0 pointer-events-none"
-    aria-label="Cerrar menú"
-  >
-    <Icon name="mdi:close" class="w-7 h-7" />
-  </button>
-
-  <!-- Menu Container -->
-  <nav class="relative z-10">
-    <ul class="space-y-8 text-center px-8">
-      {menuItems.map((item, index) => (
-        <li class="transform translate-y-4 opacity-0 transition-all duration-500 ease-out" style={`transition-delay: ${index * 80}ms`}>
+    <!-- Desktop Nav Links (solo visible en md+) -->
+    <ul class="hidden md:flex items-center gap-8">
+      {desktopMenuItems.map(item => (
+        <li>
           <a
             href={item.href}
-            class="menu-link block text-4xl md:text-5xl font-heading font-bold text-white hover:text-gradient-gold transition-all duration-300 py-3 px-6 rounded-2xl hover:liquid-glass-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            class="text-xs font-bold text-neutral-700 hover:text-black transition-colors uppercase tracking-widest relative group"
           >
             {item.text}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold-light transition-all duration-300 group-hover:w-full"></span>
           </a>
         </li>
       ))}
-      <li class="transform translate-y-4 opacity-0 transition-all duration-500 ease-out pt-4" style={`transition-delay: ${menuItems.length * 80}ms`}>
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="menu-link inline-flex items-center gap-3 text-lg font-bold text-gold hover:text-gold-light border-b-2 border-gold pb-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded px-4"
-        >
-          <Icon name="mdi:whatsapp" class="w-6 h-6" />
-          Iniciar conversación 
-          <Icon name="mdi:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1" />
-        </a>
-      </li>
     </ul>
+
+    <!-- CTA Unificado — Responsive en todos los breakpoints -->
+    <a
+      href={whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      id="header-cta"
+      class="header-cta group"
+      aria-label="Contáctame por WhatsApp"
+    >
+      <Icon name="mdi:whatsapp" class="header-cta-icon" />
+      <span>Hablemos</span>
+    </a>
   </nav>
-</div>
+</header>
 
 <script>
-  import '../scripts/mobile-menu.ts';
+  import '../scripts/header-scroll.ts';
 </script>
-
