@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from "astro-icon/components";
+import { es } from '../i18n/es';
 
+const locale = 'es' as const;
+const dict = es;
 
 // Datos estructurados para SEO
 const pageTitle = "404 - Página no encontrada | Jason Guerra - Desarrollador Frontend";
@@ -11,6 +14,8 @@ const pageKeywords = "404, página no encontrada, error, Jason Guerra, portfolio
 
 
 <Layout 
+  locale={locale}
+  dict={dict}
   title={pageTitle}
   description={pageDescription}
   keywords={pageKeywords}

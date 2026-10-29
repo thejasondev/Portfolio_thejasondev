@@ -1,70 +1,78 @@
 ---
 import { siteConfig } from "../config/site";
-import { 
-  getPersonSchema, 
-  getWebSiteSchema, 
-  getOrganizationSchema, 
+import { locales, defaultLocale, getDictionary, urlForLocale } from "../i18n";
+import type { Locale } from "../i18n/types";
+import {
+  getPersonSchema,
+  getWebSiteSchema,
+  getOrganizationSchema,
   getProfessionalServiceSchema,
   getSocialProfileSchema,
-  getFAQSchema 
+  getFAQSchema,
 } from "../utils/seo";
 
 export interface Props {
+  locale?: Locale;
   title?: string;
   description?: string;
   keywords?: string;
   image?: string;
-  canonicalURL?: URL | string;
   type?: string;
   author?: string;
   datePublished?: string;
   dateModified?: string;
-  alternateLocale?: string[];
 }
 
 const {
-  title = siteConfig.title,
-  description = siteConfig.description,
-  keywords = siteConfig.seo.keywords,
-  image = "/profile-pic/thejasondev-perfil.webp",
-  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  locale = defaultLocale,
+  title,
+  description,
+  keywords,
+  image = "/og-image.png",
   type = "website",
   author = siteConfig.author.name,
-  datePublished = new Date().toISOString().split('T')[0],
-  dateModified = new Date().toISOString().split('T')[0],
-  alternateLocale = ["en_US"]
+  datePublished = "2025-04-21",
+  dateModified = "2026-07-16",
 } = Astro.props;
 
-// Asegúrese de que la imagen tenga una URL completa
-const imageUrl = new URL(image, Astro.site).toString();
-const primaryDomain = siteConfig.url;
-// Usar solo la URL principal como canónica sin barra al final para evitar duplicados
-const finalCanonicalUrl = primaryDomain;
+const dict = getDictionary(locale);
+const finalTitle = title ?? dict.seo.title;
+const finalDescription = description ?? dict.seo.description;
+const finalKeywords = keywords ?? dict.seo.keywords;
 
-// Generar schemas
-const personSchema = getPersonSchema();
-const websiteSchema = getWebSiteSchema();
-const orgSchema = getOrganizationSchema();
-const serviceSchema = getProfessionalServiceSchema();
-const socialSchema = getSocialProfileSchema();
-const faqSchema = getFAQSchema();
+// URL canónica de la página real (mantiene la barra final como el sitemap)
+const finalCanonicalUrl = new URL(Astro.url.pathname, siteConfig.url).href;
+
+const imageUrl = new URL(image, Astro.site).toString();
+
+// Idiomas alternos para Open Graph
+const alternateLocales = locales
+  .filter((l) => l !== locale)
+  .map((l) => getDictionary(l).ogLocale);
+
+// Generar schemas localizados
+const personSchema = getPersonSchema(locale);
+const websiteSchema = getWebSiteSchema(locale);
+const orgSchema = getOrganizationSchema(locale);
+const serviceSchema = getProfessionalServiceSchema(locale);
+const socialSchema = getSocialProfileSchema(locale);
+const faqSchema = getFAQSchema(locale);
 ---
 
 <!-- SEO Básico -->
-<title>{title}</title>
-<meta name="description" content={description} />
-<meta name="keywords" content={keywords} />
+<title>{finalTitle}</title>
+<meta name="description" content={finalDescription} />
+<meta name="keywords" content={finalKeywords} />
 <meta name="author" content={author} />
 <meta name="publisher" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
 <meta name="copyright" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
-<meta name="owner" content={siteConfig.author.name} />
-<meta name="designer" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
-<meta name="web_author" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
 <link rel="canonical" href={finalCanonicalUrl} />
 
-<!-- Enlaces alternativos para indicar cambio de dominio -->
-<link rel="alternate" href={primaryDomain} hreflang="x-default" />
-<link rel="alternate" href={primaryDomain} hreflang="es" />
+<!-- Alternativas de idioma (hreflang) para SEO internacional -->
+{locales.map((l) => (
+  <link rel="alternate" hreflang={getDictionary(l).hreflang} href={urlForLocale(l)} />
+))}
+<link rel="alternate" hreflang="x-default" href={urlForLocale(defaultLocale)} />
 
 <!-- Control de indexación y seguimiento -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -78,20 +86,17 @@ const faqSchema = getFAQSchema();
 <meta name="google-site-verification" content={siteConfig.seo.googleVerification} />
 
 <!-- Meta para rendimiento web -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="view-transition" content="same-origin" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="format-detection" content="telephone=no" />
 
 <!-- Nombre y alias para buscadores -->
 <meta name="application-name" content={`${siteConfig.author.name} | ${siteConfig.author.username}`} />
 <meta name="creator" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
-<meta name="subject" content={`Portfolio de ${siteConfig.author.name} - ${siteConfig.author.jobTitle} (${siteConfig.author.username})`} />
+<meta name="subject" content={`${dict.hero.role} ${dict.hero.roleHighlight} - ${siteConfig.author.name} (${siteConfig.author.username})`} />
 
 <!-- Meta tags para Knowledge Graph de Google -->
 <meta itemprop="name" content={`${siteConfig.author.name} | ${siteConfig.author.username}`} />
-<meta itemprop="description" content={description} />
+<meta itemprop="description" content={finalDescription} />
 <meta itemprop="image" content={imageUrl} />
 <meta name="thumbnail" content={imageUrl} />
 
@@ -102,41 +107,32 @@ const faqSchema = getFAQSchema();
 <meta property="profile:last_name" content={siteConfig.author.lastName} />
 <meta property="profile:username" content={siteConfig.author.username} />
 
-<!-- Meta tags para mejorar presencia en búsquedas -->
-<meta name="classification" content="Desarrollo Web, Frontend, Portfolio" />
-<meta name="category" content="Technology" />
-<meta name="coverage" content="Worldwide" />
-<meta name="distribution" content="Global" />
-<meta name="rating" content="General" />
-<meta name="target" content="all" />
-<meta name="HandheldFriendly" content="True" />
-<meta name="MobileOptimized" content="320" />
 <meta name="theme-color" content={siteConfig.seo.themeColor} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={finalDescription} />
 <meta property="og:url" content={finalCanonicalUrl} />
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content={`${siteConfig.author.name} - ${siteConfig.author.jobTitle}`} />
-<meta property="og:site_name" content={`${siteConfig.author.name} - ${siteConfig.author.jobTitle}`} />
-<meta property="og:locale" content="es_ES" />
-<meta property="article:author" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
-{alternateLocale.map(locale => (
-  <meta property="og:locale:alternate" content={locale} />
+<meta property="og:image:alt" content={`${siteConfig.author.name} - ${dict.jobTitle}`} />
+<meta property="og:site_name" content={`${siteConfig.author.name} - ${dict.jobTitle}`} />
+<meta property="og:locale" content={dict.ogLocale} />
+{alternateLocales.map((l) => (
+  <meta property="og:locale:alternate" content={l} />
 ))}
+<meta property="article:author" content={`${siteConfig.author.name} (${siteConfig.author.username})`} />
 <meta property="og:updated_time" content={dateModified} />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:title" content={finalTitle} />
+<meta name="twitter:description" content={finalDescription} />
 <meta name="twitter:url" content={finalCanonicalUrl} />
 <meta name="twitter:image" content={imageUrl} />
-<meta name="twitter:image:alt" content={`${siteConfig.author.name} | ${siteConfig.author.jobTitle}`} />
+<meta name="twitter:image:alt" content={`${siteConfig.author.name} | ${dict.jobTitle}`} />
 <meta name="twitter:creator" content={`@${siteConfig.author.username}`} />
 <meta name="twitter:site" content={`@${siteConfig.author.username}`} />
 
@@ -153,8 +149,6 @@ const faqSchema = getFAQSchema();
 <meta name="apple-mobile-web-app-title" content={siteConfig.author.firstName} />
 <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
 <meta name="msapplication-config" content="/browserconfig.xml" />
-
-<!-- DNS Prefetch/preconnect para fonts se manejan en Layout.astro (único lugar) -->
 
 <!-- JSON-LD Schemas -->
 <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

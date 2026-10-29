@@ -9,11 +9,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "400px",
+      },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
-        inter: ["Inter", "sans-serif"],
+        inter: ["Inter Variable", "sans-serif"],
         heading: ["Playfair Display", "serif"],
-        body: ["Inter", "sans-serif"],
+        body: ["Inter Variable", "sans-serif"],
       },
       colors: {
         // Colores de oro consistentes con CSS variables

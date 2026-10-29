@@ -6,9 +6,9 @@
 
 export const siteConfig = {
   name: "thejasondev",
-  title: "thejasondev | Jason Guerra - Desarrollador Frontend Freelance Cuba",
+  title: "thejasondev | Jason Guerra - Ingeniero Industrial & Desarrollador Frontend Freelance Cuba",
   description:
-    "thejasondev es Jason Guerra, desarrollador frontend freelance en La Habana, Cuba. Portfolio profesional especializado en crear sitios web modernos, rápidos y optimizados para SEO con Astro, React, Next.js, TypeScript y TailwindCSS.",
+    "thejasondev es Jason Guerra, ingeniero industrial y desarrollador frontend freelance en La Habana, Cuba. Portfolio profesional especializado en crear sitios web modernos, rápidos y optimizados para SEO que optimizan procesos y resuelven problemas reales de negocio con Astro, React, Next.js, TypeScript y TailwindCSS.",
   url: "https://thejasondev.vercel.app",
 
   author: {
@@ -18,7 +18,7 @@ export const siteConfig = {
     username: "thejasondev",
     email: "thejasondev@icloud.com",
     phone: "+5353118193",
-    jobTitle: "Desarrollador Frontend",
+    jobTitle: "Ingeniero Industrial & Desarrollador Frontend",
     location: {
       city: "La Habana",
       region: "Miramar",
@@ -41,14 +41,14 @@ export const siteConfig = {
 
   seo: {
     keywords:
-      "thejasondev, Jason Guerra, portfolio thejasondev, portfolio Jason Guerra, desarrollador frontend, diseño web, Astro, React, Cuba, freelance, desarrollador web La Habana",
+      "thejasondev, Jason Guerra, portfolio thejasondev, portfolio Jason Guerra, ingeniero industrial, desarrollador frontend, optimización de procesos, solución de problemas, diseño web, Astro, React, Cuba, freelance, desarrollador web La Habana",
     googleVerification: "A7BT_C6ClgkaWHA9brgG3v0v7gG-1NeclQ6jCfvQF8U",
     themeColor: "#0f172a",
   },
 
   features: {
     availableForWork: true,
-    yearsOfExperience: 3,
+    yearsOfExperience: 5,
   },
 } as const;
 

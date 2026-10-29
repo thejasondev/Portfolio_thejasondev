@@ -1,55 +1,70 @@
 ---
 import { Icon } from "astro-icon/components";
 import { getWhatsappLink } from "../data/social-links";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import type { Dictionary, Locale } from "../i18n/types";
 import "../styles/header.css";
 
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+
 const desktopMenuItems = [
-  { text: "Proyectos", href: "#projects" },
-  { text: "Servicios", href: "#services" },
+  { text: dict.nav.projects, href: "#projects" },
+  { text: dict.nav.services, href: "#services" },
 ];
 
-const whatsappLink = getWhatsappLink();
+const whatsappLink = getWhatsappLink(dict.whatsapp.default);
 ---
 
 <header class="fixed w-full liquid-glass z-50 top-0 border-b border-white/20 transition-all duration-300" id="main-header">
-  <nav class="container-custom flex justify-between items-center h-20 md:h-24">
+  <nav class="container-custom flex justify-between items-center gap-2 h-20 md:h-24">
     <!-- Logo with Gold Accent -->
-    <a href="#" 
+    <a href="#"
        id="site-logo"
-       class="group flex items-center gap-2 specular-highlight"
-       aria-label="thejasondev - Jason Guerra Portfolio">
-       <span class="text-2xl font-bold font-heading text-black tracking-tight group-hover:text-gradient-gold transition-all duration-300">
+       class="group flex items-center gap-2 specular-highlight flex-shrink-0"
+       aria-label={dict.header.logoAria}>
+       <span class="text-base xs:text-lg sm:text-2xl font-bold font-heading text-black tracking-tight group-hover:text-gradient-gold transition-all duration-300 whitespace-nowrap">
          {'{ thejasondev }'}
        </span>
     </a>
 
-    <!-- Desktop Nav Links (solo visible en md+) -->
-    <ul class="hidden md:flex items-center gap-8">
-      {desktopMenuItems.map(item => (
-        <li>
-          <a
-            href={item.href}
-            class="text-xs font-bold text-neutral-700 hover:text-black transition-colors uppercase tracking-widest relative group"
-          >
-            {item.text}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold-light transition-all duration-300 group-hover:w-full"></span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    <!-- Right group: desktop nav + language switcher + CTA -->
+    <div class="flex items-center gap-2 xs:gap-3 md:gap-6">
+      <!-- Desktop Nav Links (solo visible en md+) -->
+      <ul class="hidden md:flex items-center gap-8">
+        {desktopMenuItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class="text-xs font-bold text-neutral-700 hover:text-black transition-colors uppercase tracking-widest relative group"
+            >
+              {item.text}
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold-light transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+        ))}
+      </ul>
 
-    <!-- CTA Unificado — Responsive en todos los breakpoints -->
-    <a
-      href={whatsappLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      id="header-cta"
-      class="header-cta group"
-      aria-label="Contáctame por WhatsApp"
-    >
-      <Icon name="mdi:whatsapp" class="header-cta-icon" />
-      <span>Hablemos</span>
-    </a>
+      <!-- Language Switcher -->
+      <LanguageSwitcher locale={locale} dict={dict} />
+
+      <!-- CTA Unificado — Responsive en todos los breakpoints -->
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        id="header-cta"
+        class="header-cta group"
+        aria-label={dict.header.ctaAria}
+      >
+        <Icon name="mdi:whatsapp" class="header-cta-icon" />
+        <span class="hidden xs:inline">{dict.header.cta}</span>
+      </a>
+    </div>
   </nav>
 </header>
 

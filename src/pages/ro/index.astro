@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomePage from '../../components/HomePage.astro';
+import { ro } from '../../i18n/ro';
+
+const locale = 'ro' as const;
+const dict = ro;
+---
+
+<Layout
+  locale={locale}
+  dict={dict}
+  datePublished="2025-04-21"
+  dateModified="2026-07-16"
+  type="website"
+>
+  <HomePage locale={locale} dict={dict} />
+</Layout>

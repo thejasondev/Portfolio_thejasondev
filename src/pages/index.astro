@@ -1,35 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Projects from '../components/Projects.astro';
-import Services from '../components/Services.astro';
-import Footer from '../components/Footer.astro';
-import { siteConfig } from '../config/site';
-import { getPersonSchema } from '../utils/seo';
+import HomePage from '../components/HomePage.astro';
+import { es } from '../i18n/es';
+
+const locale = 'es' as const;
+const dict = es;
 ---
 
-<Layout 
-  title={siteConfig.title}
-  description={siteConfig.description}
-  keywords={siteConfig.seo.keywords}
+<Layout
+  locale={locale}
+  dict={dict}
   datePublished="2025-04-21"
-  dateModified={new Date().toISOString().split('T')[0]}
+  dateModified="2026-07-16"
   type="website"
 >
-  <Header />
-  
-  <main>
-    <!-- Schema.org ProfilePage -->
-    <script type="application/ld+json" set:html={JSON.stringify(getPersonSchema())}></script>
-    
-    <Hero />
-    
-    <Projects />
-    
-    <Services />
-    
-    <Footer />
-  </main>
+  <HomePage locale={locale} dict={dict} />
 </Layout>
-

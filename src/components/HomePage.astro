@@ -1,0 +1,31 @@
+---
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import Projects from "./Projects.astro";
+import Services from "./Services.astro";
+import Footer from "./Footer.astro";
+import { getPersonSchema } from "../utils/seo";
+import type { Dictionary, Locale } from "../i18n/types";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+---
+
+<Header locale={locale} dict={dict} />
+
+<main>
+  <!-- Schema.org ProfilePage -->
+  <script type="application/ld+json" set:html={JSON.stringify(getPersonSchema(locale))}></script>
+
+  <Hero locale={locale} dict={dict} />
+
+  <Projects locale={locale} />
+
+  <Services locale={locale} />
+
+  <Footer locale={locale} dict={dict} />
+</main>

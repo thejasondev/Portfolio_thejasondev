@@ -1,7 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
 import { socialLinks } from "../data/social-links";
+import type { Dictionary, Locale } from "../i18n/types";
 
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -18,7 +25,7 @@ const currentYear = new Date().getFullYear();
           {'{ thejasondev }'}
         </a>
         <p class="text-neutral-400 text-sm font-light max-w-xs mx-auto md:mx-0 leading-relaxed">
-          Desarrollador Frontend especializado en crear experiencias digitales premium, funcionales y memorables.
+          {dict.footer.tagline}
         </p>
       </div>
 
@@ -44,9 +51,9 @@ const currentYear = new Date().getFullYear();
         &copy; {currentYear} Jason Guerra
       </p>
       <nav class="flex flex-wrap justify-center gap-6">
-        <a href="#about" class="hover:text-gold transition-colors">Sobre mí</a>
-        <a href="#projects" class="hover:text-gold transition-colors">Proyectos</a>
-        <a href="#services" class="hover:text-gold transition-colors">Servicios</a>
+        <a href="#about" class="hover:text-gold transition-colors">{dict.footer.about}</a>
+        <a href="#projects" class="hover:text-gold transition-colors">{dict.footer.projects}</a>
+        <a href="#services" class="hover:text-gold transition-colors">{dict.footer.services}</a>
       </nav>
     </div>
   </div>

@@ -3,42 +3,51 @@ import Analytics from '@vercel/analytics/astro'
 import SpeedInsights from '@vercel/speed-insights/astro';
 import SEO from '../components/SEO.astro';
 import Prefetch from '../components/Prefetch.astro';
+import type { Dictionary, Locale } from '../i18n/types';
+import '@fontsource-variable/inter';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/500.css';
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/playfair-display/700.css';
 import '../styles/global.css';
 import '../styles/animations.css';
 
 interface Props {
-  title: string;
-  description: string;
-  keywords: string;
+  locale: Locale;
+  dict: Dictionary;
+  title?: string;
+  description?: string;
+  keywords?: string;
   image?: string;
   type?: string;
   datePublished?: string;
   dateModified?: string;
   author?: string;
-  alternateLocale?: string[];
 }
 
-const { 
-  title, 
-  description, 
-  keywords, 
-  image, 
+const {
+  locale,
+  dict,
+  title,
+  description,
+  keywords,
+  image,
   type,
   datePublished,
   dateModified,
   author,
-  alternateLocale
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang={dict.htmlLang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
     <!-- SEO y metadatos -->
-    <SEO 
+    <SEO
+      locale={locale}
       title={title}
       description={description}
       keywords={keywords}
@@ -47,35 +56,21 @@ const {
       datePublished={datePublished}
       dateModified={dateModified}
       author={author}
-      alternateLocale={alternateLocale}
     />
     <Prefetch />
-    
+
     <!-- Analytics & Speed Insights -->
     <Analytics />
     <SpeedInsights />
-    
-    <!-- Fuentes: non-blocking preload + fallback noscript -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    </noscript>
   </head>
   <body class="bg-white text-gray-900 antialiased selection:bg-indigo-100 selection:text-indigo-900">
     <slot />
-    
-    <!-- Analytics & Service Worker -->
-    <script>
-      import { initializeVercelAnalytics } from '../utils/analytics.ts';
-      initializeVercelAnalytics();
-    </script>
-    
+
+    <!-- Service Worker -->
     <script>
       import { ServiceWorkerManager } from '../scripts/service-worker.ts';
       ServiceWorkerManager.init();
     </script>
-    
+
   </body>
 </html>
