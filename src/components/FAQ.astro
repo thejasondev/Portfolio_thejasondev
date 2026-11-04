@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Dictionary } from "../i18n/types";
+
+interface Props {
+  dict: Dictionary;
+}
+
+// Las mismas preguntas que alimentan el schema FAQPage, ahora visibles
+const { dict } = Astro.props;
+---
+
+<section id="faq" class="section-padding bg-white">
+  <div class="container-custom">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-10 md:mb-14 text-ink text-center text-balance">
+        {dict.faqTitle}
+      </h2>
+
+      <div class="divide-y divide-slate-200 border-y border-slate-200">
+        {dict.faq.map((item) => (
+          <details class="faq-item group">
+            <summary class="flex items-center justify-between gap-6 py-5 cursor-pointer list-none text-left text-lg font-semibold text-ink hover:text-accent transition-colors">
+              {item.q}
+              <Icon name="mdi:plus" class="faq-icon w-5 h-5 flex-shrink-0 text-accent transition-transform duration-300" aria-hidden="true" />
+            </summary>
+            <p class="pb-6 pr-10 text-slate-600 leading-relaxed text-pretty">
+              {item.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+</style>

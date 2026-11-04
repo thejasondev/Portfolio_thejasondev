@@ -1,15 +1,20 @@
 /* Animaciones optimizadas para el portfolio */
 
 /* ============================================
-   Fade In Up - Animación principal
+   Hero Enter - único momento de movimiento
+   Parte de un estado ya visible (sin primer pintado en blanco)
    ============================================ */
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter {
+    animation: heroEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }
 
-@keyframes fadeInUp {
+@keyframes heroEnter {
+  from {
+    opacity: 0.35;
+    transform: translateY(14px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -17,35 +22,15 @@
 }
 
 /* ============================================
-   Float - Animación flotante
+   Reduced motion - respeta la preferencia del sistema
    ============================================ */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* ============================================
-   Pulse Slow - Pulso lento
-   ============================================ */
-.animate-pulse-slow {
-  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

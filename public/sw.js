@@ -1,5 +1,5 @@
 // Service Worker para Portfolio - Jason Guerra
-const CACHE_NAME = "portfolio-v1";
+const CACHE_NAME = "portfolio-v2";
 
 // Recursos que queremos cachear inmediatamente
 const PRECACHE_RESOURCES = [
@@ -61,6 +61,11 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Solo gestionar recursos propios: los de otros orígenes van directos a la red
+  if (new URL(event.request.url).origin !== self.location.origin) {
+    return;
+  }
+
   // Aplicar caché para recursos estáticos
   if (isStaticResource(event.request.url)) {
     event.respondWith(
@@ -81,7 +86,8 @@ self.addEventListener("fetch", (event) => {
                 "Service Worker: Fallback a caché para",
                 event.request.url
               );
-              return cachedResponse;
+              // Sin caché ni red: devolver un error explícito en vez de undefined
+              return cachedResponse || Response.error();
             });
 
           // Devolver la respuesta en caché mientras se actualiza en segundo plano

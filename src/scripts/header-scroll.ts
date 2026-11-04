@@ -5,6 +5,7 @@
 
 export class HeaderScrollManager {
   private header: HTMLElement | null = null;
+  private mobileCta: HTMLElement | null = null;
 
   constructor() {
     this.init();
@@ -12,6 +13,7 @@ export class HeaderScrollManager {
 
   private init(): void {
     this.header = document.getElementById("main-header");
+    this.mobileCta = document.getElementById("mobile-cta");
 
     if (!this.header) {
       console.warn("Header element not found");
@@ -28,23 +30,23 @@ export class HeaderScrollManager {
     let ticking = false;
 
     const updateHeader = () => {
-      if (window.scrollY > 50) {
-        this.header?.classList.add("shadow-lg");
-        this.header?.classList.remove("liquid-glass");
-        this.header?.classList.add("liquid-glass-dark");
-      } else {
-        this.header?.classList.remove("shadow-lg", "liquid-glass-dark");
-        this.header?.classList.add("liquid-glass");
-      }
+      this.header?.classList.toggle("is-scrolled", window.scrollY > 50);
+      // La barra móvil solo aparece una vez que el CTA del hero queda atrás
+      this.mobileCta?.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.8);
       ticking = false;
     };
 
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateHeader);
-        ticking = true;
-      }
-    });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    updateHeader();
   }
 }
 

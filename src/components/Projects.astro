@@ -13,12 +13,12 @@ const dict = getDictionary(locale);
 ---
 
 <section id="projects" class="section-padding bg-white relative overflow-hidden">
-  <div class="container-custom relative z-10">
-    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20 animate-fade-in-up">
-      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-4 md:mb-6 text-ink">
-        {dict.projects.title} <span class="text-gradient-accent">{dict.projects.titleHighlight}</span>
+  <div class="container-custom relative">
+    <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-4 md:mb-6 text-ink text-balance">
+        {dict.projects.title} <span class="text-accent">{dict.projects.titleHighlight}</span>
       </h2>
-      <p class="text-base md:text-lg text-slate-600 leading-relaxed font-light">
+      <p class="text-base md:text-lg text-slate-600 leading-relaxed text-pretty">
         {dict.projects.subtitle}
       </p>
     </div>
@@ -27,54 +27,51 @@ const dict = getDictionary(locale);
     <div class="hidden md:block space-y-24">
       {projects.map((project, index) => (
         <article class="group relative grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
+
           {/* Project Image */}
           <div class={`relative ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/10 liquid-glass border-2 border-white/80 group-hover:border-accent/40 transition-all duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            <div class="relative rounded-2xl overflow-hidden bg-slate-50 ring-1 ring-slate-200 shadow-[0_24px_48px_-24px_rgba(11,27,51,0.3)]">
               <img
                 src={project.image}
                 alt={project.title}
-                class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
+                class="w-full h-auto transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 width={project.imageWidth}
                 height={project.imageHeight}
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            
-            {/* Decorative Gold Ring */}
-            <div class="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-accent rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 hidden lg:block"></div>
           </div>
 
           {/* Project Info */}
           <div class={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
             <div class="space-y-4">
-              <h3 class="text-3xl lg:text-4xl font-bold font-heading text-ink specular-highlight">
+              <h3 class="text-3xl lg:text-4xl font-bold font-heading text-ink text-balance">
                 {project.title}
               </h3>
-              <p class="text-lg text-slate-600 leading-relaxed font-light">
+              <p class="text-lg text-slate-600 leading-relaxed max-w-[65ch] text-pretty">
                 {localized(project.description, locale)}
               </p>
             </div>
 
-            <div class="flex flex-wrap gap-3">
+            <ul class="flex flex-wrap gap-2" aria-label="Stack">
               {project.technologies.map((tech) => (
-                <span class="px-4 py-2 liquid-glass text-slate-700 text-xs font-bold uppercase tracking-wider rounded-full border border-slate-200 hover:border-accent/40 hover:liquid-glass-accent transition-all duration-300">
+                <li class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-full">
                   {tech}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
 
-            <div class="pt-4">
-              <a 
-                href={project.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="inline-flex items-center gap-2 btn-primary group/link"
+            <div class="pt-2">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 btn-secondary group/link"
+                aria-label={dict.projects.visitAria.replace("{title}", project.title)}
               >
                 {dict.projects.visitSite}
-                <Icon name="mdi:arrow-right" class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" />
+                <Icon name="mdi:arrow-top-right" class="w-4 h-4 transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
               </a>
             </div>
           </div>
@@ -82,76 +79,64 @@ const dict = getDictionary(locale);
       ))}
     </div>
 
-    {/* Mobile Layout — Card compacta con logo inline */}
-    <div class="md:hidden space-y-5">
+    {/* Mobile Layout — Card compacta con captura */}
+    <div class="md:hidden space-y-6">
       {projects.map((project) => (
-        <article class="project-card rounded-2xl p-5 border border-slate-100 shadow-sm">
-          
-          {/* Header: Logo + Título inline */}
-          <div class="flex items-center gap-3.5 mb-3">
-            <div class="project-logo-mobile flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
-              <img
-                src={project.logo}
-                alt={`${project.title} logo`}
-                class="w-full h-full object-contain p-1.5"
-                loading="lazy"
-                decoding="async"
-                width="48"
-                height="48"
-              />
+        <article class="rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-[0_12px_28px_-18px_rgba(11,27,51,0.25)]">
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-full h-auto bg-slate-50 border-b border-slate-100"
+            width={project.imageWidth}
+            height={project.imageHeight}
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="p-5">
+            {/* Header: Logo + Título inline */}
+            <div class="flex items-center gap-3 mb-3">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border border-slate-200 bg-white">
+                <img
+                  src={project.logo}
+                  alt=""
+                  class="w-full h-full object-contain p-1"
+                  loading="lazy"
+                  decoding="async"
+                  width="40"
+                  height="40"
+                />
+              </div>
+              <h3 class="text-lg font-bold font-heading text-ink leading-tight">
+                {project.title}
+              </h3>
             </div>
-            <h3 class="text-lg font-bold font-heading text-ink leading-tight">
-              {project.title}
-            </h3>
+
+            <p class="text-sm text-slate-600 leading-relaxed mb-4 text-pretty">
+              {localized(project.description, locale)}
+            </p>
+
+            <ul class="flex flex-wrap gap-1.5 mb-5" aria-label="Stack">
+              {project.technologies.map((tech) => (
+                <li class="px-2.5 py-1 text-xs font-medium text-slate-700 rounded-full bg-slate-100">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-dark underline-offset-4 hover:underline"
+              aria-label={dict.projects.visitAria.replace("{title}", project.title)}
+            >
+              {dict.projects.visitSite}
+              <Icon name="mdi:arrow-top-right" class="w-4 h-4" />
+            </a>
           </div>
-
-          {/* Descripción completa */}
-          <p class="text-sm text-slate-600 leading-relaxed font-light mb-4">
-            {localized(project.description, locale)}
-          </p>
-
-          {/* Tech badges */}
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            {project.technologies.map((tech) => (
-              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-600 rounded-full border border-slate-200 bg-slate-50">
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <a 
-            href={project.url} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-accent transition-colors duration-300"
-            aria-label={dict.projects.visitAria.replace("{title}", project.title)}
-          >
-            {dict.projects.visitSite}
-            <Icon name="mdi:arrow-right" class="w-3.5 h-3.5" />
-          </a>
         </article>
       ))}
     </div>
   </div>
 </section>
-
-<style>
-  /* Mobile card styles */
-  .project-card {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(250, 250, 250, 1) 100%
-    );
-  }
-
-  .project-logo-mobile {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(245, 245, 245, 0.9) 100%
-    );
-  }
-
-</style>

@@ -8,6 +8,8 @@ export interface Service {
   price: LocalizedText;
   message: LocalizedText;
   icon: string;
+  /** Plan recomendado: se destaca visualmente */
+  featured?: boolean;
 }
 
 export const services: Service[] = [
@@ -45,9 +47,9 @@ export const services: Service[] = [
       },
     ],
     price: {
-      es: "$150 USD/EUR",
-      en: "$150 USD/EUR",
-      ro: "$150 USD/EUR",
+      es: "$150",
+      en: "$150",
+      ro: "150 €",
     },
     message: {
       es: "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Básico.",
@@ -100,9 +102,9 @@ export const services: Service[] = [
       },
     ],
     price: {
-      es: "$300 USD/EUR",
-      en: "$300 USD/EUR",
-      ro: "$300 USD/EUR",
+      es: "$300",
+      en: "$300",
+      ro: "300 €",
     },
     message: {
       es: "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan Pro.",
@@ -110,6 +112,7 @@ export const services: Service[] = [
       ro: "Bună, sunt interesat de munca ta ca dezvoltator web. Aș dori să contractez Planul Pro.",
     },
     icon: "mdi:chart-line",
+    featured: true,
   },
   {
     title: {
@@ -160,16 +163,16 @@ export const services: Service[] = [
       },
     ],
     price: {
-      es: "$450 USD/EUR",
-      en: "$450 USD/EUR",
-      ro: "$450 USD/EUR",
+      es: "$450",
+      en: "$450",
+      ro: "450 €",
     },
     message: {
       es: "Hola, me interesa su trabajo como desarrollador web. Quisiera contratar el Plan de Tienda Online.",
       en: "Hi, I'm interested in your work as a web developer. I'd like to hire the Online Store Plan.",
       ro: "Bună, sunt interesat de munca ta ca dezvoltator web. Aș dori să contractez Planul Magazin online.",
     },
-    icon: "mdi:chart-line",
+    icon: "mdi:storefront-outline",
   },
   {
     title: {

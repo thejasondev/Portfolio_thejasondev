@@ -81,8 +81,11 @@ export const es: Dictionary = {
     perPayment: "/ pago único",
     priceConsult: "Precio a consultar",
     hire: "Contratar",
+    featured: "Más elegido",
   },
+  faqTitle: "Preguntas frecuentes",
   footer: {
+    emailPrompt: "¿Prefieres email?",
     tagline:
       "Ingeniero Industrial y Desarrollador Frontend especializado en optimizar procesos y crear experiencias digitales premium, funcionales y memorables.",
     about: "Sobre mí",

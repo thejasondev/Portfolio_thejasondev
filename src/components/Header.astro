@@ -20,14 +20,14 @@ const desktopMenuItems = [
 const whatsappLink = getWhatsappLink(dict.whatsapp.default);
 ---
 
-<header class="fixed w-full liquid-glass z-50 top-0 border-b border-white/20 transition-all duration-300" id="main-header">
+<header class="site-header fixed w-full z-50 top-0 border-b border-transparent transition-[background-color,border-color,box-shadow] duration-300" id="main-header">
   <nav class="container-custom flex justify-between items-center gap-2 h-20 md:h-24">
     <!-- Logo with Accent -->
     <a href="#"
        id="site-logo"
-       class="group flex items-center gap-2 specular-highlight flex-shrink-0"
+       class="group flex items-center gap-2 flex-shrink-0"
        aria-label={dict.header.logoAria}>
-       <span class="text-base xs:text-lg sm:text-2xl font-bold font-heading text-ink tracking-tight group-hover:text-gradient-accent transition-all duration-300 whitespace-nowrap">
+       <span class="text-base xs:text-lg sm:text-2xl font-bold font-heading text-ink tracking-tight group-hover:text-accent transition-colors duration-300 whitespace-nowrap">
          {'{ thejasondev }'}
        </span>
     </a>
@@ -43,7 +43,7 @@ const whatsappLink = getWhatsappLink(dict.whatsapp.default);
               class="text-xs font-bold text-slate-700 hover:text-ink transition-colors uppercase tracking-widest relative group"
             >
               {item.text}
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent to-accent-light transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
         ))}
@@ -67,6 +67,19 @@ const whatsappLink = getWhatsappLink(dict.whatsapp.default);
     </div>
   </nav>
 </header>
+
+<!-- Barra de contacto fija en móvil (zona del pulgar), aparece tras el hero -->
+<a
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  id="mobile-cta"
+  class="mobile-cta md:hidden"
+  aria-label={dict.hero.contactAria}
+>
+  <Icon name="mdi:whatsapp" class="w-5 h-5" />
+  {dict.hero.contact}
+</a>
 
 <script>
   import '../scripts/header-scroll.ts';

@@ -11,6 +11,7 @@
     --color-accent: #2f5d9f;
     --color-accent-light: #dce6f3;
     --color-accent-dark: #1e3f73;
+    --color-accent-soft: #8fb0dd;
 
     /* Typography */
     --font-heading: "Playfair Display", serif;
@@ -19,9 +20,13 @@
 
   html {
     scroll-behavior: smooth;
+    /* Compensa el header fijo al saltar a una sección */
+    scroll-padding-top: 6rem;
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-body);
+    /* Scrollbar con los colores de la paleta */
+    scrollbar-color: #94a3b8 var(--color-bg-alt);
   }
 
   h1,
@@ -38,77 +43,48 @@
   /* Body styles aplicados directamente - eliminada la duplicación */
   body {
     @apply antialiased text-ink bg-white selection:bg-accent selection:text-white;
+    caret-color: var(--color-accent);
+  }
+
+  /* Foco visible y consistente para teclado */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 0.375rem;
+  }
+
+  footer :focus-visible,
+  .bg-ink :focus-visible {
+    outline-color: var(--color-accent-soft);
   }
 }
 
 @layer components {
   /* ============================================
-     Liquid Glass Effects
-     Efecto de cristal líquido reutilizable
-     ============================================ */
-  .liquid-glass {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
-  }
-
-  .liquid-glass-dark {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(20px) saturate(180%) brightness(0.8);
-    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(0.8);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-  }
-
-  .liquid-glass-accent {
-    background: linear-gradient(
-      135deg,
-      rgba(47, 93, 159, 0.15),
-      rgba(220, 230, 243, 0.1)
-    );
-    backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
-    border: 1px solid rgba(47, 93, 159, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(47, 93, 159, 0.15),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-  }
-
-  /* ============================================
-     Modern Buttons - Composición directa
-     Nota: Se recomienda usar composición directa en componentes
-     en lugar de @apply para reducir tamaño del bundle
+     Buttons
      ============================================ */
 
   .btn-primary {
-    @apply px-8 py-4 bg-ink text-white font-medium rounded-full 
-    transition-all duration-500 shadow-lg shadow-ink/20
-    hover:shadow-xl hover:shadow-ink/30 hover:scale-[1.02]
-    tracking-wide uppercase text-sm
-    border border-transparent hover:border-accent/20
-    relative overflow-hidden;
+    @apply px-8 py-4 bg-ink text-white font-medium rounded-full
+    transition-all duration-300 shadow-[0_10px_24px_-10px_rgba(11,27,51,0.55)]
+    hover:bg-accent-dark hover:shadow-[0_14px_28px_-10px_rgba(11,27,51,0.6)] hover:-translate-y-0.5
+    active:translate-y-0
+    tracking-wide uppercase text-sm;
   }
 
   .btn-secondary {
-    @apply px-8 py-4 font-medium rounded-full 
-    border-2 border-ink text-ink hover:bg-ink hover:text-white
-    transition-all duration-300 
-    tracking-wide uppercase text-sm
-    hover:shadow-lg hover:shadow-ink/20 hover:scale-[1.02];
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    @apply px-8 py-4 font-medium rounded-full bg-white
+    border border-slate-300 text-ink
+    hover:border-ink hover:bg-ink hover:text-white
+    transition-colors duration-300
+    tracking-wide uppercase text-sm;
   }
 
   .btn-accent {
-    @apply px-8 py-4 font-medium rounded-full 
+    @apply px-8 py-4 font-medium rounded-full
     bg-accent text-white hover:bg-accent-dark
-    transition-all duration-300 shadow-lg shadow-accent/25
-    hover:shadow-xl hover:shadow-accent/40 hover:scale-[1.02]
-    tracking-wide uppercase text-sm
-    border border-accent-dark/20;
+    transition-colors duration-300
+    tracking-wide uppercase text-sm;
   }
 
   /* ============================================
@@ -123,42 +99,13 @@
   }
 
   /* ============================================
-     Text Effects
+     Text wrapping helpers
      ============================================ */
-  .text-gradient-accent {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-ink via-accent-dark to-accent;
+  .text-balance {
+    text-wrap: balance;
   }
 
-  .text-gradient-accent-light {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent-light to-accent-soft;
-  }
-
-  /* ============================================
-     Specular Highlight Effect
-     Efecto de brillo especular optimizado
-     ============================================ */
-  .specular-highlight {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .specular-highlight::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent
-    );
-    transition: left 0.5s ease-out;
-  }
-
-  .specular-highlight:hover::after {
-    left: 100%;
+  .text-pretty {
+    text-wrap: pretty;
   }
 }

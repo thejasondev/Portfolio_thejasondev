@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { socialLinks } from "../data/social-links";
+import { siteConfig } from "../config/site";
 import type { Dictionary, Locale } from "../i18n/types";
 
 interface Props {
@@ -12,31 +13,34 @@ const { locale, dict } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative bg-ink text-white py-16 md:py-20">
-  {/* Subtle Gradient Overlay */}
-  <div class="absolute inset-0 bg-gradient-to-t from-ink via-slate-900 to-ink opacity-90"></div>
-  
-  <div class="container-custom relative z-10">
+<footer class="relative bg-ink text-white pt-16 pb-28 md:py-20">
+  <div class="container-custom">
     <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
-      
+
       <!-- Brand & Tagline -->
       <div class="text-center md:text-left space-y-4">
-        <a href="#" class="inline-block text-3xl font-bold font-heading tracking-tight text-gradient-accent-light hover:opacity-80 transition-opacity">
+        <a href="#" class="inline-block text-3xl font-bold font-heading tracking-tight text-white hover:text-accent-soft transition-colors" aria-label={dict.header.logoAria}>
           {'{ thejasondev }'}
         </a>
-        <p class="text-slate-400 text-sm font-light max-w-xs mx-auto md:mx-0 leading-relaxed">
+        <p class="text-slate-300 text-sm max-w-xs mx-auto md:mx-0 leading-relaxed text-pretty">
           {dict.footer.tagline}
+        </p>
+        <p class="text-sm text-slate-300">
+          {dict.footer.emailPrompt}{" "}
+          <a href={`mailto:${siteConfig.author.email}`} class="font-semibold text-white underline decoration-accent-soft/60 underline-offset-4 hover:text-accent-soft transition-colors">
+            {siteConfig.author.email}
+          </a>
         </p>
       </div>
 
-      <!-- Social Links with Liquid Glass -->
-      <div class="flex justify-center md:justify-end gap-4">
+      <!-- Social Links -->
+      <div class="flex justify-center md:justify-end gap-3">
         {socialLinks.map(social => (
           <a
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="p-4 rounded-full liquid-glass-dark hover:bg-accent text-slate-400 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+            class="p-4 rounded-full border border-white/10 bg-white/5 text-slate-300 hover:bg-accent hover:border-accent hover:text-white transition-colors duration-300"
             aria-label={social.label}
           >
             <Icon name={social.icon} class="w-5 h-5" />
@@ -46,8 +50,8 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Copyright & Links -->
-    <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-500 font-medium uppercase tracking-widest">
-      <p class="hover:text-accent-soft transition-colors">
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-400 font-medium uppercase tracking-widest">
+      <p>
         &copy; {currentYear} Jason Guerra
       </p>
       <nav class="flex flex-wrap justify-center gap-6">

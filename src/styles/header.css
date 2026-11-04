@@ -4,8 +4,24 @@
    ============================================ */
 
 /* ============================================
+   Header shell — transparente arriba,
+   blanco esmerilado al hacer scroll
+   ============================================ */
+.site-header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom-color: rgba(11, 27, 51, 0.08);
+  box-shadow: 0 6px 24px -12px rgba(11, 27, 51, 0.18);
+}
+
+/* ============================================
    CTA Button — Unified & Responsive
-   Botón de contacto premium con glassmorphism dorado
+   Botón de contacto sólido en el color de marca
    Escala de móvil a desktop con media queries
    ============================================ */
 .header-cta {
@@ -17,20 +33,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #0b1b33;
-  background: linear-gradient(
-    135deg,
-    rgba(47, 93, 159, 0.2),
-    rgba(220, 230, 243, 0.15)
-  );
-  border: 1.5px solid rgba(47, 93, 159, 0.45);
+  color: #fff;
+  background: var(--color-ink);
+  border: 1px solid var(--color-ink);
   border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow:
-    0 2px 12px rgba(47, 93, 159, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px -6px rgba(11, 27, 51, 0.45);
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
@@ -66,50 +75,57 @@
    Interaction States
    ============================================ */
 .header-cta:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(47, 93, 159, 0.35),
-    rgba(220, 230, 243, 0.25)
-  );
-  border-color: rgba(47, 93, 159, 0.65);
-  box-shadow:
-    0 4px 20px rgba(47, 93, 159, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  box-shadow: 0 8px 20px -8px rgba(11, 27, 51, 0.5);
   transform: translateY(-1px);
 }
 
 .header-cta:hover .header-cta-icon {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 .header-cta:active {
   transform: translateY(0) scale(0.97);
-  box-shadow:
-    0 1px 6px rgba(47, 93, 159, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 /* ============================================
-   Subtle pulse — draws attention without being
-   obnoxious. Pauses on hover for clean UX.
+   Mobile sticky CTA — zona del pulgar
    ============================================ */
-@keyframes ctaPulse {
-  0%, 100% {
-    box-shadow:
-      0 2px 12px rgba(47, 93, 159, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-  50% {
-    box-shadow:
-      0 2px 20px rgba(47, 93, 159, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
+.mobile-cta {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 32px -10px rgba(11, 27, 51, 0.55);
+  opacity: 0;
+  transform: translateY(1.5rem);
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.header-cta {
-  animation: ctaPulse 3s ease-in-out infinite;
+.mobile-cta.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
-.header-cta:hover {
-  animation: none;
+@media (min-width: 768px) {
+  .mobile-cta {
+    display: none;
+  }
 }

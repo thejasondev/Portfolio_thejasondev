@@ -81,8 +81,11 @@ export const ro: Dictionary = {
     perPayment: "/ plată unică",
     priceConsult: "Preț la cerere",
     hire: "Angajează-mă",
+    featured: "Cel mai ales",
   },
+  faqTitle: "Întrebări frecvente",
   footer: {
+    emailPrompt: "Preferi e-mailul?",
     tagline:
       "Inginer Industrial și Dezvoltator Frontend specializat în optimizarea proceselor și crearea de experiențe digitale premium, funcționale și memorabile.",
     about: "Despre mine",

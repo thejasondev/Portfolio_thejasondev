@@ -200,7 +200,7 @@ export const getProfessionalServiceSchema = (locale: Locale = "es") => {
             description: localized(service.description, locale),
             areaServed,
           },
-          ...(price && { price, priceCurrency: "USD" }),
+          ...(price && { price, priceCurrency: locale === "ro" ? "EUR" : "USD" }),
         };
       }),
     },

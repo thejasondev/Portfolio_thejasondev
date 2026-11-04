@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import { getWhatsappLink } from "../data/social-links";
+import { getWhatsappLink, socialLinks } from "../data/social-links";
 import type { Dictionary, Locale } from "../i18n/types";
 
 interface Props {
@@ -10,108 +10,83 @@ interface Props {
 
 const { locale, dict } = Astro.props;
 const whatsappLink = getWhatsappLink(dict.whatsapp.default);
+// En el hero solo mostramos las redes profesionales principales
+const heroSocials = socialLinks.filter((s) => s.name !== "Twitter");
 ---
 
-<section id="about" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
-  {/* Animated Background Elements */}
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse-slow"></div>
-    <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-slate-900/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
-  </div>
-
-  <div class="container-custom relative z-10">
+<section id="about" class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+  <div class="container-custom relative">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-      
+
       {/* Text Content */}
-      <div class="order-2 lg:order-1 space-y-8 text-center lg:text-left animate-fade-in-up">
-        
-        {/* Status Badge with Liquid Glass */}
-        <div class="inline-flex items-center gap-3 px-5 py-2 liquid-glass-accent rounded-full text-xs font-bold uppercase tracking-widest text-ink">
-          <span class="relative flex h-2.5 w-2.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-dark"></span>
-          </span>
-          {dict.hero.available}
-        </div>
+      <div class="order-2 lg:order-1 space-y-8 text-center lg:text-left hero-enter">
 
         {/* Main Headline with Brand Keywords for SEO */}
-        <h1 class="text-5xl lg:text-7xl xl:text-8xl font-bold font-heading leading-tight text-ink">
-          <span class="sr-only">thejasondev - Jason Guerra | {dict.hero.role} {dict.hero.roleHighlight}</span>
+        <h1 class="text-[2.6rem] xs:text-5xl lg:text-7xl xl:text-8xl font-bold font-heading leading-[1.05] text-ink text-balance">
+          <span class="sr-only">thejasondev - Jason Guerra | </span>
           {dict.hero.role} <br class="hidden lg:block" />
-          <span class="text-gradient-accent inline-block specular-highlight">
-            {dict.hero.roleHighlight}
-          </span>
+          <span class="text-accent">{dict.hero.roleHighlight}</span>
         </h1>
 
         {/* Tagline with Portfolio keyword */}
         <p
-          class="hero-tagline text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
+          class="hero-tagline text-lg lg:text-xl text-slate-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
           set:html={dict.hero.tagline}
         />
 
         {/* CTA Button - Single focused action */}
-        <div class="flex justify-center lg:justify-start pt-4">
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-primary flex items-center justify-center gap-2 group">
+        <div class="flex flex-col items-center lg:items-start gap-4 pt-2">
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-primary flex items-center justify-center gap-2 group" aria-label={dict.hero.contactAria}>
             <Icon name="mdi:whatsapp" class="w-5 h-5" />
             {dict.hero.contact}
             <Icon name="mdi:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
+
+          {/* Availability status */}
+          <p class="flex items-center gap-2 text-sm text-slate-600">
+            <span class="h-2 w-2 rounded-full bg-emerald-500 ring-4 ring-emerald-500/15" aria-hidden="true"></span>
+            {dict.hero.available}
+          </p>
         </div>
 
         {/* Social Links */}
-        <div class="pt-8 flex items-center justify-center lg:justify-start gap-6">
-          <a href="https://github.com/thejasondev" target="_blank" aria-label="GitHub" 
-             class="p-3 rounded-full liquid-glass hover:liquid-glass-accent text-slate-700 hover:text-ink transition-all duration-300 transform hover:-translate-y-1">
-            <Icon name="mdi:github" class="w-5 h-5" />
-          </a>
-          <a href="https://linkedin.com/in/thejasondev" target="_blank" aria-label="LinkedIn" 
-             class="p-3 rounded-full liquid-glass hover:liquid-glass-accent text-slate-700 hover:text-ink transition-all duration-300 transform hover:-translate-y-1">
-            <Icon name="mdi:linkedin" class="w-5 h-5" />
-          </a>
-          <a href="https://instagram.com/thejasondev" target="_blank" aria-label="Instagram" 
-             class="p-3 rounded-full liquid-glass hover:liquid-glass-accent text-slate-700 hover:text-ink transition-all duration-300 transform hover:-translate-y-1">
-            <Icon name="mdi:instagram" class="w-5 h-5" />
-          </a>
+        <div class="pt-4 flex items-center justify-center lg:justify-start gap-3">
+          {heroSocials.map((social) => (
+            <a
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              class="p-3 rounded-full border border-slate-200 bg-white text-slate-700 hover:border-accent hover:text-accent transition-colors duration-300"
+            >
+              <Icon name={social.icon} class="w-5 h-5" />
+            </a>
+          ))}
         </div>
       </div>
 
       {/* Image/Graphic */}
-      <div class="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in-up" style="animation-delay: 0.2s;">
-        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[500px] lg:h-[500px]">
-          
-          {/* Decorative Circles with Liquid Glass */}
-          <div class="absolute inset-0 border-2 border-slate-200 rounded-full scale-110 animate-pulse-slow opacity-40"></div>
-          <div class="absolute inset-0 border border-accent/30 rounded-full scale-125 animate-pulse-slow opacity-30" style="animation-delay: 1s;"></div>
-          
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+        <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[480px] lg:h-[480px]">
+
           {/* Main Profile Image */}
-          <div class="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl">
+          <div class="relative w-full h-full rounded-full overflow-hidden ring-1 ring-slate-200 shadow-[0_24px_60px_-20px_rgba(11,27,51,0.35)]">
             <img
               src="/profile-pic/thejasondev-perfil.webp"
               alt={dict.hero.imgAlt}
-              class="w-full h-full object-cover transition-all duration-700"
+              class="w-full h-full object-cover"
               width="720"
               height="960"
               loading="eager"
+              fetchpriority="high"
             />
-            {/* Overlay gradient */}
-            <div class="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-          </div>
-          
-          {/* Floating Badge with Liquid Glass */}
-          <div class="absolute bottom-8 -left-4 z-20 liquid-glass-accent p-5 rounded-2xl shadow-xl animate-float hidden sm:block max-w-xs">
-            <div class="flex items-center gap-4">
-              <div class="p-3 bg-ink text-accent-soft rounded-xl">
-                <Icon name="mdi:star-four-points" class="w-6 h-6" />
-              </div>
-              <div>
-                <p class="text-xs text-slate-600 font-bold uppercase tracking-wider mb-1">{dict.hero.experienceLabel}</p>
-                <p class="text-2xl font-heading font-bold text-ink">{dict.hero.experienceYears}</p>
-              </div>
-            </div>
           </div>
 
-          {/* Golden Ring Accent */}
-          <div class="absolute top-0 right-0 w-20 h-20 border-4 border-accent rounded-full -translate-y-4 translate-x-4 hidden lg:block opacity-60"></div>
+          {/* Experience Badge */}
+          <div class="absolute bottom-6 -left-2 sm:-left-6 bg-white border border-slate-200 px-4 py-3 sm:px-5 sm:py-4 rounded-2xl shadow-[0_12px_32px_-12px_rgba(11,27,51,0.25)]">
+            <p class="text-[11px] sm:text-xs text-slate-600 font-semibold uppercase tracking-wider mb-0.5">{dict.hero.experienceLabel}</p>
+            <p class="text-xl sm:text-2xl font-heading font-bold text-ink">{dict.hero.experienceYears}</p>
+          </div>
         </div>
       </div>
 
@@ -124,6 +99,6 @@ const whatsappLink = getWhatsappLink(dict.whatsapp.default);
   .hero-tagline :global(strong),
   .hero-tagline :global(span[itemprop="name"]) {
     font-weight: 600;
-    color: #0b1b33;
+    color: var(--color-ink);
   }
 </style>

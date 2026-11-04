@@ -61,8 +61,11 @@ export interface Dictionary {
     perPayment: string;
     priceConsult: string;
     hire: string;
+    featured: string;
   };
+  faqTitle: string;
   footer: {
+    emailPrompt: string;
     tagline: string;
     about: string;
     projects: string;
