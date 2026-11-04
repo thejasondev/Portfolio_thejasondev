@@ -62,24 +62,11 @@ const whatsappLink = getWhatsappLink(dict.whatsapp.default);
         aria-label={dict.header.ctaAria}
       >
         <Icon name="mdi:whatsapp" class="header-cta-icon" />
-        <span class="hidden xs:inline">{dict.header.cta}</span>
+        <span class="hidden md:inline">{dict.header.cta}</span>
       </a>
     </div>
   </nav>
 </header>
-
-<!-- Barra de contacto fija en móvil (zona del pulgar), aparece tras el hero -->
-<a
-  href={whatsappLink}
-  target="_blank"
-  rel="noopener noreferrer"
-  id="mobile-cta"
-  class="mobile-cta md:hidden"
-  aria-label={dict.hero.contactAria}
->
-  <Icon name="mdi:whatsapp" class="w-5 h-5" />
-  {dict.hero.contact}
-</a>
 
 <script>
   import '../scripts/header-scroll.ts';

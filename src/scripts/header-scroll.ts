@@ -5,7 +5,6 @@
 
 export class HeaderScrollManager {
   private header: HTMLElement | null = null;
-  private mobileCta: HTMLElement | null = null;
 
   constructor() {
     this.init();
@@ -13,7 +12,6 @@ export class HeaderScrollManager {
 
   private init(): void {
     this.header = document.getElementById("main-header");
-    this.mobileCta = document.getElementById("mobile-cta");
 
     if (!this.header) {
       console.warn("Header element not found");
@@ -31,8 +29,6 @@ export class HeaderScrollManager {
 
     const updateHeader = () => {
       this.header?.classList.toggle("is-scrolled", window.scrollY > 50);
-      // La barra móvil solo aparece una vez que el CTA del hero queda atrás
-      this.mobileCta?.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.8);
       ticking = false;
     };
 

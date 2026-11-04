@@ -19,13 +19,14 @@ const heroSocials = socialLinks.filter((s) => s.name !== "Twitter");
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       {/* Text Content */}
-      <div class="order-2 lg:order-1 space-y-8 text-center lg:text-left hero-enter">
+      <div class="order-2 lg:order-1 min-w-0 space-y-8 text-center lg:text-left hero-enter">
 
         {/* Main Headline with Brand Keywords for SEO */}
         <h1 class="text-[2.6rem] xs:text-5xl lg:text-7xl xl:text-8xl font-bold font-heading leading-[1.05] text-ink text-balance">
           <span class="sr-only">thejasondev - Jason Guerra | </span>
-          {dict.hero.role} <br class="hidden lg:block" />
-          <span class="text-accent">{dict.hero.roleHighlight}</span>
+          {/* Sin <br>: el minificador elimina el espacio junto a él. El salto en desktop lo da lg:block */}
+          <span class="lg:block">{dict.hero.role}</span>{" "}
+          <span class="text-accent lg:block">{dict.hero.roleHighlight}</span>
         </h1>
 
         {/* Tagline with Portfolio keyword */}
