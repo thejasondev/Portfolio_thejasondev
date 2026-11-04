@@ -3,20 +3,20 @@ Developer: Jason Guerra
 Alias: thejasondev
 Brand: thejasondev | Jason Guerra
 Site: https://thejasondev.vercel.app
-Location: La Habana, Miramar, Cuba
+Location: Remote - serving clients worldwide
 Email: thejasondev@icloud.com
-Phone: +53 53118193
+Phone: +40 759 164 606
 
 /* SOCIAL MEDIA */
 Twitter: @thejasondev | https://twitter.com/thejasondev
 GitHub: thejasondev | https://github.com/thejasondev
 LinkedIn: thejasondev | https://linkedin.com/in/thejasondev
 Instagram: @thejasondev | https://instagram.com/thejasondev
-WhatsApp: +53 53118193 | https://wa.me/5353118193
+WhatsApp: +40 759 164 606 | https://wa.me/40759164606
 
 /* SITE */
-Last update: 2025-10-24
-Language: Español / Spanish
+Last update: 2026-11-04
+Language: Español, English, Română
 Standards: HTML5, CSS3, JavaScript, ES6+
 Components: Astro, TypeScript, TailwindCSS, React
 IDE: VS Code

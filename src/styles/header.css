@@ -17,18 +17,18 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #000;
+  color: #0b1b33;
   background: linear-gradient(
     135deg,
-    rgba(212, 175, 55, 0.2),
-    rgba(244, 228, 188, 0.15)
+    rgba(47, 93, 159, 0.2),
+    rgba(220, 230, 243, 0.15)
   );
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border: 1.5px solid rgba(47, 93, 159, 0.45);
   border-radius: 9999px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow:
-    0 2px 12px rgba(212, 175, 55, 0.15),
+    0 2px 12px rgba(47, 93, 159, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
@@ -68,12 +68,12 @@
 .header-cta:hover {
   background: linear-gradient(
     135deg,
-    rgba(212, 175, 55, 0.35),
-    rgba(244, 228, 188, 0.25)
+    rgba(47, 93, 159, 0.35),
+    rgba(220, 230, 243, 0.25)
   );
-  border-color: rgba(212, 175, 55, 0.65);
+  border-color: rgba(47, 93, 159, 0.65);
   box-shadow:
-    0 4px 20px rgba(212, 175, 55, 0.25),
+    0 4px 20px rgba(47, 93, 159, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
   transform: translateY(-1px);
 }
@@ -85,7 +85,7 @@
 .header-cta:active {
   transform: translateY(0) scale(0.97);
   box-shadow:
-    0 1px 6px rgba(212, 175, 55, 0.2),
+    0 1px 6px rgba(47, 93, 159, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
@@ -96,12 +96,12 @@
 @keyframes ctaPulse {
   0%, 100% {
     box-shadow:
-      0 2px 12px rgba(212, 175, 55, 0.15),
+      0 2px 12px rgba(47, 93, 159, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
   50% {
     box-shadow:
-      0 2px 20px rgba(212, 175, 55, 0.3),
+      0 2px 20px rgba(47, 93, 159, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 }

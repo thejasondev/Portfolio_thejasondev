@@ -7,20 +7,20 @@ export const en: Dictionary = {
   shortLabel: "EN",
   jobTitle: "Industrial Engineer & Frontend Developer",
   ogLocale: "en_US",
-  hreflang: "en-US",
+  hreflang: "en",
   seo: {
     title:
-      "thejasondev | Jason Guerra - Industrial Engineer & Frontend Developer Freelance Cuba",
+      "Jason Guerra (thejasondev) | Remote Freelance Web Developer for Clients Worldwide",
     description:
-      "thejasondev is Jason Guerra, an industrial engineer and freelance frontend developer in Havana, Cuba. Professional portfolio specialized in building modern, fast and SEO-optimized websites that optimize processes and solve real business problems with Astro, React, Next.js, TypeScript and TailwindCSS.",
+      "Jason Guerra (thejasondev), industrial engineer and freelance frontend developer working remotely with clients worldwide. Modern, fast, SEO-optimized websites built with Astro, React, Next.js, TypeScript and TailwindCSS.",
     keywords:
-      "thejasondev, Jason Guerra, thejasondev portfolio, Jason Guerra portfolio, industrial engineer, frontend developer, process optimization, problem solving, web design, Astro, React, Cuba, freelance, web developer Havana",
+      "Jason Guerra, thejasondev, Jason Guerra portfolio, freelance web developer, freelance frontend developer, remote web developer, hire web developer, hire freelance developer, web developer worldwide, professional web design, business websites, landing page, SEO optimization, industrial engineer, process optimization, Astro, React, Next.js, TypeScript, TailwindCSS",
     socialListTitle: "Jason Guerra's Social Profiles",
   },
   faq: [
     {
       q: "Who is thejasondev?",
-      a: "thejasondev is Jason Guerra, an industrial engineer and freelance frontend developer specialized in building modern, fast and SEO-optimized websites, applying process optimization and problem solving to every project. Based in Havana, Cuba.",
+      a: "thejasondev is Jason Guerra, an industrial engineer and freelance frontend developer specialized in building modern, fast and SEO-optimized websites, applying process optimization and problem solving to every project. He works 100% remotely with clients anywhere in the world.",
     },
     {
       q: "Where can I see Jason Guerra's portfolio?",
@@ -32,7 +32,15 @@ export const en: Dictionary = {
     },
     {
       q: "How can I contact Jason Guerra developer?",
-      a: "You can contact Jason Guerra via WhatsApp (+5353118193), email (thejasondev@icloud.com), or by visiting his portfolio at https://thejasondev.vercel.app.",
+      a: "You can contact Jason Guerra via WhatsApp (+40 759 164 606), email (thejasondev@icloud.com), or by visiting his portfolio at https://thejasondev.vercel.app.",
+    },
+    {
+      q: "Does Jason Guerra work with international clients?",
+      a: "Yes. Jason Guerra works as a 100% remote freelance web developer and serves companies, entrepreneurs and professionals anywhere in the world (Europe, North America, Latin America and beyond), communicating in English, Spanish and Romanian.",
+    },
+    {
+      q: "How much does a website with thejasondev cost?",
+      a: "Projects start at $150 USD/EUR for a professional landing page. Larger websites and custom development are quoted according to each client's requirements.",
     },
   ],
   nav: {
@@ -46,11 +54,11 @@ export const en: Dictionary = {
     logoAria: "thejasondev - Jason Guerra Portfolio",
   },
   hero: {
-    available: "Available for projects",
+    available: "Available for projects worldwide",
     role: "Frontend",
     roleHighlight: "Developer",
     tagline:
-      "Welcome to my <strong>professional portfolio</strong>. I'm <span itemprop=\"name\">Jason Guerra</span>, an <strong>industrial engineer</strong> specialized in <strong>process optimization</strong> and <strong>problem solving</strong>, combining technical vision and design to create premium digital experiences with exceptional performance.",
+      "Welcome to my <strong>professional portfolio</strong>. I'm <span itemprop=\"name\">Jason Guerra</span>, an <strong>industrial engineer</strong> specialized in <strong>process optimization</strong> and <strong>problem solving</strong>, combining technical vision and design to create digital experiences with exceptional performance. I work <strong>remotely with clients worldwide</strong>.",
     contact: "Contact Me",
     contactAria: "Contact me on WhatsApp",
     experienceLabel: "Experience",

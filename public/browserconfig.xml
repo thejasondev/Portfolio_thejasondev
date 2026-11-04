@@ -6,7 +6,7 @@
       <square150x150logo src="/web-dev.png"/>
       <square310x310logo src="/web-dev.png"/>
       <wide310x150logo src="/web-dev.png"/>
-      <TileColor>#0f172a</TileColor>
+      <TileColor>#0b1b33</TileColor>
     </tile>
     <notification>
       <polling-uri src="https://thejasondev.vercel.app/"/>

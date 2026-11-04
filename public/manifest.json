@@ -1,16 +1,21 @@
 {
-  "name": "Jason Guerra | Desarrollador Frontend (thejasondev)",
+  "name": "Jason Guerra | Desarrollador Web Freelance (thejasondev)",
   "short_name": "thejasondev",
-  "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador frontend freelance en La Habana, Cuba. Especializado en crear sitios web modernos, rápidos y optimizados para SEO.",
+  "description": "Portfolio profesional de Jason Guerra (thejasondev), desarrollador web freelance que trabaja en remoto con clientes de todo el mundo. Sitios web modernos, rápidos y optimizados para SEO.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#fafafa",
-  "theme_color": "#0f172a",
-  "lang": "es-ES",
+  "background_color": "#f8fafc",
+  "theme_color": "#0b1b33",
+  "lang": "es",
   "dir": "ltr",
-  "categories": ["business", "portfolio", "technology", "developer"],
+  "categories": [
+    "business",
+    "portfolio",
+    "technology",
+    "developer"
+  ],
   "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "icons": [
     {

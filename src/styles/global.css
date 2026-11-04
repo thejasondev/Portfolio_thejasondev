@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    /* Premium Liquid Glass Palette - Variables CSS optimizadas */
+    /* Paleta corporativa (azul marino + azul acero) - Variables CSS */
     --color-bg: #ffffff;
-    --color-bg-alt: #f5f5f5;
-    --color-black: #000000;
-    --color-gold: #d4af37;
-    --color-gold-light: #f4e4bc;
-    --color-gold-dark: #b8941f;
+    --color-bg-alt: #f8fafc;
+    --color-ink: #0b1b33;
+    --color-accent: #2f5d9f;
+    --color-accent-light: #dce6f3;
+    --color-accent-dark: #1e3f73;
 
     /* Typography */
     --font-heading: "Playfair Display", serif;
@@ -20,7 +20,7 @@
   html {
     scroll-behavior: smooth;
     background-color: var(--color-bg);
-    color: var(--color-black);
+    color: var(--color-ink);
     font-family: var(--font-body);
   }
 
@@ -31,13 +31,13 @@
   h5,
   h6 {
     font-family: var(--font-heading);
-    color: var(--color-black);
+    color: var(--color-ink);
     letter-spacing: -0.02em;
   }
 
   /* Body styles aplicados directamente - eliminada la duplicación */
   body {
-    @apply antialiased text-black bg-white selection:bg-black selection:text-white;
+    @apply antialiased text-ink bg-white selection:bg-accent selection:text-white;
   }
 }
 
@@ -64,16 +64,16 @@
       inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
   }
 
-  .liquid-glass-gold {
+  .liquid-glass-accent {
     background: linear-gradient(
       135deg,
-      rgba(212, 175, 55, 0.15),
-      rgba(244, 228, 188, 0.1)
+      rgba(47, 93, 159, 0.15),
+      rgba(220, 230, 243, 0.1)
     );
     backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
     -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.15),
+    border: 1px solid rgba(47, 93, 159, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(47, 93, 159, 0.15),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
   }
 
@@ -84,32 +84,31 @@
      ============================================ */
 
   .btn-primary {
-    @apply px-8 py-4 bg-black text-white font-medium rounded-full 
-    transition-all duration-500 shadow-lg shadow-black/20
-    hover:shadow-xl hover:shadow-black/30 hover:scale-[1.02]
+    @apply px-8 py-4 bg-ink text-white font-medium rounded-full 
+    transition-all duration-500 shadow-lg shadow-ink/20
+    hover:shadow-xl hover:shadow-ink/30 hover:scale-[1.02]
     tracking-wide uppercase text-sm
-    border border-transparent hover:border-gold/20
+    border border-transparent hover:border-accent/20
     relative overflow-hidden;
   }
 
   .btn-secondary {
     @apply px-8 py-4 font-medium rounded-full 
-    border-2 border-black text-black hover:bg-black hover:text-white
+    border-2 border-ink text-ink hover:bg-ink hover:text-white
     transition-all duration-300 
     tracking-wide uppercase text-sm
-    hover:shadow-lg hover:shadow-black/20 hover:scale-[1.02];
+    hover:shadow-lg hover:shadow-ink/20 hover:scale-[1.02];
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
   }
 
-  .btn-gold {
+  .btn-accent {
     @apply px-8 py-4 font-medium rounded-full 
-    bg-gradient-to-r from-gold via-gold-light to-gold
-    text-black hover:text-white
-    transition-all duration-300 shadow-lg shadow-gold/30
-    hover:shadow-xl hover:shadow-gold/50 hover:scale-[1.02]
+    bg-accent text-white hover:bg-accent-dark
+    transition-all duration-300 shadow-lg shadow-accent/25
+    hover:shadow-xl hover:shadow-accent/40 hover:scale-[1.02]
     tracking-wide uppercase text-sm
-    border border-gold-dark/20;
+    border border-accent-dark/20;
   }
 
   /* ============================================
@@ -126,8 +125,12 @@
   /* ============================================
      Text Effects
      ============================================ */
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-dark via-gold to-gold-light;
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ink via-accent-dark to-accent;
+  }
+
+  .text-gradient-accent-light {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent-light to-accent-soft;
   }
 
   /* ============================================

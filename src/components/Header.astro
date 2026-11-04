@@ -22,12 +22,12 @@ const whatsappLink = getWhatsappLink(dict.whatsapp.default);
 
 <header class="fixed w-full liquid-glass z-50 top-0 border-b border-white/20 transition-all duration-300" id="main-header">
   <nav class="container-custom flex justify-between items-center gap-2 h-20 md:h-24">
-    <!-- Logo with Gold Accent -->
+    <!-- Logo with Accent -->
     <a href="#"
        id="site-logo"
        class="group flex items-center gap-2 specular-highlight flex-shrink-0"
        aria-label={dict.header.logoAria}>
-       <span class="text-base xs:text-lg sm:text-2xl font-bold font-heading text-black tracking-tight group-hover:text-gradient-gold transition-all duration-300 whitespace-nowrap">
+       <span class="text-base xs:text-lg sm:text-2xl font-bold font-heading text-ink tracking-tight group-hover:text-gradient-accent transition-all duration-300 whitespace-nowrap">
          {'{ thejasondev }'}
        </span>
     </a>
@@ -40,10 +40,10 @@ const whatsappLink = getWhatsappLink(dict.whatsapp.default);
           <li>
             <a
               href={item.href}
-              class="text-xs font-bold text-neutral-700 hover:text-black transition-colors uppercase tracking-widest relative group"
+              class="text-xs font-bold text-slate-700 hover:text-ink transition-colors uppercase tracking-widest relative group"
             >
               {item.text}
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold-light transition-all duration-300 group-hover:w-full"></span>
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-accent to-accent-light transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
         ))}

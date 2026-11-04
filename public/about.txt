@@ -1,5 +1,5 @@
 # thejasondev | Jason Guerra
-# Desarrollador Frontend Freelance
+# Desarrollador Web Freelance Remoto | Clientes en todo el mundo
 
 Nombre: Jason Guerra
 Marca: thejasondev
@@ -8,9 +8,11 @@ Alias: The Jason Dev, Jason Guerra Dev
 ## Sobre mí
 Soy Jason Guerra, conocido como thejasondev en redes sociales y plataformas de desarrollo. 
 Desarrollador frontend freelance especializado en crear experiencias web modernas, rápidas y optimizadas.
+Trabajo 100% en remoto con empresas y emprendedores de cualquier parte del mundo.
 
-## Ubicación
-La Habana, Miramar, Cuba
+## Área de servicio
+Remoto - Clientes en todo el mundo (Europa, Norteamérica, Latinoamérica y más)
+Idiomas: Español, Inglés, Rumano
 
 ## Especialización
 - Desarrollo Frontend
@@ -24,8 +26,8 @@ La Habana, Miramar, Cuba
 
 ## Contacto
 Email: thejasondev@icloud.com
-Teléfono: +53 53118193
-WhatsApp: https://wa.me/5353118193
+Teléfono: +40 759 164 606
+WhatsApp: https://wa.me/40759164606
 
 ## Redes Sociales
 GitHub: https://github.com/thejasondev
@@ -41,10 +43,12 @@ Website: https://thejasondev.vercel.app
 - Jason Guerra
 - Jason Guerra desarrollador
 - Jason Guerra frontend
-- thejasondev Cuba
-- desarrollador frontend Cuba
+- desarrollador web freelance
+- desarrollador frontend remoto
+- freelance web developer
+- hire remote web developer
 - Jason Guerra portfolio
 - thejasondev portfolio
 
 ---
-© 2024-2025 Jason Guerra (thejasondev). Todos los derechos reservados.
+© 2024-2026 Jason Guerra (thejasondev). Todos los derechos reservados.

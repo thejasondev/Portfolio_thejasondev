@@ -1,5 +1,6 @@
 import { siteConfig } from "../config/site";
-import { getDictionary } from "../i18n";
+import { services } from "../data/services";
+import { getDictionary, localized } from "../i18n";
 import type { Locale } from "../i18n/types";
 
 /**
@@ -12,6 +13,12 @@ const baseUrl = siteConfig.url;
 const personId = `${baseUrl}/#person`;
 const orgId = `${baseUrl}/#organization`;
 const websiteId = `${baseUrl}/#website`;
+
+// Servicio remoto disponible en cualquier país
+const areaServed = {
+  "@type": "Place",
+  name: siteConfig.author.areaServed,
+};
 
 /**
  * Genera el schema para Persona (Freelancer)
@@ -39,14 +46,13 @@ export const getPersonSchema = (locale: Locale = "es") => {
     },
     jobTitle: dict.jobTitle,
     worksFor: {
-      "@type": "Organization",
-      name: "Freelance",
+      "@id": orgId,
     },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: siteConfig.author.location.city,
-      addressRegion: siteConfig.author.location.region,
-      addressCountry: siteConfig.author.location.countryCode,
+    hasOccupation: {
+      "@type": "Occupation",
+      name: dict.jobTitle,
+      occupationLocation: areaServed,
+      skills: "Frontend Development, Web Design, SEO, Astro, React, Next.js, TypeScript",
     },
     sameAs: [
       siteConfig.social.github,
@@ -57,10 +63,12 @@ export const getPersonSchema = (locale: Locale = "es") => {
       baseUrl,
     ],
     knowsAbout: [
-      "Ingeniería Industrial",
-      "Optimización de Procesos",
-      "Resolución de Problemas",
-      "Desarrollo Web",
+      "Industrial Engineering",
+      "Process Optimization",
+      "Problem Solving",
+      "Web Development",
+      "Freelance Web Development",
+      "Remote Work",
       "Frontend",
       "Astro",
       "React",
@@ -124,21 +132,25 @@ export const getOrganizationSchema = (locale: Locale = "es") => {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: siteConfig.author.phone,
-      contactType: "customer service",
+      email: siteConfig.author.email,
+      contactType: "sales",
+      areaServed: siteConfig.author.areaServed,
       availableLanguage: ["Spanish", "English", "Romanian"],
     },
+    areaServed,
     sameAs: [
       siteConfig.social.github,
       siteConfig.social.linkedin,
       siteConfig.social.instagram,
       siteConfig.social.twitter,
+      siteConfig.social.whatsapp,
     ],
     inLanguage: dict.htmlLang,
   };
 };
 
 /**
- * Genera el schema para Servicios Profesionales (SEO Local)
+ * Genera el schema para Servicios Profesionales (remoto, a nivel mundial)
  */
 export const getProfessionalServiceSchema = (locale: Locale = "es") => {
   const dict = getDictionary(locale);
@@ -156,24 +168,41 @@ export const getProfessionalServiceSchema = (locale: Locale = "es") => {
       alt: `Logo de ${siteConfig.author.name}`,
     },
     telephone: siteConfig.author.phone,
+    email: siteConfig.author.email,
     url: baseUrl,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: siteConfig.author.location.city,
-      addressRegion: siteConfig.author.location.region,
-      addressCountry: siteConfig.author.location.countryCode,
+    provider: { "@id": personId },
+    areaServed,
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: baseUrl,
+      servicePhone: siteConfig.author.phone,
+      availableLanguage: ["Spanish", "English", "Romanian"],
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: siteConfig.author.location.geo.latitude,
-      longitude: siteConfig.author.location.geo.longitude,
-    },
+    serviceType: [
+      "Freelance Web Development",
+      "Frontend Development",
+      "Web Design",
+      "Landing Pages",
+      "SEO Optimization",
+    ],
     priceRange: "$$",
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
+    currenciesAccepted: "USD, EUR",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: `${dict.services.title} ${dict.services.titleHighlight}`,
+      itemListElement: services.map((service) => {
+        const price = localized(service.price, locale).match(/\d+/)?.[0];
+        return {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: localized(service.title, locale),
+            description: localized(service.description, locale),
+            areaServed,
+          },
+          ...(price && { price, priceCurrency: "USD" }),
+        };
+      }),
     },
     sameAs: [siteConfig.social.linkedin, siteConfig.social.github],
     inLanguage: dict.htmlLang,

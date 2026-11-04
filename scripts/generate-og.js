@@ -20,16 +20,16 @@ async function generate() {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0b0b0b"/>
-      <stop offset="1" stop-color="#1f1d1a"/>
+      <stop offset="0" stop-color="#0b1b33"/>
+      <stop offset="1" stop-color="#132a4d"/>
     </linearGradient>
     <radialGradient id="glow" cx="0.82" cy="0.45" r="0.6">
-      <stop offset="0" stop-color="#D4AF37" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+      <stop offset="0" stop-color="#8FB0DD" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#8FB0DD" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="goldline" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#D4AF37"/>
-      <stop offset="1" stop-color="#F4E4BC"/>
+    <linearGradient id="accentline" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8FB0DD"/>
+      <stop offset="1" stop-color="#DCE6F3"/>
     </linearGradient>
     <clipPath id="avatarClip"><circle cx="905" cy="315" r="210"/></clipPath>
   </defs>
@@ -38,16 +38,16 @@ async function generate() {
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#glow)"/>
 
   <!-- Avatar -->
-  <circle cx="905" cy="315" r="218" fill="none" stroke="#D4AF37" stroke-width="3" opacity="0.85"/>
+  <circle cx="905" cy="315" r="218" fill="none" stroke="#8FB0DD" stroke-width="3" opacity="0.85"/>
   <image href="data:image/png;base64,${avatarB64}" x="695" y="105" width="420" height="420" clip-path="url(#avatarClip)" preserveAspectRatio="xMidYMid slice"/>
 
   <!-- Text -->
-  <rect x="80" y="150" width="64" height="4" fill="url(#goldline)"/>
-  <text x="80" y="205" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="6" fill="#D4AF37" font-weight="700">PORTFOLIO</text>
+  <rect x="80" y="150" width="64" height="4" fill="url(#accentline)"/>
+  <text x="80" y="205" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="6" fill="#8FB0DD" font-weight="700">FREELANCE WEB DEVELOPER</text>
   <text x="80" y="300" font-family="Arial, Helvetica, sans-serif" font-size="78" fill="#FFFFFF" font-weight="800">thejasondev</text>
-  <text x="80" y="360" font-family="Arial, Helvetica, sans-serif" font-size="36" fill="#D4AF37" font-weight="600">Jason Guerra</text>
-  <text x="80" y="420" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#C4C4C4">Ingeniero Industrial &amp; Desarrollador Frontend</text>
-  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#8a8a8a">thejasondev.vercel.app</text>
+  <text x="80" y="360" font-family="Arial, Helvetica, sans-serif" font-size="36" fill="#8FB0DD" font-weight="600">Jason Guerra</text>
+  <text x="80" y="420" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#CBD5E1">Frontend Developer · Remote · Worldwide</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#94A3B8">thejasondev.vercel.app</text>
 </svg>`;
 
   const out = path.join(publicDir, "og-image.png");

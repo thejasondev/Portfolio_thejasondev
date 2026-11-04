@@ -32,7 +32,7 @@ const {
   type = "website",
   author = siteConfig.author.name,
   datePublished = "2025-04-21",
-  dateModified = "2026-07-16",
+  dateModified = "2026-11-04",
 } = Astro.props;
 
 const dict = getDictionary(locale);
@@ -145,7 +145,7 @@ const faqSchema = getFAQSchema(locale);
 
 <!-- Tipo de app para dispositivos móviles -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content={siteConfig.author.firstName} />
 <meta name="msapplication-TileColor" content={siteConfig.seo.themeColor} />
 <meta name="msapplication-config" content="/browserconfig.xml" />

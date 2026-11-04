@@ -15,10 +15,10 @@ const dict = getDictionary(locale);
 <section id="projects" class="section-padding bg-white relative overflow-hidden">
   <div class="container-custom relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-12 md:mb-20 animate-fade-in-up">
-      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-4 md:mb-6 text-black">
-        {dict.projects.title} <span class="text-gradient-gold">{dict.projects.titleHighlight}</span>
+      <h2 class="text-3xl md:text-5xl font-bold font-heading mb-4 md:mb-6 text-ink">
+        {dict.projects.title} <span class="text-gradient-accent">{dict.projects.titleHighlight}</span>
       </h2>
-      <p class="text-base md:text-lg text-neutral-600 leading-relaxed font-light">
+      <p class="text-base md:text-lg text-slate-600 leading-relaxed font-light">
         {dict.projects.subtitle}
       </p>
     </div>
@@ -30,8 +30,8 @@ const dict = getDictionary(locale);
           
           {/* Project Image */}
           <div class={`relative ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-neutral-900/10 liquid-glass border-2 border-white/80 group-hover:border-gold/40 transition-all duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/10 liquid-glass border-2 border-white/80 group-hover:border-accent/40 transition-all duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
               <img
                 src={project.image}
                 alt={project.title}
@@ -44,23 +44,23 @@ const dict = getDictionary(locale);
             </div>
             
             {/* Decorative Gold Ring */}
-            <div class="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-gold rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 hidden lg:block"></div>
+            <div class="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-accent rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 hidden lg:block"></div>
           </div>
 
           {/* Project Info */}
           <div class={`space-y-6 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
             <div class="space-y-4">
-              <h3 class="text-3xl lg:text-4xl font-bold font-heading text-black specular-highlight">
+              <h3 class="text-3xl lg:text-4xl font-bold font-heading text-ink specular-highlight">
                 {project.title}
               </h3>
-              <p class="text-lg text-neutral-600 leading-relaxed font-light">
+              <p class="text-lg text-slate-600 leading-relaxed font-light">
                 {localized(project.description, locale)}
               </p>
             </div>
 
             <div class="flex flex-wrap gap-3">
               {project.technologies.map((tech) => (
-                <span class="px-4 py-2 liquid-glass text-neutral-700 text-xs font-bold uppercase tracking-wider rounded-full border border-neutral-200 hover:border-gold/40 hover:liquid-glass-gold transition-all duration-300">
+                <span class="px-4 py-2 liquid-glass text-slate-700 text-xs font-bold uppercase tracking-wider rounded-full border border-slate-200 hover:border-accent/40 hover:liquid-glass-accent transition-all duration-300">
                   {tech}
                 </span>
               ))}
@@ -85,11 +85,11 @@ const dict = getDictionary(locale);
     {/* Mobile Layout — Card compacta con logo inline */}
     <div class="md:hidden space-y-5">
       {projects.map((project) => (
-        <article class="project-card rounded-2xl p-5 border border-neutral-100 shadow-sm">
+        <article class="project-card rounded-2xl p-5 border border-slate-100 shadow-sm">
           
           {/* Header: Logo + Título inline */}
           <div class="flex items-center gap-3.5 mb-3">
-            <div class="project-logo-mobile flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-neutral-200 shadow-sm">
+            <div class="project-logo-mobile flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
               <img
                 src={project.logo}
                 alt={`${project.title} logo`}
@@ -100,20 +100,20 @@ const dict = getDictionary(locale);
                 height="48"
               />
             </div>
-            <h3 class="text-lg font-bold font-heading text-black leading-tight">
+            <h3 class="text-lg font-bold font-heading text-ink leading-tight">
               {project.title}
             </h3>
           </div>
 
           {/* Descripción completa */}
-          <p class="text-sm text-neutral-600 leading-relaxed font-light mb-4">
+          <p class="text-sm text-slate-600 leading-relaxed font-light mb-4">
             {localized(project.description, locale)}
           </p>
 
           {/* Tech badges */}
           <div class="flex flex-wrap gap-1.5 mb-4">
             {project.technologies.map((tech) => (
-              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-neutral-600 rounded-full border border-neutral-200 bg-neutral-50">
+              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-600 rounded-full border border-slate-200 bg-slate-50">
                 {tech}
               </span>
             ))}
@@ -124,7 +124,7 @@ const dict = getDictionary(locale);
             href={project.url} 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-gold-dark transition-colors duration-300"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-accent transition-colors duration-300"
             aria-label={dict.projects.visitAria.replace("{title}", project.title)}
           >
             {dict.projects.visitSite}

@@ -7,20 +7,20 @@ export const es: Dictionary = {
   shortLabel: "ES",
   jobTitle: "Ingeniero Industrial & Desarrollador Frontend",
   ogLocale: "es_ES",
-  hreflang: "es-ES",
+  hreflang: "es",
   seo: {
     title:
-      "thejasondev | Jason Guerra - Ingeniero Industrial & Desarrollador Frontend Freelance Cuba",
+      "Jason Guerra (thejasondev) | Desarrollador Web Freelance Remoto para Clientes de Todo el Mundo",
     description:
-      "thejasondev es Jason Guerra, ingeniero industrial y desarrollador frontend freelance en La Habana, Cuba. Portfolio profesional especializado en crear sitios web modernos, rápidos y optimizados para SEO que optimizan procesos y resuelven problemas reales de negocio con Astro, React, Next.js, TypeScript y TailwindCSS.",
+      "Jason Guerra (thejasondev), ingeniero industrial y desarrollador frontend freelance que trabaja en remoto con clientes de todo el mundo. Sitios web modernos, rápidos y optimizados para SEO con Astro, React, Next.js, TypeScript y TailwindCSS.",
     keywords:
-      "thejasondev, Jason Guerra, portfolio thejasondev, portfolio Jason Guerra, ingeniero industrial, desarrollador frontend, optimización de procesos, solución de problemas, diseño web, Astro, React, Cuba, freelance, desarrollador web La Habana",
+      "Jason Guerra, thejasondev, portfolio Jason Guerra, desarrollador web freelance, desarrollador frontend freelance, desarrollador web remoto, programador freelance, freelance a nivel mundial, contratar desarrollador web, diseño web profesional, páginas web para empresas, landing page, optimización SEO, ingeniero industrial, optimización de procesos, Astro, React, Next.js, TypeScript, TailwindCSS",
     socialListTitle: `Redes Sociales de Jason Guerra`,
   },
   faq: [
     {
       q: "¿Quién es thejasondev?",
-      a: "thejasondev es Jason Guerra, ingeniero industrial y desarrollador frontend freelance especializado en crear sitios web modernos, rápidos y optimizados para SEO, aplicando la optimización de procesos y la solución de problemas a cada proyecto. Ubicado en La Habana, Cuba.",
+      a: "thejasondev es Jason Guerra, ingeniero industrial y desarrollador frontend freelance especializado en crear sitios web modernos, rápidos y optimizados para SEO, aplicando la optimización de procesos y la solución de problemas a cada proyecto. Trabaja 100% en remoto con clientes de cualquier parte del mundo.",
     },
     {
       q: "¿Dónde puedo ver el portfolio de Jason Guerra?",
@@ -32,7 +32,15 @@ export const es: Dictionary = {
     },
     {
       q: "¿Cómo contactar a Jason Guerra desarrollador?",
-      a: "Puedes contactar a Jason Guerra a través de WhatsApp (+5353118193), email (thejasondev@icloud.com), o visitando su portfolio en https://thejasondev.vercel.app.",
+      a: "Puedes contactar a Jason Guerra a través de WhatsApp (+40 759 164 606), email (thejasondev@icloud.com), o visitando su portfolio en https://thejasondev.vercel.app.",
+    },
+    {
+      q: "¿Jason Guerra trabaja con clientes de otros países?",
+      a: "Sí. Jason Guerra trabaja como desarrollador web freelance 100% remoto y ofrece sus servicios a empresas, emprendedores y profesionales de cualquier parte del mundo (Europa, Norteamérica, Latinoamérica y más), con comunicación en español, inglés y rumano.",
+    },
+    {
+      q: "¿Cuánto cuesta una página web con thejasondev?",
+      a: "Los proyectos comienzan desde $150 USD/EUR para una landing page profesional. Los sitios más completos y desarrollos a medida se cotizan según los requisitos de cada cliente.",
     },
   ],
   nav: {
@@ -46,11 +54,11 @@ export const es: Dictionary = {
     logoAria: "thejasondev - Jason Guerra Portfolio",
   },
   hero: {
-    available: "Disponible para proyectos",
+    available: "Disponible para proyectos en todo el mundo",
     role: "Desarrollador",
     roleHighlight: "Frontend",
     tagline:
-      "Bienvenido a mi <strong>portfolio profesional</strong>. Soy <span itemprop=\"name\">Jason Guerra</span>, <strong>ingeniero industrial</strong> especializado en <strong>optimización de procesos</strong> y <strong>solución de problemas</strong>, que combina visión técnica y diseño para crear experiencias digitales premium con rendimiento excepcional.",
+      "Bienvenido a mi <strong>portfolio profesional</strong>. Soy <span itemprop=\"name\">Jason Guerra</span>, <strong>ingeniero industrial</strong> especializado en <strong>optimización de procesos</strong> y <strong>solución de problemas</strong>, que combina visión técnica y diseño para crear experiencias digitales con rendimiento excepcional. Trabajo en <strong>remoto con clientes de todo el mundo</strong>.",
     contact: "Contáctame",
     contactAria: "Contáctame por WhatsApp",
     experienceLabel: "Experiencia",

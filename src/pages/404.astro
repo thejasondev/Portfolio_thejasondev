@@ -21,25 +21,25 @@ const pageKeywords = "404, página no encontrada, error, Jason Guerra, portfolio
   keywords={pageKeywords}
   type="website"
 >
-  <div class="min-h-screen flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden bg-[#fafafa]">
+  <div class="min-h-screen flex flex-col items-center justify-center px-4 py-24 relative overflow-hidden bg-slate-50">
     <!-- Elementos decorativos de fondo -->
-    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-gray-100 rounded-full opacity-30 blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gray-200 rounded-full opacity-20 blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-slate-100 rounded-full opacity-30 blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-80 h-80 bg-slate-200 rounded-full opacity-20 blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
     
     <!-- Código de error con efecto glitch -->
     <div class="relative mb-4">
-      <div class="text-9xl font-bold font-playfair text-gray-900 relative z-10 glitch-text">404</div>
+      <div class="text-9xl font-bold font-playfair text-slate-900 relative z-10 glitch-text">404</div>
       <div class="absolute top-0 left-1 text-9xl font-bold font-playfair text-red-500 opacity-20 z-0 glitch-shadow">404</div>
       <div class="absolute top-0 -left-1 text-9xl font-bold font-playfair text-blue-500 opacity-20 z-0 glitch-shadow">404</div>
     </div>
     
     <!-- Mensaje principal -->
-    <h1 class="text-3xl md:text-4xl font-playfair font-bold text-center text-gray-900 mb-6 relative">
+    <h1 class="text-3xl md:text-4xl font-playfair font-bold text-center text-slate-900 mb-6 relative">
       Código perdido en el espacio digital
     </h1>
     
     <!-- Descripción creativa -->
-    <p class="text-lg text-gray-600 text-center max-w-lg mb-12">
+    <p class="text-lg text-slate-600 text-center max-w-lg mb-12">
       La página que buscas ha sido refactorizada o nunca llegó a producción. Como buen desarrollador, te invito a volver al código principal.
     </p>
     
@@ -53,7 +53,7 @@ const pageKeywords = "404, página no encontrada, error, Jason Guerra, portfolio
         { name: 'react', animation: 'floating-2' }
       ].map(tech => (
         <div class={`w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center ${tech.animation}`}>
-          <Icon name={`simple-icons:${tech.name}`} class="w-6 h-6 text-gray-700" />
+          <Icon name={`simple-icons:${tech.name}`} class="w-6 h-6 text-slate-700" />
         </div>
       ))}
     </div>
@@ -61,7 +61,7 @@ const pageKeywords = "404, página no encontrada, error, Jason Guerra, portfolio
     <!-- Botón de regreso con efecto -->
     <a 
       href="/" 
-      class="group relative inline-flex items-center px-10 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg overflow-hidden"
+      class="group relative inline-flex items-center px-10 py-4 bg-slate-900 text-white rounded-full hover:bg-slate-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg overflow-hidden"
     >
       <!-- Efecto de partículas en hover -->
       <div class="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-20">
@@ -73,8 +73,8 @@ const pageKeywords = "404, página no encontrada, error, Jason Guerra, portfolio
     </a>
     
     <!-- Mensaje de código -->
-    <div class="mt-16 text-gray-400 font-mono text-sm px-4 py-2 bg-gray-100 rounded-md relative">
-      <span class="text-gray-500">// TODO:</span> Revisar rutas de navegación y corregir errores 404
+    <div class="mt-16 text-slate-400 font-mono text-sm px-4 py-2 bg-slate-100 rounded-md relative">
+      <span class="text-slate-500">// TODO:</span> Revisar rutas de navegación y corregir errores 404
     </div>
   </div>
 </Layout>

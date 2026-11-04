@@ -20,13 +20,13 @@ export default defineConfig({
         page !== "https://thejasondev.vercel.app/404",
       changefreq: "weekly",
       priority: 1.0,
-      lastmod: new Date("2026-10-29"),
+      lastmod: new Date("2026-11-04"),
       i18n: {
         defaultLocale: "es",
         locales: {
-          es: "es-ES",
-          en: "en-US",
-          ro: "ro-RO",
+          es: "es",
+          en: "en",
+          ro: "ro",
         },
       },
     }),
